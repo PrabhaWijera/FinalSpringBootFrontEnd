@@ -28,7 +28,7 @@
                 background: url("assets/img/footer-1084348019.jpg");
                 width: 100%;
             }
-            .subscribe__container  {
+            #SUBSCRIBE  {
                 background: url("assets/img/PXL_20230829_001407793.png ");
             }
 
@@ -335,103 +335,6 @@
                 </div>
             </section>
 
-            <!--==================== PLACES ====================-->
-           <!-- <section class="place section" id="place">
-                <h2 class="section__title">Choose Your Package</h2>
-
-                <div class="place__container container grid">
-                    &lt;!&ndash;==================== PLACES CARD 1 ====================&ndash;&gt;
-                    <div class="place__card">
-                        <img src="assets/img/" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Regular</h3>
-                                <span class="place__subtitle">Regular</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button&#45;&#45;flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-                    &lt;!&ndash;==================== PLACES CARD 2 ====================&ndash;&gt;
-
-                    <div class="place__card">
-                        <img src="assets/img/" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">5,0</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Mid-level-Package</h3>
-                                <span class="place__subtitle">Mid-level-Package</span>
-                                <span class="place__price">$1599</span>
-                            </div>
-                        </div>
-
-                        <button class="button button&#45;&#45;flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-                    &lt;!&ndash;==================== PLACES CARD 3 ====================&ndash;&gt;
-                    <div class="place__card">
-                        <img src="assets/img/trishan-sajith-xFoDBcSoJ5s-unsplash%20(4).jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,9</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Luxury </h3>
-                                <span class="place__subtitle">Luxury</span>
-                                <span class="place__price">$3499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button&#45;&#45;flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-                    &lt;!&ndash;==================== PLACES CARD 4 ====================&ndash;&gt;
-                    <div class="place__card">
-                        <img src="assets/img/sasha-kaunas-TAgGZWz6Qg8-unsplash.jpg" alt="" class="place__img">
-                        
-                        <div class="place__content">
-                            <span class="place__rating">
-                                <i class="ri-star-line place__rating-icon"></i>
-                                <span class="place__rating-number">4,8</span>
-                            </span>
-
-                            <div class="place__data">
-                                <h3 class="place__title">Super Luxury</h3>
-                                <span class="place__subtitle">Super Luxury</span>
-                                <span class="place__price">$2499</span>
-                            </div>
-                        </div>
-
-                        <button class="button button&#45;&#45;flex place__button">
-                            <i class="ri-arrow-right-line"></i>
-                        </button>
-                    </div>
-
-
-                </div>
-            </section>-->
 
 
 
@@ -635,19 +538,11 @@
             </div>
             <!--==================== SUBSCRIBE ====================-->
             <section class="subscribe section">
-                <div class="subscribe__bg">
-                    <div class="subscribe__container container">
-                    <!--    <h2 class="section__title subscribe__title">Subscribe Our<br> Newsletter</h2>
-                        <p class="subscribe__description">Subscribe to our newsletter and get a special 30% discount.
-                        </p>-->
-    <!--
-                        <form action="" class="subscribe__form">
-                            <input type="text" placeholder="Enter email" class="subscribe__input">
+                <div class="subscribe__bg" id="SUBSCRIBE">
+                    <br>
+                    <br>
+                      <h2 class="section__title subscribe__title" style="text-align: center;  ">Next Travel Journey<br>Planner</h2>
 
-                            <button class="button">
-                                Subscribe
-                            </button>
-                        </form>-->
                         <!-- form in home page -->
                         <div class="container">
                             <div class="tab-content" id="pills-tabContent">
@@ -659,26 +554,26 @@
                                                     <!-- Row 1 -->
                                                     <div class="col-lg-3 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="destination">Destination</label>
+                                                            <label for="destination" style="color: whitesmoke">Destination</label>
                                                             <input name="city" type="text" class="form-control" id="destination" placeholder="Destination">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="checkIn">Check In</label>
+                                                            <label for="checkIn" style="color: whitesmoke">Check In</label>
                                                             <input name="check-in" type="datetime-local" class="form-control" id="checkIn">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="checkOut">Check Out</label>
+                                                            <label for="checkOut" style="color: whitesmoke">Check Out</label>
                                                             <input name="check-out" type="datetime-local" class="form-control" id="checkOut">
                                                         </div>
                                                     </div>
                                                     <!-- Row 2 -->
                                                     <div class="col-lg-3 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="adults">Adults</label>
+                                                            <label for="adults" style="color: whitesmoke">Adults</label>
                                                             <select name="Adult" class="form-control" id="adults">
                                                                 <option selected>Adult</option>
                                                                 <option value="1">1</option>
@@ -689,7 +584,7 @@
                                                     </div>
                                                     <div class="col-lg-3 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="children">Children</label>
+                                                            <label for="children" style="color: whitesmoke">Children</label>
                                                             <select name="Children" class="form-control" id="children">
                                                                 <option selected>Children</option>
                                                                 <option value="1">1</option>
@@ -700,7 +595,7 @@
                                                     </div>
                                                     <div class="col-lg-3 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="rooms">Rooms</label>
+                                                            <label for="rooms" style="color: whitesmoke">Rooms</label>
                                                             <select name="Rooms" class="form-control" id="rooms">
                                                                 <option selected>Rooms</option>
                                                                 <option value="1">1</option>
@@ -712,7 +607,7 @@
                                                     <!-- Row 3 -->
                                                     <div class="col-lg-3 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="roomType">Room Type</label>
+                                                            <label for="roomType" style="color: whitesmoke">Room Type</label>
                                                             <select name="RoomType" class="form-control" id="roomType">
                                                                 <option selected>Room Type</option>
                                                                 <option value="single">Single</option>
@@ -722,7 +617,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
-                                                        <button type="submit" class="btn btn-primary my-btn mt-3">Check Availability</button>
+                                                        <button type="submit" class="btn btn-primary my-btn mt-3" style="color: whitesmoke">Check Availability</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -733,11 +628,7 @@
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
                             </div>
                         </div>
-
-
                     </div>
-
-
                     </div>
                 </div>
             </section>
