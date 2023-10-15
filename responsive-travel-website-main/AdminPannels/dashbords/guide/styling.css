@@ -1,0 +1,55 @@
+/* CSS for aligning items in your HTML document */
+
+/* Center the text in the navbar */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+/* Center the logo in the navbar */
+.navbar-brand img {
+    margin: 0 auto;
+}
+
+/* Add spacing between the navigation items */
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+/* Center the buttons in the buttonContainer */
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Add spacing between the buttons */
+.buttonContainer .btn {
+    margin: 10px;
+}
+
+/* Center the search bar in the customerSearchBar */
+#customerSearchBar {
+    display: flex;
+    justify-content: center;
+}
+
+/* Center the search input and button */
+#customerSearchBar form {
+    display: flex;
+    align-items: center;
+}
+
+#cidField {
+    margin: 0 10px;
+}
+
+/* Center the table */
+#customerTable {
+    margin: 0 auto;
+}
+
+/* Center the footer text (if needed) */
+footer {
+    text-align: center;
+}
