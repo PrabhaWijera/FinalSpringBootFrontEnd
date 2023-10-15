@@ -1,0 +1,60 @@
+:root{
+    --mainColor:#02faee;
+    --bgBtn : #333333 ;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../AdminPannels/images/Sri-Lanka-Travel-Guide.jpg') center/cover no-repeat;
+    font-family: Arial, sans-serif;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 30px; /* Reduced padding for a more compact and professional look */
+    margin: 10px;
+    border: none;
+    border-radius: 5px; /* Reduced border radius for a cleaner appearance */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+    text-align: center; /* Center the text inside the button */
+    font-size: 16px; /* Adjust the font size for better readability */
+}
+
+.button:nth-child(2) {
+    background-color: #e74c3c;
+}
+
+.button:nth-child(3) {
+    background-color: #27ae60;
+}
+
+.button:nth-child(4) {
+    background-color: #f39c12;
+}
+
+.button:nth-child(5) {
+    background-color: #8e44ad;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+

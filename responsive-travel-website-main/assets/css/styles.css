@@ -9,7 +9,8 @@
   /* Change favorite color to match images */
   /*Green dark 190 - Green 171 - Grren Blue 200*/
   --hue-color: 190;
-
+  --mainColor:#02faee;
+  --bgBtn : #333333 ;
   /* HSL color mode */
   --first-color: hsl(var(--hue-color), 64%, 22%);
   --first-color-second: hsl(var(--hue-color), 64%, 22%);
@@ -137,6 +138,16 @@ a {
   text-decoration: none;
 }
 
+.home .form_color{
+  -webkit-box-shadow: -2px 0px 28px 5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -2px 0px 28px 5px rgba(0,0,0,0.75);
+  box-shadow: -2px 0px 28px 5px rgba(0,0,0,0.75);
+  background-color: white;
+  margin-bottom: 3rem;
+}
+.home .btn-form{
+  background-color: var(--bgBtn);
+}
 img,
 video {
   max-width: 100%;

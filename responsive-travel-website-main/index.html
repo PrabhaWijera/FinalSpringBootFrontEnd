@@ -31,6 +31,8 @@
             .subscribe__container  {
                 background: url("assets/img/PXL_20230829_001407793.png ");
             }
+
+
         </style>
 
         <title>Responsive Website Travel</title>
@@ -110,6 +112,11 @@
                     </div>-->
                 </div>
             </section>
+
+
+
+
+
 
             <!--==================== ABOUT ====================-->
             <!--<section class="about section" id="about">
@@ -213,6 +220,10 @@
                     </div>
                 </div>
             </div>
+
+            <!-- form in home page -->
+
+
 
 
 
@@ -626,17 +637,107 @@
             <section class="subscribe section">
                 <div class="subscribe__bg">
                     <div class="subscribe__container container">
-                        <h2 class="section__title subscribe__title">Subscribe Our<br> Newsletter</h2>
+                    <!--    <h2 class="section__title subscribe__title">Subscribe Our<br> Newsletter</h2>
                         <p class="subscribe__description">Subscribe to our newsletter and get a special 30% discount.
-                        </p>
-    
+                        </p>-->
+    <!--
                         <form action="" class="subscribe__form">
                             <input type="text" placeholder="Enter email" class="subscribe__input">
-    
+
                             <button class="button">
                                 Subscribe
                             </button>
-                        </form>
+                        </form>-->
+                        <!-- form in home page -->
+                        <div class="container">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <form class="my-form p-5" action="index.html">
+                                                <div class="row gy-2">
+                                                    <!-- Row 1 -->
+                                                    <div class="col-lg-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="destination">Destination</label>
+                                                            <input name="city" type="text" class="form-control" id="destination" placeholder="Destination">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="checkIn">Check In</label>
+                                                            <input name="check-in" type="datetime-local" class="form-control" id="checkIn">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label for="checkOut">Check Out</label>
+                                                            <input name="check-out" type="datetime-local" class="form-control" id="checkOut">
+                                                        </div>
+                                                    </div>
+                                                    <!-- Row 2 -->
+                                                    <div class="col-lg-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="adults">Adults</label>
+                                                            <select name="Adult" class="form-control" id="adults">
+                                                                <option selected>Adult</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <!-- Add more options as needed -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="children">Children</label>
+                                                            <select name="Children" class="form-control" id="children">
+                                                                <option selected>Children</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <!-- Add more options as needed -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="rooms">Rooms</label>
+                                                            <select name="Rooms" class="form-control" id="rooms">
+                                                                <option selected>Rooms</option>
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <!-- Add more options as needed -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Row 3 -->
+                                                    <div class="col-lg-3 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label for="roomType">Room Type</label>
+                                                            <select name="RoomType" class="form-control" id="roomType">
+                                                                <option selected>Room Type</option>
+                                                                <option value="single">Single</option>
+                                                                <option value="double">Double</option>
+                                                                <!-- Add more options as needed -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
+                                                        <button type="submit" class="btn btn-primary my-btn mt-3">Check Availability</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
                     </div>
                 </div>
             </section>

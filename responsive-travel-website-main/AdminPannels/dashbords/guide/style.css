@@ -1,0 +1,21 @@
+.panel {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.panel h3 {
+    text-align: center;
+}
+
+#guideList {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    margin-top: 20px;
+}
+
+#guideList ul {
+    list-style-type: none;
+    padding: 0;
+}
