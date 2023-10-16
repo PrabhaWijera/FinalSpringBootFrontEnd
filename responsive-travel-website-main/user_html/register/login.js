@@ -1,21 +1,17 @@
-function loginUser(){
+function loginUser() {
+    const loginEmail = document.getElementById("email").value;
+    const loginPassword = document.getElementById("password").value;
 
-    /*login*/
-/*    const submitBTN=document.getElementById("submit");*/
-    const passwordTxt=document.getElementById("password").value;
-    const emailTxt=document.getElementById("email").value;
+    // Retrieve stored registration data from local storage
+    const regEmail = localStorage.getItem("email");
+    const regPassword = localStorage.getItem("password");
+    alert("  email or  ");
 
-
-
-    /*register*/
-    const U_email = $("#email").val();
-    const U_password = $("#password").val();
-
-
-if (emailTxt === U_email && passwordTxt === U_password){
-    window.location.href='regular_p.html';
-}else {
-    alert("Login failed. Please check your credentials.");
+    if (loginEmail === regEmail && loginPassword === regPassword) {
+        // Successful login, navigate to the "regular.html" page
+        window.location.href = "../regular_p.html";
+    } else {
+        // Invalid login, show an error message
+        alert("Invalid email or password");
+    }
 }
-}
-alert("oioio");
