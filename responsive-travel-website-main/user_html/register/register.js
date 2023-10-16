@@ -9,6 +9,9 @@ $(document).ready(function () {
         const U_age = $("#age").val();
         const U_email = $("#email").val();
 
+        localStorage.setItem('email', U_email);
+        localStorage.setItem('password', U_password);
+
         const textsave =
             U_name +
             U_contactNumber +
