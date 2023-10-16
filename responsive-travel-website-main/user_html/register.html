@@ -17,7 +17,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Mono&display=swap" rel="stylesheet">
 	<!--=============== CSS ===============-->
 	<link rel="stylesheet" href="../assets/css/styles.css">
-	<link rel="stylesheet" href="../assets/scss/styles.scss">
+<!--	<link rel="stylesheet" href="../assets/scss/styles.scss">-->
 	<script src="https://kit.fontawesome.com/58e618022f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
@@ -39,7 +39,6 @@
 				<a href="../index.html">
 					<div class="brand">
 						<img src="../assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
-
 					</div>
 				</a>
 				<div class="card fat">
@@ -57,6 +56,19 @@
 										</div>
 									</div>
 								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="contactNumber">Contact Number</label>
+										<input id="contactNumber" type="text" class="form-control" name="contactNumber" required>
+										<div class="invalid-feedback">
+											Enter your contact number
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<!-- Second Row -->
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="nic">NIC</label>
@@ -66,9 +78,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="row">
-								<!-- Second Row -->
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="password">Password</label>
@@ -78,6 +87,9 @@
 										</div>
 									</div>
 								</div>
+							</div>
+							<div class="row">
+								<!-- Third Row -->
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="gender">Gender</label>
@@ -88,9 +100,15 @@
 										</select>
 									</div>
 								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="userNic_Photo">Upload Photo</label>
+										<input type="file" id="userNic_Photo" class="form-control" name="photo" accept="image/*" required>
+									</div>
+								</div>
 							</div>
 							<div class="row">
-								<!-- Third Row -->
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="age">Age</label>
@@ -107,8 +125,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- Continue with the remaining form fields as needed -->
-
 							<div class="form-group m-0">
 								<button type="submit" class="btn btn-primary btn-block">
 									Register
@@ -123,8 +139,8 @@
 			</div>
 		</div>
 	</div>
-
 </section>
+
 <br>
 <footer class="footer section" id="footy">
 	<div class="footer__container container grid">
@@ -201,7 +217,7 @@
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="../assets/js/my-login.js"></script>
+<script src="register/register.js"></script>
 
 <!-- Your existing scripts go here -->
 </body>
