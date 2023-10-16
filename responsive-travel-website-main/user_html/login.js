@@ -1,6 +1,7 @@
 /*
 
 // Get references to HTML elements
+
 const loginEmailInput = document.getElementById("email");
 const loginPasswordInput = document.getElementById("password");
 const loginButton = document.getElementById("loginButton");
@@ -28,55 +29,53 @@ function loginUser() {
 
 }
 */
+// Function to redirect to the appropriate package page based on the package ID
+function redirectToPackage(packageId) {
+    // Get user's email and password from input fields
+    const loginEmailInput = document.getElementById("email");
+    const loginPasswordInput = document.getElementById("password");
 
-let isLoggedIn = false;
-const loginButton = document.getElementById("loginButton");
-const loginEmailInput = document.getElementById("email");
-const loginPasswordInput = document.getElementById("password");
-const packageButtons = document.querySelectorAll(".package-button");
-
-loginButton.addEventListener("click", loginUser);
-
-packageButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const packageID = button.dataset.packageId;
-        redirectToPackagePage(packageID);
-    });
-});
-
-function loginUser() {
     const loginEmail = loginEmailInput.value;
     const loginPassword = loginPasswordInput.value;
+
+    // Retrieve stored registration data from local storage
     const regEmail = localStorage.getItem("email");
     const regPassword = localStorage.getItem("password");
 
-    if (!regEmail || !regPassword) {
-        alert("No registration data found. Please sign up.");
-    } else if (loginEmail === regEmail && loginPassword === regPassword) {
-        alert("Successful login");
-        isLoggedIn = true;
-        window.location.href = 'regular_p.html';
+    if (loginEmail === regEmail && loginPassword === regPassword) {
+        // Email and password match, redirect to the appropriate package
+        switch (packageId) {
+            case "pack1":
+                window.location.href = 'regular_p.html';
+                break;
+            case "pack2":
+                window.location.href = 'Mid-level_package.html';
+                break;
+            case "pack3":
+                window.location.href = 'Luxury.html';
+                break;
+            case "pack4":
+                window.location.href = 'Super-Luxury-Package.html';
+                break;
+            default:
+                // Default redirection if no specific conditions match
+                window.location.href = 'default.html';
+        }
     } else {
         alert("Invalid email or password");
     }
 }
 
-function redirectToPackagePage(packageID) {
-    const packagePages = {
-        "pack1": "regular_p.html",
-        "pack2": "Mid-level_package.html",
-        "pack3": "Luxury.html",
-        "pack4": "Super-Luxury-Package.html"
-    };
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the package buttons
+    const packageButtons = document.querySelectorAll(".package-button");
 
-    if (isLoggedIn) {
-        const packagePageURL = packagePages[packageID];
-        if (packagePageURL) {
-            window.location.href = packagePageURL;
-        } else {
-            alert("Invalid package selection.");
-        }
-    } else {
-        alert("You must log in before selecting a package.");
-    }
-}
+    // Add click event listeners to the package buttons
+    packageButtons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default form submission (if any)
+            const packageId = this.id; // Get the package ID from the button's id
+            redirectToPackage(packageId);
+        });
+    });
+});
