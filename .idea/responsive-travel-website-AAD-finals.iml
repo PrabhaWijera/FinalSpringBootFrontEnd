@@ -29,5 +29,6 @@
     <orderEntry type="library" name="@emailjs/browser" level="application" />
     <orderEntry type="library" name="sweetalert" level="application" />
     <orderEntry type="library" name="jquery-3.3.1.slim" level="application" />
+    <orderEntry type="library" name="jquery-3.6.0" level="application" />
   </component>
 </module>
