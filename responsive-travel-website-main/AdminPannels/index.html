@@ -54,32 +54,32 @@
                         <h4 class="card-title">ADMIN-LOGIN</h4>
                         <form method="POST" class="my-login-validation" novalidate="">
                             <div class="form-group">
-                                <label for="Aemail">E-Mail Address</label>
-                                <input id="Aemail" type="email" class="form-control" name="Aemail" value="" required autofocus>
+                                <label for="Admin_email">E-Mail Address</label>
+                                <input id="Admin_email" type="email" class="form-control" name="Admin_email" value="" required autofocus>
                                 <div class="invalid-feedback">
                                     Email is invalid
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="Apassword">Password
+                                <label for="Admin_password">Password
                                     <a href="forgot.html" class="float-right">
                                         Forgot Password?
                                     </a>
                                 </label>
-                                <input id="Apassword" type="password" class="form-control" name="Apassword" required data-eye>
+                                <input id="Admin_password" type="password" class="form-control" name="Admin_password" required data-eye>
                                 <div class="invalid-feedback">
                                     Password is required
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="Arole">Role:</label>
-                                <select id="Arole">
-                                    <option value="GUIDE-ADMIN">Guide</option>
-                                    <option value="USER-ADMIN">User</option>
-                                    <option value="HOTEL-ADMIN">Hotel</option>
-                                    <option value="VEHICLE-ADMIN">Vehicle</option>
-                                    <option value="PACKAGE-ADMIN">Package</option>
+                                <label for="Admin_Role">Role:</label>
+                                <select id="Admin_Role">
+                                    <option value="GUIDE">Guide</option>
+                                    <option value="USER">User</option>
+                                    <option value="HOTEL">Hotel</option>
+                                    <option value="VEHICLE">Vehicle</option>
+                                    <option value="PACKAGE">Package</option>
                                 </select>
                             </div>
 
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block" id="AloginButton" onclick="loginAdmin()">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="AdminButton" onclick="loginAdmin()">Login</button>
                             </div>
                             <div class="mt-4 text-center">
                                 Don't have an account? <a href="#">Create One</a>
