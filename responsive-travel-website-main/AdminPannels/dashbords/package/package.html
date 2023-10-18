@@ -10,6 +10,7 @@
     <!--CCS.👇-->
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
     <!--Normalize CCS.👇-->
 
@@ -369,27 +370,65 @@
     </div>
 
     <!--Table for Guide -Start..-->
-    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable">
-        <thead>
-        <tr>
-            <th scope="col" class="p-3">Hotel ID</th>
-            <th scope="col" class="p-3">Hotel Name</th>
-            <th scope="col" class="p-3">Hotel Address</th>
-            <th scope="col" class="p-3">Hotel Contact</th>
-            <th scope="col" class="p-3">Hotel Email</th>
-            <th scope="col" class="p-3">Pet-Status</th>
-            <th scope="col" class="p-3">F/D-Fee</th>
-            <th scope="col" class="p-3">H/D-Fee</th>
-            <th scope="col" class="p-3">F/T-Fee</th>
-            <th scope="col" class="p-3">F/H-Fee</th>
-            <th scope="col" class="p-3">Criteria</th>
-            <th scope="col" class="p-3">Remark</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Add your table data here -->
-        </tbody>
-    </table>
+    <div style="display: flex; justify-content: space-between; padding: 10px;">
+        <!-- Left Table -->
+        <div style="flex: 1; padding: 10px;">
+            <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable1">
+                <thead>
+                <tr>
+                    <th scope="col" class="p-3">Package-ID</th>
+                    <th scope="col" class="p-3">PackageCategory</th>
+                    <th scope="col" class="p-3">TravelDuration</th>
+                    <th scope="col" class="p-3">TravelArea</th>
+                    <th scope="col" class="p-3">Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Add your data for the left table here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Right Tables -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="padding: 10px;">
+                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable2">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="p-3">NoOfAdults</th>
+                        <th scope="col" class="p-3">NoOfChildren</th>
+                        <th scope="col" class="p-3">totalHeadCount</th>
+                        <th scope="col" class="p-3">PetsAllowed</th>
+                        <th scope="col" class="p-3">GuideNeeded</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Add your data for the first right table here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="padding: 10px;">
+                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable3">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="p-3">PackageValue</th>
+                        <th scope="col" class="p-3">PaidValue</th>
+                        <th scope="col" class="p-3">HotelID</th>
+                        <th scope="col" class="p-3">VehicleID</th>
+                        <th scope="col" class="p-3">UserID</th>
+                        <th scope="col" class="p-3">GuideID</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Add your data for the second right table here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
     <!--Table for Guide - End.-->
     <!--Guide Manager - End.-->
 
