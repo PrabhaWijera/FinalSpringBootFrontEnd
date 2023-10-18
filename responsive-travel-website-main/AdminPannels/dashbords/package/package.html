@@ -8,11 +8,11 @@
     <!--Icon.👇-->
 
     <!--CCS.👇-->
-    <link href="minifiedcss.css" rel="stylesheet">
 
-    <link href="styling.css" rel="stylesheet">
+
+
     <!--Normalize CCS.👇-->
-    <link href="normalize.css" rel="stylesheet">
+
     <!--BootStrap 5. (CCS.)👇-->
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" rel="stylesheet">
@@ -40,29 +40,28 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark animate__animated animate__zoomInUp">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img src="../../../favicon.ico" alt="Logo" style="width: 50px; height: 50px;">
+            <img src="../../../favicon.ico" alt="Logo" style="width: 30px; height: 30px;">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active navBarText fs-5 text-white" href="#" id="homeButton">NEXT-TRAVEL.-Guide Panel</a>
+                    <a class="nav-link active navBarText fs-5 text-white" href="#" id="homeButton">NEXT-TRAVEL.-Package-Book Panel</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav ml-auto"> <!-- Use ml-auto class to align right -->
                 <li class="nav-item">
-                    <a class="nav-link navBarText fs-5 text-white" data-aos="zoom-in" href="#heading1" id="manageCustomers">Logout.</a>
+                    <a class="nav-link navBarText fs-5 text-white" data-aos="zoom-in" href="#heading1" id="manageCustomers">Logout</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 
 
 
@@ -76,115 +75,275 @@
         <!-- Button trigger modal for adding a customer - Start.-->
         <button class="btn btn-primary " data-aos="zoom-in-up" data-bs-target="#addCustomerModal" data-bs-toggle="modal"
                 id="addCustomerButton" type="button">
-            Add a Guide.
+            Add a Package.
         </button>
         <!-- Button trigger modal for adding a customer - End.-->
 
         <!-- Add Customer Modal - Start. -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addCustomerModal"
-             tabindex="-1">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addCustomerModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter details of the Guide.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Hotel.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cId">Guide ID.</label>
-                            <input class="form-control" id="cId" placeholder="C001" type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cName">Guide Name.</label>
-                            <input class="form-control" id="cName" placeholder="Damian Peiris." type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cAddress">Guide Address.</label>
-                            <input class="form-control" id="cAddress" placeholder="Moratuwa." type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cSalary">Guide  .</label>
-                            <input class="form-control" id="cSalary" placeholder="RS.100,000" type="text">
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packageID">PackageID</label>
+                                    <input class="form-control" id="packageID" placeholder="P0122001" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packageCategory">Package-Type</label>
+                                    <select class="form-control" id="packageCategory">
+                                        <option value="Regular">Regular</option>
+                                        <option value="Mid">Mid-level</option>
+                                        <option value="lux">Luxury</option>
+                                        <option value="S_lux">Super-luxury</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="travelDuration">TravelDuration</label>
+                                    <input class="form-control" id="travelDuration" placeholder="5 star" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="travelArea">TravelArea</label>
+                                    <select class="form-control" id="travelArea">
+                                        <option value="KANDY">Kandy and Upcountry</option>
+                                        <option value="E_COAST">Eastern Coast</option>
+                                        <option value="COLOMBO">Capital Colombo</option>
+                                        <option value="W_COAST">Western Coast</option>
+                                        <option value="NorthP">North Peninsula</option>
+                                        <option value="DS">Down South</option>
+                                        <option value="SIGIRI">Sigiriya and Dambulla</option>
+                                        <option value="ANURADA">Anuradhapura and Polonnaruwa</option>
+                                        <option value="MATALE">Matale</option>
+                                    </select>
+                                </div>
 
+                                    <div class="form-group">
+                                        <label for="noOfAdults">No-Adults</label>
+                                        <input id="noOfAdults" type="number" class="form-control" name="noOfAdults" required>
+                                    </div>
+                                <div class="form-group">
+                                    <label for="noOfChildren">No-Children</label>
+                                    <input id="noOfChildren" type="number" class="form-control" name="noOfChildren" required>
+                                </div>
+
+                                <div id="totalHeadCount">Total Headcount: 0</div>
+
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="isPetsAllowed">PetsAllow</label>
+                                    <select class="form-control" id="isPetsAllowed">
+                                        <option value="YES">Allow</option>
+                                        <option value="NO">No-Allow </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="isGuideNeeded">With-Guide</label>
+                                    <select class="form-control" id="isGuideNeeded">
+                                        <option value="YES">Yes-Guide</option>
+                                        <option value="NO">No-Guide </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packageValue">Package-Value</label>
+                                    <input class="form-control" id="packageValue" placeholder="Rs./$.00" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packagePaidValue">PackagePaid/Value</label>
+                                    <input class="form-control" id="packagePaidValue" placeholder="Rs./$.00" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="hotelID">Hotel-ID</label>
+                                    <input class="form-control" id="hotelID" placeholder="Yes/No" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="vehicleID">VehicleID</label>
+                                    <input class="form-control" id="vehicleID" placeholder="Price" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="userID">User-ID</label>
+                                    <input class="form-control" id="userID" placeholder="userID" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="guideID">GuideID</label>
+                                    <input class="form-control" id="guideID" placeholder="guideID" type="text">
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="remark">Remark</label>
+                                    <input class="form-control" id="remark" placeholder="Remark" type="text">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="customerAddButton" type="button">Add.</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
+                        <button class="btn btn-primary" id="hotelAddButton" type="button">Add</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Add Guide Modal - End. -->
 
         <!-- Button trigger modal for updating a Guide - Start. -->
         <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal"
                 data-bs-toggle="modal"
                 id="updateCustomerButton" type="button">
-            Update a Guide.
+            Update a Package.
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="updateCustomerModal"
-             tabindex="-1">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="updateCustomerModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter details of the Guide!</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Package!</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cId">Guide ID.</label>
-                            <input class="form-control" id="uCId" placeholder="C001" type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cName">Guide Name.</label>
-                            <input class="form-control" id="uCName" placeholder="Damian Peiris." type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cAddress">Guide Address.</label>
-                            <input class="form-control" id="uCAddress" placeholder="Moratuwa." type="text">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label commonText" for="cSalary">Guide  .</label>
-                            <input class="form-control" id="uCSalary" placeholder="RS.100,000" type="text">
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="upackageID">PackageID</label>
+                                    <input class="form-control" id="upackageID" placeholder="P0122001" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="upackageCategory">Package-Type</label>
+                                    <select class="form-control" id="upackageCategory">
+                                        <option value="Regular">Regular</option>
+                                        <option value="Mid">Mid-level</option>
+                                        <option value="lux">Luxury</option>
+                                        <option value="S_lux">Super-luxury</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="utravelDuration">TravelDuration</label>
+                                    <input class="form-control" id="utravelDuration" placeholder="5 star" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="utravelArea">TravelArea</label>
+                                    <select class="form-control" id="utravelArea">
+                                        <option value="KANDY">Kandy and Upcountry</option>
+                                        <option value="E_COAST">Eastern Coast</option>
+                                        <option value="COLOMBO">Capital Colombo</option>
+                                        <option value="W_COAST">Western Coast</option>
+                                        <option value="NorthP">North Peninsula</option>
+                                        <option value="DS">Down South</option>
+                                        <option value="SIGIRI">Sigiriya and Dambulla</option>
+                                        <option value="ANURADA">Anuradhapura and Polonnaruwa</option>
+                                        <option value="MATALE">Matale</option>
+                                    </select>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="unoOfAdults">No-Adults</label>
+                                    <input id="unoOfAdults" type="number" class="form-control" name="noOfAdults" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="unoOfChildren">No-Children</label>
+                                    <input id="unoOfChildren" type="number" class="form-control" name="noOfChildren" required>
+                                </div>
 
+                                <div id="utotalHeadCount">Total Headcount: 0</div>
+
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uisPetsAllowed">PetsAllow</label>
+                                    <select class="form-control" id="uisPetsAllowed">
+                                        <option value="YES">Allow</option>
+                                        <option value="NO">No-Allow </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uisGuideNeeded">With-Guide</label>
+                                    <select class="form-control" id="uisGuideNeeded">
+                                        <option value="YES">Yes-Guide</option>
+                                        <option value="NO">No-Guide </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="upackageValue">Package-Value</label>
+                                    <input class="form-control" id="upackageValue" placeholder="Rs./$.00" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packagePaidValue">PackagePaid/Value</label>
+                                    <input class="form-control" id="upackagePaidValue" placeholder="Rs./$.00" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="hotelID">Hotel-ID</label>
+                                    <input class="form-control" id="uhotelID" placeholder="Yes/No" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="vehicleID">VehicleID</label>
+                                    <input class="form-control" id="uvehicleID" placeholder="Price" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uuserID">User-ID</label>
+                                    <input class="form-control" id="uuserID" placeholder="userID" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uguideID">GuideID</label>
+                                    <input class="form-control" id="uguideID" placeholder="guideID" type="text">
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uremark">Remark</label>
+                                    <input class="form-control" id="uremark" placeholder="Remark" type="text">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="cUpdateButton" type="button">Update.</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
-
+                        <button class="btn btn-primary" id="hUpdateButton" type="button">Update</button>
+                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Button trigger modal for deleting a Guide - Start. -->
-        <button class="btn btn-danger " data-aos="zoom-in-up" data-bs-target="#deleteCustomerModal"
+        <button class="btn btn-danger " data-aos="zoom-in-up" data-bs-target="#deletehotelModal"
                 data-bs-toggle="modal"
                 id="deleteCustomerButton" type="button">
-            Delete a Guide.
+            Delete a Package.
         </button>
         <!-- Button trigger modal for deleting a Guide - End. -->
         <!-- Delete Guide Modal - Start. -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="deleteCustomerModal"
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="deletehotelModal"
              tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter CID of the Guide!.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter HID of the Hotel!.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label commonText" for="cId" id="dc">Guide ID.</label>
-                            <input class="form-control" id="dCId" placeholder="C001" type="text">
+                            <label class="form-label commonText" for="dHId" id="dc">Hotel ID.</label>
+                            <input class="form-control" id="dHId" placeholder="H001" type="text">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" id="deleteCustomer" type="button">Delete.</button>
+                        <button class="btn btn-danger" id="deletehotel" type="button">Delete.</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
                     </div>
                 </div>
@@ -210,13 +369,21 @@
     </div>
 
     <!--Table for Guide -Start..-->
-    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="customerTable">
+    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable">
         <thead>
         <tr>
-            <th scope="col" class="p-3">Guide ID</th>
-            <th scope="col" class="p-3">Guide Name</th>
-            <th scope="col" class="p-3">Guide Address</th>
-            <th scope="col" class="p-3">Guide Salary</th>
+            <th scope="col" class="p-3">Hotel ID</th>
+            <th scope="col" class="p-3">Hotel Name</th>
+            <th scope="col" class="p-3">Hotel Address</th>
+            <th scope="col" class="p-3">Hotel Contact</th>
+            <th scope="col" class="p-3">Hotel Email</th>
+            <th scope="col" class="p-3">Pet-Status</th>
+            <th scope="col" class="p-3">F/D-Fee</th>
+            <th scope="col" class="p-3">H/D-Fee</th>
+            <th scope="col" class="p-3">F/T-Fee</th>
+            <th scope="col" class="p-3">F/H-Fee</th>
+            <th scope="col" class="p-3">Criteria</th>
+            <th scope="col" class="p-3">Remark</th>
         </tr>
         </thead>
         <tbody>
@@ -240,16 +407,16 @@
     <!--Sweet Alert.👇-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--Alerts.👇-->
-    <script src="AlertController.js" type="module"></script>
+    <script src="../AlertController.js" type="module"></script>
     <!--DB.👇-->
-    <script src="LocalStorageDB.js" type="module"></script>
+    <script src="../LocalStorageDB.js" type="module"></script>
     <!--Models.👇-->
-    <script src="Customer.js" type="module"></script>
+    <script src="package.js" type="module"></script>
 
     <!--ScreenController.👇-->
-    <script src="ScreenController.js" type="module"></script>
+    <script src="../ScreenController.js" type="module"></script>
     <!--Controllers.👇-->
-    <script src="CustomerController.js" type="module"></script>
+    <script src="packageController.js" type="module"></script>
 
 
 
