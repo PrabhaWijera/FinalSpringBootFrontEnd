@@ -2,8 +2,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Store user data in localStorage when the page loads
     localStorage.setItem("GUIDE@gmail.com", "0000:GUIDE");
-    localStorage.setItem("USER@gmail.com", "1234:USER");
+    localStorage.setItem("PAY@gmail.com", "1234:PAY");
     localStorage.setItem("HOTEL@gmail.com", "5678:HOTEL");
+    localStorage.setItem("VEHI@gmail.com", "5688:VEHICLE");
+    localStorage.setItem("PACKAGE@gmail.com", "9988:PACKAGE");
 
     const loginEmailInput = document.getElementById("Admin_email");
     const loginPasswordInput = document.getElementById("Admin_password");
@@ -27,14 +29,20 @@ document.addEventListener("DOMContentLoaded", function() {
             if (loginPassword === storedPassword && loginRole === storedRole) {
                 alert("Login successful!");
                 if (loginRole === "GUIDE") {
-                  /*  window.location.href = '';*/
-                    alert("Login successful1111!");
-                } else if (loginRole === "USER") {
-                   /* window.location.href = 'user_page.html';*/
-                    alert("Login successful2222!");
+                    window.location.href = 'dashbords/guide/guide.html';
+                    alert("Login successful GUIDE!");
+                } else if (loginRole === "PAY") {
+                    window.location.href = 'dashbords/pay/payent.html';
+                    alert("Login successful PAY!");
                 } else if (loginRole === "HOTEL") {
-                   /* window.location.href = 'hotel_page.html';*/
-                    alert("Login successful3333!");
+                    window.location.href = 'dashbords/hotels/hotels.html';
+                    alert("Login successful HOTEL!");
+                }else if (loginRole === "VEHICLE") {
+                        window.location.href = 'dashbords/vehi/vehicles.html';
+                        alert("Login successful VEHICLE!");
+                }else if (loginRole === "PACKAGE") {
+                    window.location.href = 'dashbords/package/package.html';
+                    alert("Login successful PACKAGE");
                 } else {
                     alert("Unknown role. Please check your credentials.");
                 }
@@ -46,3 +54,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+localStorage.clear();
