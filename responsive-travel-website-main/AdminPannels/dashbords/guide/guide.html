@@ -84,78 +84,72 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter details of the Hotel.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Guide.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
+                        <!-- First Row -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hId">Hotel ID</label>
-                                    <input class="form-control" id="hId" placeholder="H001" type="text">
+                                    <label class="form-label commonText" for="gId">Guide ID</label>
+                                    <input class="form-control" id="gId" placeholder="G001" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hName">Hotel Name</label>
-                                    <input class="form-control" id="hName" placeholder="Thoorya" type="text">
+                                    <label class="form-label commonText" for ="gName">Guide Name</label>
+                                    <input class="form-control" id="gName" placeholder="Sumanapala" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hCategory">Hotel Category</label>
-                                    <input class="form-control" id="hCategory" placeholder="5 star" type="text">
+                                    <label class="form-label commonText" for="age">Guide Age </label>
+                                    <input class="form-control" id="age" placeholder="22" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hAddress">Hotel Location</label>
-                                    <input class="form-control" id="hAddress" placeholder="Galle" type="text">
+                                    <label class="form-label commonText" for="gAddress">Address</label>
+                                    <input class="form-control" id="gAddress" placeholder="Galle" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hmap">Hotel Map</label>
-                                    <input class="form-control" id="hmap" placeholder="Galle" type="text">
+                                    <label class="form-label commonText" for="gender">Gender</label>
+                                    <select class="form-control" id="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hemail">Hotel Email</label>
-                                    <input class="form-control" id="hemail" placeholder="example@example.com" type="text">
+                                    <label class="form-label commonText" for="guideIMG">Guide IMG</label>
+                                    <input class="form-control" id="guideIMG" placeholder="guide.png" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="hotelContact">Hotel Contact</label>
-                                    <input class="form-control" id="hotelContact" placeholder="+94 760368019" type="text">
+                                    <label class="form-label commonText" for="gNICimg">NIC image</label>
+                                    <input class="form-control" id="gNICimg" placeholder="nic.png" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="pet">Pet status</label>
-                                    <input class="form-control" id="pet" placeholder="Yes/No" type="text">
+                                    <label class="form-label commonText" for="gudingIDimg">GuidingID image</label>
+                                    <input class="form-control" id="gudingIDimg" placeholder="id.png" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="FullBoarddoublehotelFee">FullBoardDoubleHotelFee</label>
-                                    <input class="form-control" id="FullBoarddoublehotelFee" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="gExperience">Guide Experience</label>
+                                    <input class="form-control" id="gExperience" placeholder="experience" type="text">
                                 </div>
                             </div>
                         </div>
+                        <!-- Second Row -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="HalfBoardDoublehotelFee">HalfBoardDoubleHotelFee</label>
-                                    <input class="form-control" id="HalfBoardDoublehotelFee" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="mandayValue">Man/Day</label>
+                                    <input class="form-control" id="mandayValue" placeholder="Price" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="FullBoardTriplehotelFee">FullBoardTripleHotelFee</label>
-                                    <input class="form-control" id="FullBoardTriplehotelFee" placeholder="Price" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="HalfBoardTriplehotelFee">HalfBoardTripleHotelFee</label>
-                                    <input class="form-control" id="HalfBoardTriplehotelFee" placeholder="Price" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="CancellationCriteria">CancellationCriteria</label>
-                                    <input class="form-control" id="CancellationCriteria" placeholder="Criteria" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="remark">Remark</label>
-                                    <input class="form-control" id="remark" placeholder="Remark" type="text">
+                                    <label class="form-label commonText" for="gremark">Remark</label>
+                                    <input class="form-control" id="gremark" placeholder="Price" type="text">
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="hotelAddButton" type="button">Add</button>
@@ -164,6 +158,7 @@
                 </div>
             </div>
         </div>
+
 
         <!-- Add Guide Modal - End. -->
 
@@ -183,68 +178,68 @@
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
+                        <!-- First Row -->
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="huId">Hotel ID</label>
-                                    <input class="form-control" id="huId" placeholder="H001" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugId">Guide ID</label>
+                                    <input class="form-control" id="ugId" placeholder="G001" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="huName">Hotel Name</label>
-                                    <input class="form-control" id="huName" placeholder="Thoorya" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for ="ugName">Guide Name</label>
+                                    <input class="form-control" id="ugName" placeholder="Sumanapala" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="huCategory">Hotel Category</label>
-                                    <input class="form-control" id="huCategory" placeholder="5 star" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uage">Guide Age </label>
+                                    <input class="form-control" id="uage" placeholder="22" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="huAddress">Hotel Location</label>
-                                    <input class="form-control" id="huAddress" placeholder="Galle" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugAddress">Address</label>
+                                    <input class="form-control" id="ugAddress" placeholder="Galle" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="humap">Hotel Map</label>
-                                    <input class="form-control" id="humap" placeholder="Galle" type="text">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="huemail">Hotel Email</label>
-                                    <input class="form-control" id="huemail" placeholder="example@example.com" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugender">Gender</label>
+                                    <select class="form-control" id="ugender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uhotelContact">Hotel Contact</label>
-                                    <input class="form-control" id="uhotelContact" placeholder="+94 760368019" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uguideIMG">Guide IMG</label>
+                                    <input class="form-control" id="uguideIMG" placeholder="guide.png" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="upet">Pet status</label>
-                                    <input class="form-control" id="upet" placeholder="Yes/No" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugNICimg">NIC image</label>
+                                    <input class="form-control" id="ugNICimg" placeholder="nic.png" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uFullBoarddoublehotelFee">FullBoardDoubleHotelFee</label>
-                                    <input class="form-control" id="uFullBoarddoublehotelFee" placeholder="Price" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugudingIDimg">GuidingID image</label>
+                                    <input class="form-control" id="ugudingIDimg" placeholder="id.png" type="text">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uHalfBoardDoublehotelFee">HalfBoardDoubleHotelFee</label>
-                                    <input class="form-control" id="uHalfBoardDoublehotelFee" placeholder="Price" type="text">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uFullBoardTriplehotelFee">FullBoardTripleHotelFee</label>
-                                    <input class="form-control" id="uFullBoardTriplehotelFee" placeholder="Price" type="text">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uHalfBoardTriplehotelFee">HalfBoardTripleHotelFee</label>
-                                    <input class="form-control" id="uHalfBoardTriplehotelFee" placeholder="Price" type="text">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uCancellationCriteria">CancellationCriteria</label>
-                                    <input class="form-control" id="uCancellationCriteria" placeholder="Criteria" type="text">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label commonText" for="uremark">Remark</label>
-                                    <input class="form-control" id="uremark" placeholder="Remark" type="text">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugExperience">Guide Experience</label>
+                                    <input class="form-control" id="ugExperience" placeholder="experience" type="text">
                                 </div>
                             </div>
                         </div>
+                        <!-- Second Row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="umandayValue">Man/Day</label>
+                                    <input class="form-control" id="umandayValue" placeholder="Price" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugremark">Remark</label>
+                                    <input class="form-control" id="ugremark" placeholder="Price" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="hUpdateButton" type="button">Update</button>
@@ -267,13 +262,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter HID of the Hotel!.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter GuideID of the Guide!.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label commonText" for="dHId" id="dc">Hotel ID.</label>
-                            <input class="form-control" id="dHId" placeholder="H001" type="text">
+                            <label class="form-label commonText" for="gDID" id="dc">Guide ID.</label>
+                            <input class="form-control" id="gDID" placeholder="H001" type="text">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -306,24 +301,24 @@
     <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable">
         <thead>
         <tr>
-            <th scope="col" class="p-3">Hotel ID</th>
-            <th scope="col" class="p-3">Hotel Name</th>
-            <th scope="col" class="p-3">Hotel Address</th>
-            <th scope="col" class="p-3">Hotel Contact</th>
-            <th scope="col" class="p-3">Hotel Email</th>
-            <th scope="col" class="p-3">Pet-Status</th>
-            <th scope="col" class="p-3">F/D-Fee</th>
-            <th scope="col" class="p-3">H/D-Fee</th>
-            <th scope="col" class="p-3">F/T-Fee</th>
-            <th scope="col" class="p-3">F/H-Fee</th>
-            <th scope="col" class="p-3">Criteria</th>
-            <th scope="col" class="p-3">Remark</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide ID</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide Name</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide Address</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide Age</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide Gender</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide IMG</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">NIC image</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">GuidingID image</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Guide Experience</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Man/Day</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Remark</th>
         </tr>
         </thead>
         <tbody>
         <!-- Add your table data here -->
         </tbody>
     </table>
+
     <!--Table for Guide - End.-->
     <!--Guide Manager - End.-->
 
