@@ -1,4 +1,4 @@
-import { Hotel } from "./Hotel.js";
+import { Customer } from "./Customer.js";
 import { AlertController } from "../AlertController.js";
 import { LocalStorageDB } from "../LocalStorageDB.js";
 
