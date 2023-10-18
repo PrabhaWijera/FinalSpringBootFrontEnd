@@ -4,7 +4,7 @@ export class Customer{
 
 
 
-    constructor(user_id, userName, user_nic, user_password, gender, age, email, contactNumber, remark, String, userNic_Photo) {
+    constructor(user_id, userName, user_nic, user_password, gender, age, email, contactNumber, remark, userNic_Photo) {
         this._user_id = user_id;
         this._userName = userName;
         this._user_nic = user_nic;
@@ -14,7 +14,6 @@ export class Customer{
         this._email = email;
         this._contactNumber = contactNumber;
         this._remark = remark;
-        this._String = String;
         this._userNic_Photo = userNic_Photo;
     }
 
@@ -88,14 +87,6 @@ export class Customer{
 
     set remark(value) {
         this._remark = value;
-    }
-
-    get String() {
-        return this._String;
-    }
-
-    set String(value) {
-        this._String = value;
     }
 
     get userNic_Photo() {
