@@ -1,8 +1,15 @@
-import { Guide } from "./Guide.js";
+import { Vehicle } from "./Vehicle.js";
 import { AlertController } from "../AlertController.js";
 import { LocalStorageDB } from "../LocalStorageDB.js";
 
 
+$("#vehiAddButton").onclick(function (){
+   saveVehicle();
+});
+
+$("#vUpdateButton").onclick(function (){
+    updateVehicle();
+});
 
 // Function to handle image upload
 function uploadImage(file, successCallback, errorCallback) {
@@ -22,35 +29,38 @@ function uploadImage(file, successCallback, errorCallback) {
 }
 
 // Function to handle guide data save
-function saveGuide() {
-    const guideIMG = $("#guideIMG")[0].files[0];
-    const NICimage = $("#gNICimg")[0].files[0];
-    const guidingIDIMG = $("#gudingIDimg")[0].files[0];
+function saveVehicle() {
 
-    const guideData = {
-        GuideIMG: guideIMG.name,
-        NICimage: NICimage.name,
-        GuidingIDIMG: guidingIDIMG.name,
-        GId: $("#gId").val(),
-        GName: $("#gName").val(),
-        Age: $("#age").val(),
-        Address: $("#gAddress").val(),
-        Gender: $("#gender").val(),
-        Experience: $("#gExperience").val(),
-        ManValue: $("#mandayValue").val(),
-        Remark: $("#gremark").val(),
+    const VehicleImg = $("#vehicleImg")[0].files[0];
+    const InteriorImg = $("#vehicleInteriorImg")[0].files[0];
+    const  licenseImg = $("#driverlicenseImg")[0].files[0];
+
+    const vehiData = {
+        VehicleImg: VehicleImg.name,
+        InteriorImg: InteriorImg.name,
+        licenseImg: licenseImg.name,
+        VId: $("#vId").val(),
+        Brand: $("#vbrand").val(),
+        Category: $("#category").val(),
+        FuelType: $("#fueltype").val(),
+        Hybrid: $("#hybrid").val(),
+        SeatCapacity: $("#seatCapacity").val(),
+        TransmissionType: $("#transmissionType").val(),
+        DriverName: $("#driverName").val(),
+        Remark: $("#vremark").val(),
+        Number: $("#conNumber").val(),
     };
 
     $.ajax({
         url: "http://localhost:8080/save", // Replace with the correct save endpoint
         method: "POST",
         async: true,
-        data: JSON.stringify(guideData),
+        data: JSON.stringify(vehiData),
         contentType: "application/json",
         success: function (resp) {
             console.log(resp);
             alert(resp.message);
-            uploadImage(guideIMG, function () {
+            uploadImage(VehicleImg,InteriorImg, licenseImg,function () {
                 alert("Successfully Uploaded");
             }, function (err) {
                 console.error(err);
@@ -64,35 +74,40 @@ function saveGuide() {
 }
 
 // Function to handle guide data update
-function updateGuide() {
-    const guideIMG = $("#uguideIMG")[0].files[0];
-    const NICimage = $("#ugNICimg")[0].files[0];
-    const guidingIDIMG = $("#ugudingIDimg")[0].files[0];
 
-    const guideData = {
-        GuideIMG: guideIMG.name,
-        NICimage: NICimage.name,
-        GuidingIDIMG: guidingIDIMG.name,
-        GId: $("#ugId").val(),
-        GName: $("#ugName").val(),
-        Age: $("#uage").val(),
-        Address: $("#ugAddress").val(),
-        Gender: $("#ugender").val(),
-        Experience: $("#ugExperience").val(),
-        ManValue: $("#umandayValue").val(),
-        Remark: $("#ugremark").val(),
+// Function to handle guide data save
+function updateVehicle() {
+
+    const uVehicleImg = $("#uvehicleImg")[0].files[0];
+    const uInteriorImg = $("#uvehicleInteriorImg")[0].files[0];
+    const  ulicenseImg = $("#udriverlicenseImg")[0].files[0];
+
+    const vehiData = {
+        uVehicleImg: uVehicleImg.name,
+        uInteriorImg: uInteriorImg.name,
+        ulicenseImg: ulicenseImg.name,
+        VId: $("#uvId").val(),
+        Brand: $("#uvbrand").val(),
+        Category: $("#ucategory").val(),
+        FuelType: $("#ufueltype").val(),
+        Hybrid: $("#uhybrid").val(),
+        SeatCapacity: $("#useatCapacity").val(),
+        TransmissionType: $("#utransmissionType").val(),
+        DriverName: $("#udriverName").val(),
+        Remark: $("#uvremark").val(),
+        Number: $("#uconNumber").val(),
     };
 
     $.ajax({
-        url: "http://localhost:8080/update", // Replace with the correct update endpoint
-        method: "PUT",
+        url: "http://localhost:8080/save", // Replace with the correct save endpoint
+        method: "POST",
         async: true,
-        data: JSON.stringify(guideData),
+        data: JSON.stringify(vehiData),
         contentType: "application/json",
         success: function (resp) {
             console.log(resp);
             alert(resp.message);
-            uploadImage(guideIMG, function () {
+            uploadImage(uVehicleImg,uInteriorImg, ulicenseImg,function () {
                 alert("Successfully Uploaded");
             }, function (err) {
                 console.error(err);
