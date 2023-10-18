@@ -137,12 +137,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="mandayValue">Man/Day</label>
-                                    <input class="form-control" id="mandayValue" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="userNic_Photo">Nic-Photo</label>
+                                    <input class="form-control" id="userNic_Photo" placeholder="Price" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="gremark">Remark</label>
-                                    <input class="form-control" id="gremark" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="remark">Remark</label>
+                                    <input class="form-control" id="remark" placeholder="other detals" type="text">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
         <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal"
                 data-bs-toggle="modal"
                 id="updateCustomerButton" type="button">
-            Update a Guide.
+            Update a Customer.
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
@@ -180,21 +180,24 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugId">Guide ID</label>
-                                    <input class="form-control" id="ugId" placeholder="G001" type="text">
+                                    <label class="form-label commonText" for="uuserid">Customer ID</label>
+                                    <input class="form-control" id="uuserid" placeholder="C001" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="ugName">Guide Name</label>
-                                    <input class="form-control" id="ugName" placeholder="Sumanapala" type="text">
+                                    <label class="form-label commonText" for ="uuserName">Customer Name</label>
+                                    <input class="form-control" id="uuserName" placeholder="Saliya" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="uage">Guide Age </label>
-                                    <input class="form-control" id="uage" placeholder="22" type="text">
+                                    <label class="form-label commonText" for ="uusernic">NIC</label>
+                                    <input class="form-control" id="uusernic" placeholder="2001235468v" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugAddress">Address</label>
-                                    <input class="form-control" id="ugAddress" placeholder="Galle" type="text">
+                                    <label class="form-label commonText" for="uuserpassword">Password</label>
+                                    <input class="form-control" id="uuserpassword" placeholder="Galle" type="text">
                                 </div>
+
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label commonText" for="ugender">Gender</label>
                                     <select class="form-control" id="ugender">
@@ -203,23 +206,17 @@
                                         <option value="other">Other</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="uguideIMG">Guide IMG</label>
-                                    <input class="form-control" id="uguideIMG" placeholder="guide.png" type="text">
+                                    <label class="form-label commonText" for="uage">Age</label>
+                                    <input class="form-control" id="uage" placeholder="12" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugNICimg">NIC image</label>
-                                    <input class="form-control" id="ugNICimg" placeholder="nic.png" type="text">
+                                    <label class="form-label commonText" for="uemail">User/Email</label>
+                                    <input class="form-control" id="uemail" placeholder="id.png" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugudingIDimg">GuidingID image</label>
-                                    <input class="form-control" id="ugudingIDimg" placeholder="id.png" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="ugExperience">Guide Experience</label>
-                                    <input class="form-control" id="ugExperience" placeholder="experience" type="text">
+                                    <label class="form-label commonText" for="ucontactNumber">ContactNumber</label>
+                                    <input class="form-control" id="ucontactNumber" placeholder="experience" type="text">
                                 </div>
                             </div>
                         </div>
@@ -227,12 +224,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="umandayValue">Man/Day</label>
-                                    <input class="form-control" id="umandayValue" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="uuserNic_Photo">Nic-Photo</label>
+                                    <input class="form-control" id="uuserNic_Photo" placeholder="Price" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugremark">Remark</label>
-                                    <input class="form-control" id="ugremark" placeholder="Price" type="text">
+                                    <label class="form-label commonText" for="uremark">Remark</label>
+                                    <input class="form-control" id="uremark" placeholder="other detals" type="text">
                                 </div>
                             </div>
                         </div>
@@ -251,7 +248,7 @@
         <button class="btn btn-danger " data-aos="zoom-in-up" data-bs-target="#deletehotelModal"
                 data-bs-toggle="modal"
                 id="deleteCustomerButton" type="button">
-            Delete a Hotel.
+            Delete a Customer.
         </button>
         <!-- Button trigger modal for deleting a Guide - End. -->
         <!-- Delete Guide Modal - Start. -->
@@ -260,13 +257,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter GuideID of the Guide!.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter CustomerID of the Customer!.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label commonText" for="gDID" id="dc">Guide ID.</label>
-                            <input class="form-control" id="gDID" placeholder="H001" type="text">
+                            <label class="form-label commonText" for="gDID" id="dc">Customer ID.</label>
+                            <input class="form-control" id="gDID" placeholder="C001" type="text">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -299,16 +296,15 @@
     <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable">
         <thead>
         <tr>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide ID</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide Name</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide Address</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide Age</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide Gender</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide IMG</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer ID</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer Name</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer NIC</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Password</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer Gender</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer Age</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Customer Email</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Contact-Number</th>
             <th scope="col" class="p-3" style="font-size: 12px;">NIC image</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">GuidingID image</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Guide Experience</th>
-            <th scope="col" class="p-3" style="font-size: 12px;">Man/Day</th>
             <th scope="col" class="p-3" style="font-size: 12px;">Remark</th>
         </tr>
         </thead>
