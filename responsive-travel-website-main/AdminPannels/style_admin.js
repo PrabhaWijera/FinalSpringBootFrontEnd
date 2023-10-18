@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         window.location.href = 'dashbords/vehi/vehicles.html';
                         alert("Login successful VEHICLE!");
                 }else if (loginRole === "PACKAGE") {
-                    window.location.href = 'dashbords/package/package.html';
+                    window.location.href = 'dashbords/packagedetails/packagedetails.html';
                     alert("Login successful PACKAGE");
                 } else {
                     alert("Unknown role. Please check your credentials.");
