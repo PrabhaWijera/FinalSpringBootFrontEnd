@@ -30,6 +30,7 @@ function registerPayment() {
     $.ajax({
         url: "http://localhost:8080",
         method: "POST",
+        async: true,
         headers: {
             "Content-Type": "application/json"
         },
@@ -72,6 +73,7 @@ $('#UpdateButton').click(function() {
         }
      $.ajax({
          url: "http://localhost:8080",
+         async: true,
          method: "PUT",
          headers: {
              "Content-Type": "application/json"

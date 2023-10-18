@@ -1,8 +1,5 @@
 
-
 export class Guide{
-
-
     constructor(guideID, guideName, guideAddress, guideAge, guideGender, guidePICIMGLocation, guideNICIMGLocation, guideIDIMGLocation, guideExperience, int, manDayValue, String, remark) {
         this._guideID = guideID;
         this._guideName = guideName;

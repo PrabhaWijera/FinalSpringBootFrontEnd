@@ -5,7 +5,7 @@ $(document).ready(function () {
         const U_nic = $("#nic").val();
         const U_password = $("#password").val();
         const U_gender = $("#gender").val();
-        const U_file = $("input[name='file']").val();
+        let  FileName = $("#userNic_Photo")[0].files[0].name;
         const U_age = $("#age").val();
         const U_email = $("#email").val();
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
             U_nic +
             U_password +
             U_gender +
-            U_file +
+            FileName +
             U_age +
             U_email;
 
@@ -30,3 +30,69 @@ $(document).ready(function () {
         }
     });
 });
+
+$("#submit").onclick(function (){
+
+    let  FileName = $("#userNic_Photo")[0].files[0].name;
+
+    const name = $("#name").val();
+    const contactNumber = $("#contactNumber").val();
+    const nic = $("#nic").val();
+    const password = $("#password").val();
+    const gender = $("#gender").val();
+  /*  const file = $("input[name='file']").val();*/
+    const age = $("#age").val();
+    const email = $("#email").val();
+
+    var detailsSave= {
+        FileName:FileName,
+        name:name,
+        contactNumber:contactNumber,
+        nic:nic,
+        password:password,
+        gender:gender,
+        age:age,
+        email:email
+    }
+
+    $.ajax({
+        url: "http://localhost:8080/" ,
+        method :"POST",
+        async: true,
+        data : JSON.stringify(detailsSave),
+        contentType:"application/json",
+        success: function (resp) {
+            console.log(resp);
+            alert(resp.message);
+            loadImage();
+        },
+        error: function(error) {
+            let pas = JSON.parse(error.responseText);
+            alert(pas.message);
+        }
+    });
+});
+
+function loadImage(){
+    var data = new FormData();
+
+    let file = $("#userNic_Photo")[0].files[0];
+    let nicFileName = $("#userNic_Photo")[0].files[0].name;
+    data.append("myFile", file, nicFileName);
+
+    $.ajax({
+        url: "http://localhost:8080/",
+        method: 'POST',
+        async: true,
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (resp) {
+            alert("Successfully Uploaded");
+
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
