@@ -2,96 +2,84 @@ import { Customer } from "./Customer.js";
 import { AlertController } from "../AlertController.js";
 import { LocalStorageDB } from "../LocalStorageDB.js";
 
-// Define variables
-let cusList = [];
-
-// Use event delegation to handle button clicks
-$(document).on("click", "#cusAddButton", function () {
+// Event handling using jQuery
+$("#cusAddButton").on("click", function() {
     saveCustomer();
 });
 
-$(document).on("click", "#cusUpdateButton", function () {
-    updateCustomer();
-});
-
-$(document).on("click", "#getAllCustomersButton", function () {
-    getAllCustomers();
-});
-
-$(document).on("click", "#Cusdelete", function () {
-    deleteCustomer();
-});
-
-$(document).on("click", "#csButton", function () {
-    searchCustomer();
-});
-
-// Function to handle image upload
-function uploadImage(file, successCallback, errorCallback) {
-    const data = new FormData();
-    data.append("myFile", file);
-
-    $.ajax({
-        url: "http://localhost:8080/upload", // Replace with the correct upload endpoint
-        method: "POST",
-        async: true,
-        contentType: false,
-        processData: false,
-        data: data,
-        success: successCallback,
-        error: errorCallback,
-    });
-}
-
-// Function to handle customer data save
+// Function to save a customer
 function saveCustomer() {
     const UserNic_Photo = $("#userNic_Photo")[0].files[0];
 
-    // Ensure the user selected a file
     if (!UserNic_Photo) {
         alert("Please select a NIC photo.");
         return;
     }
 
-    const cusData = {
-        UserNic_Photo: UserNic_Photo.name,
-        uId: $("#userid").val(),
-        Name: $("#userName").val(),
-        nic: $("#usernic").val(),
-        password: $("#userpassword").val(),
-        Gender: $("#gender").val(),
-        Age: $("#age").val(),
-        Email: $("#email").val(),
-        ContactNumber: $("#contactNumber").val(),
-        Remark: $("#remark").val(),
-    };
-    let customerJson = JSON.stringify(cusData);
+    const uId = $("#userid").val();
+    const Name = $("#userName").val();
+    const nic = $("#usernic").val();
+    const password = $("#userpassword").val();
+    const Gender = $("#gender").val();
+    const Age = $("#age").val();
+    const Email = $("#email").val();
+    const ContactNumber = $("#contactNumber").val();
+    const Remark = $("#remark").val();
 
+    const jwtToken = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTaGFuaSIsImlhdCI6MTY5NzcxNTA5NywiZXhwIjo0ODUxMzE1MDk3fQ.DH8Jv2vpAPge6l2HLh7d3JrXv1tvSVcuWuuubUj8ru8';
+
+    // Check if the JWT token is present in local storage
+    const storedToken = localStorage.getItem('JWT');
+
+    if (!storedToken) {
+        alert("JWT token not found. Please log in.");
+        return;
+    }
+
+    // Continue with your code to make the AJAX request with the JWT token
     $.ajax({
-        url: "http://localhost:8080/save", // Replace with the correct save endpoint
+        url: "http://localhost:8080/api/v1/auth/register", // Replace with the correct save endpoint
         method: "POST",
         async: true,
-        data: customerJson,
+        data: JSON.stringify({
+            user_id: uId,
+            userName: Name,
+            user_nic: nic,
+            user_password: password,
+            gender: Gender,
+            age: Age,
+            email: Email,
+            contactNumber: ContactNumber,
+            remark: Remark,
+            userNic_Photo: UserNic_Photo.name
+        }),
         dataType: "json",
         contentType: "application/json",
-        success: function (resp) {
-            console.log(resp);
-            alert(resp.message);
-            getAllCustomers();
-            uploadImage(UserNic_Photo, function () {
-                alert("Successfully Uploaded");
-                swal("Done!", "Customer saved successfully");
-            }, function (err) {
-                console.error(err);
-                swal("Error", "An error occurred while saving customer");
-            });
+        headers: {
+            Authorization: "Bearer " + jwtToken, // Include the JWT token in the header
+            Accept: "application/json",
+            "Content-Type": "application/json"
         },
-        error: function (error) {
-            let parsedError = JSON.parse(error.responseText);
-            alert(parsedError.message);
-        },
+        success: function(resp) {
+            try {
+                console.log(resp);
+                alert(resp.message);
+                uploadImage(UserNic_Photo, function() {
+                    alert("Successfully Uploaded");
+                    swal("Done!", "Customer saved successfully");
+                }, function(err) {
+                    console.error(err);
+                    swal("Error", "An error occurred while saving the customer");
+                });
+            } catch (error) {
+                console.error("Error parsing JSON response:", error);
+            }
+        }
     });
 }
+
+
+/*
 
 // Function to update customer data
 function updateCustomer() {
@@ -235,3 +223,4 @@ function getAllCustomers() {
         },
     });
 }
+*/
