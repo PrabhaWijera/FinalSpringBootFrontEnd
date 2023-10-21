@@ -62,16 +62,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    const VEHIToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE2OTc4MTU2MTEsImV4cCI6NDg1MTQxNTYxMX0.XbKA4wCf_c-YATdFf0vW75Y9zfvZ174xNZ-53wjio2w";
-    const HotelToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE2OTc4MTU4NzgsImV4cCI6NDg1MTQxNTg3OH0.N6Lu8rErrFQ-7iyTFwv7F2FivQUnfu-4ZazPqOsGn5w";
-    const PaymentToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE2OTc4MTYxNTcsImV4cCI6NDg1MTQxNjE1N30.cAuVZ0bcrgOhJRXW3cS1JJRpEVpO95AUfd9GGnyUGJM";
-    const PackageToken="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE2OTc4MTYxMTAsImV4cCI6NDg1MTQxNjExMH0.A3h4TzbMiyC8jf6Qa6KYGbDv96yQB-aka0wN3i2n7RE";
 
-    localStorage.setItem("Token",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZyIsImlhdCI6MTY5Nzg2ODc0OCwiZXhwIjo0ODUxNDY4NzQ4fQ.zmSV-0Rtzq2LamzJB-ZEv6PSUrzkyg2PE66W8mFJLKw"));
-    localStorage.setItem("VEHIToken",VEHIToken);
-    localStorage.setItem("HotelToken",HotelToken);
-    localStorage.setItem("PaymentToken",PaymentToken);
-    localStorage.setItem("PackageToken",PackageToken);
+    localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHVUlERSIsImlhdCI6MTY5Nzg5NjQ1OSwiZXhwIjo0ODUxNDk2NDU5fQ.0sH_wTYKOGS9Uzm29jRfg8nd3nFlMJxJaZ9e4NqatTs"));
+    localStorage.setItem("VEHIToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWRUhJQ0xFIiwiaWF0IjoxNjk3ODk2NDk3LCJleHAiOjQ4NTE0OTY0OTd9.YYji2_hYdPUZWpssO8jX6ZsrWjbR2b3WEdsH6sCF0-s"));
+    localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIT1RFTCIsImlhdCI6MTY5Nzg5NjU2NCwiZXhwIjo0ODUxNDk2NTY0fQ.yzKP6G1MRCAfvoh9mliWx6s0iLd6Typa1qG2TNWBLo4"));
+
+    localStorage.setItem("PAYToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQQVlNRU5UIiwiaWF0IjoxNjk3ODk2NTE3LCJleHAiOjQ4NTE0OTY1MTd9.YQ-2bPNzMAoNrdabk0dYWUV4LfBraNZhEGLHyUoai9M"));
+    localStorage.setItem("PCKGToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQQUNLQUdFIiwiaWF0IjoxNjk3ODk2NTgzLCJleHAiOjQ4NTE0OTY1ODN9.A52CFSxFNmjLf5YCNnmewvU1fh6kEDRZtqxsBG-F8GY"));
 
 
     alert("  Dash Board!!!" );
@@ -103,7 +100,7 @@ function saveAdmin(message) {
             method:"GET",
             async:true,
             headers:{
-                "Authorization":"Bearer "+JSON.parse(localStorage.getItem("Token"))
+                "Authorization":"Bearer "+JSON.parse(localStorage.getItem("GUIDEToken"))
             },
             success:(res)=>{
                 console.log(res.message);
