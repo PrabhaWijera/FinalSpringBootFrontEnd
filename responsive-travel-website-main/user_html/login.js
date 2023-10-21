@@ -30,12 +30,16 @@ function loginUser() {
 }
 */
 
+
+
 const loginEmailInput = document.getElementById("email");
 const loginPasswordInput = document.getElementById("password");
 const loginButton = document.getElementById("loginButton");
 
+
 // Add an event listener to the login button
 loginButton.addEventListener("click", loginUser);
+
 
 function loginUser() {
     // Retrieve login data from the input fields
@@ -84,10 +88,9 @@ function loginUser() {
             alert(s_luxString);
             window.location.href = 'Super-Luxury-Package.html';
         }
+
     } else {
         alert("Invalid email or password");
     }
 }
-
-
 

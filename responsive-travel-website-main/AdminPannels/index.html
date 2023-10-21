@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--=============== REMIXICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -75,11 +75,11 @@
                             <div class="form-group">
                                 <label for="Admin_Role">Role:</label>
                                 <select class="form-control"  id="Admin_Role">
-                                    <option value="GUIDE">Guide</option>
-                                    <option value="PAY">Payment</option>
-                                    <option value="HOTEL">Hotel</option>
-                                    <option value="VEHICLE">Vehicle</option>
-                                    <option value="PACKAGE">Package</option>
+                                    <option value="A_GUIDE">Guide</option>
+                                    <option value="A_PAYMENT">Payment</option>
+                                    <option value="A_HOTEL">Hotel</option>
+                                    <option value="A_VEHICLE">Vehicle</option>
+                                    <option value="A_PACKAGE">Package</option>
                                 </select>
                             </div>
 
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block" id="AdminButton" onclick="loginAdmin()">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="AdminButton" onclick="saveAdmin()">Login</button>
                             </div>
                             <div class="mt-4 text-center">
                                 Don't have an account? <a href="#">Create One</a>
