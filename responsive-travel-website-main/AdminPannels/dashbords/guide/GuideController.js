@@ -3,8 +3,9 @@ import { AlertController } from "../AlertController.js";
 import { LocalStorageDB } from "../LocalStorageDB.js";
 
 
-
+localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHVUlERSIsImlhdCI6MTY5Nzg5NjQ1OSwiZXhwIjo0ODUxNDk2NDU5fQ.0sH_wTYKOGS9Uzm29jRfg8nd3nFlMJxJaZ9e4NqatTs"));
 // Function to handle image upload
+var packageIDs=[];
 function uploadImage(file, successCallback, errorCallback) {
     const data = new FormData();
     data.append("myFile", file);

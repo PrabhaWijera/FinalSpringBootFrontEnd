@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{58e618022f, @emailjs/browser, animate.css, aos, bootstrap, font-awesome, jquery-3.6.0, jquery-3.6.4, normalize, popper.js, remixicon, sweetalert}" />
+    <file url="file://$PROJECT_DIR$" libraries="{@emailjs/browser, animate.css, aos, axios, bootstrap, jquery-3.6.4, normalize, sweetalert2}" />
   </component>
 </project>
