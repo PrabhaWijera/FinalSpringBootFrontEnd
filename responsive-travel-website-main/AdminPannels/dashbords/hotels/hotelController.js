@@ -1,18 +1,19 @@
-import { Hotel } from "./Hotel.js";
-import { AlertController } from "../AlertController.js";
-import { LocalStorageDB } from "../LocalStorageDB.js";
-
+localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIT1RFTCIsImlhdCI6MTY5Nzg5NjU2NCwiZXhwIjo0ODUxNDk2NTY0fQ.yzKP6G1MRCAfvoh9mliWx6s0iLd6Typa1qG2TNWBLo4"));
 
 
 // Function to handle guide data save
 // Event handler for saving hotel data
+/*
 $("#hotelAddButton").click(function () {
     saveHotel();
 });
 $("#hUpdateButton").click(function () {
     updateHotel();
 });
+*/
+
 // Function to save hotel data
+/*
 function saveHotel() {
     const hotelData = {
         HId: $("#hId").val(),
@@ -47,6 +48,348 @@ function saveHotel() {
         },
     });
 }
+
+*/
+
+$(document).ready(() => {
+
+
+    $(document).on("click", "#hotelAddButton", () => {
+
+
+
+
+
+
+
+
+
+
+        setTimeout(() => {
+
+
+            let hotel = {
+
+                hotelID: $("#hId").val(),
+
+                hotelName: $("#hName").val(),
+
+                hotelCategory: $("#hCategory").val(),
+
+                location: $("#hAddress").val(),
+
+                locationCoordinate: $("#hcordinate").val(),
+
+                hotelEmail: $("#hemail").val(),
+
+                contactNumber01: $("#hotelContact1").val(),
+
+                getContactNumber02: $("#hotelContact2").val(),
+
+
+
+                petsStatus: $("#pet").val(),
+
+                FullBoarddoublehotelFee: $("#FullBoarddoublehotelFee").val(),
+
+                HalfBoardDoublehotelFee: $("#HalfBoardDoublehotelFee").val(),
+
+                FullBoardTriplehotelFee: $("#FullBoardTriplehotelFee").val(),
+
+                HalfBoardTriplehotelFee: $("#HalfBoardTriplehotelFee").val(),
+
+                CancellationCriteria: $("#CancellationCriteria").val(),
+
+
+                remark: $("#remark").val(),
+
+                package_id: $("").val()
+
+
+
+
+
+
+
+            }
+
+            console.log(hotel)
+
+
+
+
+            $.ajax({
+
+                url: "http://localhost:8080/api/v1/hotel_api/h_save", method: "POST", headers: {
+
+                    "content-type": "application/json",
+
+                    "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HOTELToken"))
+
+                }, data: JSON.stringify(hotel), success: (response) => {
+
+                    if (response.statusCode === 200 || response.statusCode === 201) {
+
+                        alert("Done!")
+
+                    } else {
+
+                        return swal("OOPS!", response.message, "error")
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                }, error: (xhr,textStatus,errorThrown) => {
+
+                    alert("Server threw an exception : "+xhr.responseJSON.message);
+
+                },
+
+
+
+
+
+
+
+            })
+
+
+
+
+        }, 3000)
+
+
+
+
+
+
+
+    })
+
+
+
+
+});
+
+ //update new
+$(document).ready(() => {
+
+    $(document).on("click", "#hUpdateButton", () => {
+
+
+
+        setTimeout(() => {
+
+            let hotel = {
+
+
+                hotelID: $("#huId").val(),
+
+                hotelName: $("#huName").val(),
+
+                hotelCategory: $("#huCategory").val(),
+
+                location: $("#huAddress").val(),
+
+                locationCoordinate: $("#uhcordinate").val(),
+
+                hotelEmail: $("#huemail").val(),
+
+                contactNumber01: $("#uhotelContact1").val(),
+
+                getContactNumber02: $("#uhotelContact2").val(),
+
+
+
+                petsStatus: $("#upet").val(),
+
+                FullBoarddoublehotelFee: $("#uFullBoarddoublehotelFee").val(),
+
+                HalfBoardDoublehotelFee: $("#uHalfBoardDoublehotelFee").val(),
+
+                FullBoardTriplehotelFee: $("#uFullBoardTriplehotelFee").val(),
+
+                HalfBoardTriplehotelFee: $("#uHalfBoardTriplehotelFee").val(),
+
+                CancellationCriteria: $("#uCancellationCriteria").val(),
+
+
+                remark: $("#uremark").val(),
+
+                package_id: $("").val()
+
+
+
+            }
+
+
+
+
+            $.ajax({
+
+                url: "http://localhost:8080/api/v1/hotel_api/h_put", method: "PUT", headers: {
+
+                    "content-type": "application/json",
+
+                    "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HOTELToken"))
+
+
+
+
+                }, data: JSON.stringify(hotel), success: (response) => {
+
+                    if (response.statusCode === 200 || response.statusCode === 201) {
+
+                        swal("Done!", response.message, "success")
+
+                        return clearFields();
+
+
+
+
+                    } else {
+
+                        return swal("OOPS!", response.message, "error")
+
+
+
+
+                    }
+
+
+
+
+
+
+
+                }, error: (xhr,textStatus,errorThrown) => {
+
+                    swal("OOPS!", "Server threw an exception : "+xhr.responseJSON.message, "error");
+
+                },
+
+
+
+
+
+
+
+            })
+
+
+
+
+        }, 3000)
+
+
+
+
+    })
+
+})
+
+//delete
+
+
+$(document).ready(() => {
+
+    $(document).on("click", "#deletehotel", () => {
+/*
+
+        if ($("#hotelId").val() === "") {
+
+            return swal("OOPS!", "Please enter a Vehicle name to delete!", "error");
+
+        }
+*/
+
+
+
+
+        $.ajax({
+
+            url: "http://localhost:8080/api/v1/hotel_api/H_Delete?H_ID=" + $("#hId").val(), method: "DELETE", headers: {
+
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HOTELToken"))
+
+            }, success: (res) => {
+
+                console.log(res.data)
+
+                if (res.statusCode === 200 || res.statusCode === 201) {
+
+
+
+
+                    return swal("Done!", res.message, "success");
+
+
+
+
+                }
+
+                swal("OOPS!", res.message, "error");
+
+
+
+
+            }, error: (xhr,textStatus,errorThrown) => {
+
+                swal("OOPS!", "Server threw an exception : "+xhr.responseJSON.message, "error");
+
+            }
+
+
+
+
+
+
+
+        });
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //update
 function updateHotel(){
 
@@ -84,25 +427,8 @@ function updateHotel(){
     });
 }
 
+*/
 
 
 
 // Event handler for deleting hotel data
-$("#deletehotel").click(function () {
-    const hotelID = $("#hId").val(); // Replace with the correct ID field
-
-    $.ajax({
-        url: 'http://localhost:8080/delete', // Replace with the actual delete endpoint on your server
-        type: 'DELETE',
-        data: { HId: hotelID }, // Send the hotel ID as data
-        success: function (response) {
-            console.log('Hotel data deleted successfully');
-            // You can handle success actions here
-        },
-        error: function (error) {
-            console.error('Error deleting hotel data:', error);
-            alert("Error deleting hotel data.");
-        }
-    });
-});
-

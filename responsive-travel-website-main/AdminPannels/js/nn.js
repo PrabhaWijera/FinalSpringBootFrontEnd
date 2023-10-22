@@ -402,7 +402,6 @@ function clearFields() {
 
 
 
-
 function validator() {
 
     if ($("#packageId").val() == '' || $("#vehicleBrand").val() === "" || $("#vehicleCategory").val() === "" || $("#fuelType").val() === "" || $("#isHybrid").val() === "" || $("#fuelUsage").val() === "" || $("#vehicleImageLocation").val() === "" || $("#seatCapacity").val() === "" || $("#vehicleType").val() === "" || $("#transmissionType").val() === "" || $("#driversContactNumber").val() === "" || $("#driversLicenseImageLocation").val() === "" || $("#remarks").val() === "") {
