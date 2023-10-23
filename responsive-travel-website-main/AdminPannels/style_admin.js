@@ -60,9 +60,6 @@ localStorage.clear()*/;
 document.addEventListener("DOMContentLoaded", function() {
     //storage save
 
-
-
-
     localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJHVUlERSIsImlhdCI6MTY5Nzg5NjQ1OSwiZXhwIjo0ODUxNDk2NDU5fQ.0sH_wTYKOGS9Uzm29jRfg8nd3nFlMJxJaZ9e4NqatTs"));
     localStorage.setItem("VEHIToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJWRUhJQ0xFIiwiaWF0IjoxNjk3ODk2NDk3LCJleHAiOjQ4NTE0OTY0OTd9.YYji2_hYdPUZWpssO8jX6ZsrWjbR2b3WEdsH6sCF0-s"));
     localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIT1RFTCIsImlhdCI6MTY5Nzg5NjU2NCwiZXhwIjo0ODUxNDk2NTY0fQ.yzKP6G1MRCAfvoh9mliWx6s0iLd6Typa1qG2TNWBLo4"));
@@ -88,9 +85,6 @@ function saveAdmin(message) {
         const loginPassword = loginPasswordInput.value;
         const loginRole = loginRoleInput.value;
 
-
-
-
         alert("Login ");
 
         const selectedService=loginRole;
@@ -104,7 +98,7 @@ function saveAdmin(message) {
             },
             success:(res)=>{
                 console.log(res.message);
-                if (res.data.isAuthenticated){
+                if (res.data.isAuthenticated && data.role){
                     alert("Directing");
 
                     switch (selectedService){

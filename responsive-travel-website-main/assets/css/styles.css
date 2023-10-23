@@ -216,7 +216,7 @@ input {
 }
 
 .nav__logo, .nav__toggle {
-  color: var(--white-color);
+  color: var(--bs-light);
 }
 
 .nav__logo {
