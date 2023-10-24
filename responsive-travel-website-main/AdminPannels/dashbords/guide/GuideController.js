@@ -20,8 +20,8 @@ $(document).ready(function() {
         OnDeleteGuide();
     });
 
-    $("#deleteGuide").on("click", function() {
-        OnDeleteGuide();
+    $("#csButton").on("click", function() {
+        OnSearchGuide();
     });
 
 
@@ -241,34 +241,34 @@ function OnDeleteGuide() {
 }
 
 //get search
-function OnSearchVehicle(event) {
+function OnSearchGuide(event) {
     if (event.key === 'Enter') {
         $.ajax({
-            url: "http://localhost:8082/api/v1/vehicles/getVehicleByBrand?vehicleBrand=" + $("#vbrand").val(),
+            url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + $("#cidField").val(),
             method: "GET",
             contentType: "application/json",
             headers: {
-                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
             },
             success: (res) => {
                 console.log(res.data);
                 if (res.statusCode === 200 || res.statusCode === 201) {
                     // Populate input fields with retrieved data
-                    $("#vId").val(res.data.vehicleID);
-                    $("#packageId").val(res.data.package_id);
-                    $("#category").val(res.data.vehicleCategory);
-                    $("#fueltype").val(res.data.fuelType);
+                    $("#gId").val(res.data.guideID);
+                    $("#gName").val(res.data.guideName);
+                    $("#age").val(res.data.guideAddress);
+                    $("#gAddress").val(res.data.guideAge);
 
                     // Select the option in the dropdown based on the response
                     $("#hybrid option[value='" + res.data.hybrid + "']").prop('selected', true);
 
-                    $("#fuelusage").val(res.data.fuelUsage);
-                    $("#seatCapacity").val(res.data.seatCapacity);
-                    $("#vbrand").val(res.data.vehicleBrand);
-                    $("#transmissionType").val(res.data.transmissionType);
-                    $("#driverName").val(res.data.driverName);
-                    $("#conNumber").val(res.data.conNumber);
-                    $("#vremark").val(res.data.remarks);
+                    $("#gender").val(res.data.guideGender);
+                    $("#guideIMG").val(res.data.guidePICIMGLocation);
+                    $("#gNICimg").val(res.data.guideNICIMGLocation);
+                    $("#gudingIDimg").val(res.data.guideIDIMGLocation);
+                    $("#gExperience").val(res.data.guideExperience);
+                    $("#mandayValue").val(res.data.manDayValue);
+                    $("#gremark").val(res.data.remark);
 
                     // Display a success message
                     swal("Done!", res.message, "success");
