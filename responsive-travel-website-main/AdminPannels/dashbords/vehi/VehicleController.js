@@ -268,6 +268,7 @@ function OnSearchVehicle(event) {
 }
 
 //get all
+
 function OnGetAll() {
     $.ajax({
         url: "http://localhost:8082/api/v1/vehicles/getvehi",
@@ -285,24 +286,24 @@ function OnGetAll() {
                 const tableBody = $("#vehicBody");
                 tableBody.empty(); // Clear the existing table rows
 
-                res.data.forEach((vehicle) => {
+                res.data.map((vehicle) => {
                     // Create a new row for each vehicle
-                    let row = "<tr>";
-                    row += "<td>" + vehicle.vehicleID + "</td>";
-                    row += "<td>" + vehicle.vehicleBrand + "</td>";
-                    row += "<td>" + vehicle.vehicleCategory + "</td>";
-                    row += "<td>" + vehicle.fuelType + "</td>";
-                    row += "<td>" + vehicle.hybrid + "</td>";
-                    row += "<td>" + vehicle.fuelUsage + "</td>";
-                    row += "<td><img src='" + vehicle.vehicleImg + "' alt='Vehicle Image' height='100' width='100'></td>";
-                    row += "<td>" + vehicle.seatCapacity + "</td>";
-                    row += "<td>" + vehicle.vehicleName + "</td>";
-                    row += "<td>" + vehicle.transmissionType + "</td>";
-                    row += "<td>" + vehicle.driverName + "</td>";
-                    row += "<td>" + vehicle.conNumber + "</td>";
-                    row += "<td><img src='" + vehicle.driverlicenseImg + "' alt='Driver License' height='100' width='100'></td>";
-                    row += "<td>" + vehicle.remarks + "</td>";
-                    row += "</tr>";
+                    let row = "<tr>" +
+                        "<td>" + vehicle.vehicleID + "</td>" +
+                        "<td>" + vehicle.vehicleBrand + "</td>" +
+                        "<td>" + vehicle.vehicleCategory + "</td>" +
+                        "<td>" + vehicle.fuelType + "</td>" +
+                        "<td>" + vehicle.hybrid + "</td>" +
+                        "<td>" + vehicle.fuelUsage + "</td>" +
+                        "<td><img src='" + vehicle.vehicleImg + "' alt='Vehicle Image' height='100' width='100'></td>" +
+                        "<td>" + vehicle.seatCapacity + "</td>" +
+                        "<td>" + vehicle.vehicleName + "</td>" +
+                        "<td>" + vehicle.transmissionType + "</td>" +
+                        "<td>" + vehicle.driverName + "</td>" +
+                        "<td>" + vehicle.conNumber + "</td>" +
+                        "<td><img src='" +vehicle.driverlicenseImg + "' alt='Driver License' height='100' width='100'></td>" +
+                        "<td>" + vehicle.remarks + "</td>" +
+                        "</tr>";
 
                     tableBody.append(row);
                 });

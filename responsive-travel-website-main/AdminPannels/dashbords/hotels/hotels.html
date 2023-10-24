@@ -97,8 +97,23 @@
                                     <input class="form-control" id="hId" placeholder="H001" type="text">
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label commonText" for="pId">Package ID</label>
+                                    <input class="form-control" id="pId" placeholder="pid" type="text">
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label commonText" for="hName">Hotel Name</label>
                                     <input class="form-control" id="hName" placeholder="Thoorya" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="starRate">Stars</label>
+                                    <select class="form-control" id="starRate">
+                                        <option value="star1">⭐</option>
+                                        <option value="star2">⭐⭐</option>
+                                        <option value="star3">⭐⭐⭐</option>
+                                        <option value="star4">⭐⭐⭐⭐</option>
+                                        <option value="star5">⭐⭐⭐⭐⭐</option>
+
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for="hCategory">Hotel Category</label>
@@ -115,6 +130,10 @@
 
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="hotelImg">Hotel-Image</label>
+                                    <input class="form-control" id="hotelImg" type="file" accept="image/*"  >
+                                </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for="hemail">Hotel Email</label>
                                     <input class="form-control" id="hemail" placeholder="example@example.com" type="text">
@@ -151,6 +170,10 @@
                                     <label class="form-label commonText" for="HalfBoardTriplehotelFee">HalfBoardTripleHotelFee</label>
                                     <input class="form-control" id="HalfBoardTriplehotelFee" placeholder="Price" type="text">
                                 </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="hotelsFees">Hotel-Fees</label>
+                                    <input class="form-control" id="hotelsFees" placeholder="Price" type="text">
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -186,7 +209,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter details of the Guide!</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Hotel!</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
@@ -199,6 +222,17 @@
                                 <div class="mb-3">
                                     <label class="form-label commonText" for="huName">Hotel Name</label>
                                     <input class="form-control" id="huName" placeholder="Thoorya" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ustarRate">Stars</label>
+                                    <select class="form-control" id="ustarRate">
+                                        <option value="star1">⭐</option>
+                                        <option value="star2">⭐⭐</option>
+                                        <option value="star3">⭐⭐⭐</option>
+                                        <option value="star4">⭐⭐⭐⭐</option>
+                                        <option value="star5">⭐⭐⭐⭐⭐</option>
+
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label commonText" for="huCategory">Hotel Category</label>
@@ -216,6 +250,10 @@
                                 <div class="mb-3">
                                     <label class="form-label commonText" for="huemail">Hotel Email</label>
                                     <input class="form-control" id="huemail" placeholder="example@example.com" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uhotelImg">Hotel-Image</label>
+                                    <input class="form-control" id="uhotelImg" type="file" accept="image/*"  >
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -246,6 +284,10 @@
                                 <div class="mb-3">
                                     <label class="form-label commonText" for="uHalfBoardTriplehotelFee">HalfBoardTripleHotelFee</label>
                                     <input class="form-control" id="uHalfBoardTriplehotelFee" placeholder="Price" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uhotelsFees">Hotel-Fees</label>
+                                    <input class="form-control" id="uhotelsFees" placeholder="Price" type="text">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label commonText" for="uCancellationCriteria">CancellationCriteria</label>
@@ -297,7 +339,7 @@
         </div>
         <!-- Delete Guide Modal - End. -->
         <!-- Button trigger modal for getting all Guide- Start. -->
-        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllCustomersButton" type="button">Get all Guide.
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllButton" type="button">Get all Guide.
         </button>
 
         <!-- Button trigger modal for getting all Guide- End. -->
@@ -376,7 +418,7 @@
             <th scope="col" class="p-3">Remark</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="Hbody">
         <!-- Add your table data here -->
         </tbody>
     </table>
