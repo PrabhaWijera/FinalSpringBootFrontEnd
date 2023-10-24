@@ -1,4 +1,4 @@
-localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIT1RFTCIsImlhdCI6MTY5Nzg5NjU2NCwiZXhwIjo0ODUxNDk2NTY0fQ.yzKP6G1MRCAfvoh9mliWx6s0iLd6Typa1qG2TNWBLo4"));
+localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbEFkbWluIiwiaWF0IjoxNjk4MDY4MjgzLCJleHAiOjQ4NTE2NjgyODN9.gvI62fX0TSVJyO6JDlISC2yFHoZdGLF6lC2RGyD2exw"));
 
 
 // Function to handle guide data save

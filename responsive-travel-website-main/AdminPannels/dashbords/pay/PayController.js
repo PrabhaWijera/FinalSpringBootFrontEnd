@@ -1,6 +1,8 @@
-import { Pay } from "./Pay.js";
-import { AlertController } from "../AlertController.js";
-import { LocalStorageDB } from "../LocalStorageDB.js";
+
+
+
+localStorage.setItem("PAyTOKEN",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfUEFZTUVOVCIsInN1YiI6IlBheW1lbnRBZG1pbiIsImlhdCI6MTY5ODA2ODIwNCwiZXhwIjo0ODUxNjY4MjA0fQ._pKMG_OfKY2OJ7Cp4SOSTp7GLZ4smKGHiT2ckwJnr00"));
+
 
 // When the element with id 'addpaymentButton' is clicked, call the 'registerPayment' function.
 var payment;
