@@ -16,6 +16,15 @@ $(document).ready(function() {
         OnGetAll();
     });
 
+    $("#deleteGuide").on("click", function() {
+        OnDeleteGuide();
+    });
+
+    $("#deleteGuide").on("click", function() {
+        OnDeleteGuide();
+    });
+
+
 
 });
 
@@ -192,4 +201,86 @@ function OnGetAll() {
             swal("OOPS!", "Server error: " + errorMessage, "error");
         }
     });
+}
+
+//delete
+function OnDeleteGuide() {
+    // Retrieve form data
+    if ($("#gDID").val() === "") {
+        return swal("OOPS!", "Please enter a Guide ID to delete!", "error");
+    }
+
+    let token = localStorage.getItem("GToken");
+    console.log(token)
+    // Check if the token is valid
+    if (!token) {
+        alert("Token not found. Please log in.");
+        return;
+    }
+    // Make the AJAX request to save the payment data
+    $.ajax({
+        url: "http://localhost:8085/api/v1/guide/getAllGuide="+ $('#gDID').val(),
+        method: "DELETE",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+
+        },
+
+        success: function (response) {
+            alert("res"+response)
+            if (response.statusCode === 200 || response.statusCode === 201 )
+                alert("Delete successful");
+            // You can handle the response from the server here if needed
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("Error: " + xhr.responseText);
+
+        }
+    });
+}
+
+//get search
+function OnSearchVehicle(event) {
+    if (event.key === 'Enter') {
+        $.ajax({
+            url: "http://localhost:8082/api/v1/vehicles/getVehicleByBrand?vehicleBrand=" + $("#vbrand").val(),
+            method: "GET",
+            contentType: "application/json",
+            headers: {
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+            },
+            success: (res) => {
+                console.log(res.data);
+                if (res.statusCode === 200 || res.statusCode === 201) {
+                    // Populate input fields with retrieved data
+                    $("#vId").val(res.data.vehicleID);
+                    $("#packageId").val(res.data.package_id);
+                    $("#category").val(res.data.vehicleCategory);
+                    $("#fueltype").val(res.data.fuelType);
+
+                    // Select the option in the dropdown based on the response
+                    $("#hybrid option[value='" + res.data.hybrid + "']").prop('selected', true);
+
+                    $("#fuelusage").val(res.data.fuelUsage);
+                    $("#seatCapacity").val(res.data.seatCapacity);
+                    $("#vbrand").val(res.data.vehicleBrand);
+                    $("#transmissionType").val(res.data.transmissionType);
+                    $("#driverName").val(res.data.driverName);
+                    $("#conNumber").val(res.data.conNumber);
+                    $("#vremark").val(res.data.remarks);
+
+                    // Display a success message
+                    swal("Done!", res.message, "success");
+                } else {
+                    // Display an error message based on the server response
+                    swal("OOPS!", res.message, "error");
+                }
+            },
+            error: (xhr, textStatus, errorThrown) => {
+                // Handle errors, including server exceptions
+                swal("OOPS!", "Server threw an exception: " + xhr.responseJSON.message, "error");
+            }
+        });
+    }
 }

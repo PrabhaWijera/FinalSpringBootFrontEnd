@@ -188,7 +188,7 @@ function OnUpdateVehicle() {
 //delete
 function OnDeleteVehicle() {
     // Retrieve form data
-    if ($("#vId").val() === "") {
+    if ($("#vDID").val() === "") {
         return swal("OOPS!", "Please enter a Vehicle ID to delete!", "error");
     }
 
@@ -201,7 +201,7 @@ function OnDeleteVehicle() {
     }
     // Make the AJAX request to save the payment data
     $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/V_delete?Vehicle_ID="+ $('#vId').val(),
+        url: "http://localhost:8082/api/v1/vehicles/V_delete?Vehicle_ID="+ $('#vDID').val(),
         method: "DELETE",
         contentType: "application/json",
         headers: {
@@ -226,7 +226,7 @@ function OnDeleteVehicle() {
 function OnSearchVehicle(event) {
     if (event.key === 'Enter') {
         $.ajax({
-            url: "http://localhost:8082/api/v1/vehicles/getVehicleByBrand?vehicleBrand=" + $("#vbrand").val(),
+            url: "http://localhost:8082/api/v1/vehicles/getVehicleByBrand?vehicleBrand=" + $("#cidField").val(),
             method: "GET",
             contentType: "application/json",
             headers: {
