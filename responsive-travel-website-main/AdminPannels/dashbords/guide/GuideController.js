@@ -11,6 +11,12 @@ $(document).ready(function() {
         OnUpdateGuide();
     });
 
+
+    $("#getAllButton").on("click", function() {
+        OnGetAll();
+    });
+
+
 });
 
 function OnSaveGuide() {
@@ -20,14 +26,28 @@ function OnSaveGuide() {
     let name = $("#gName").val();
     let age = $("#age").val();
     let addres = $("#gAddress").val();
+    let gender = $("#gender").val();
+    let guideIMG = $("#guideIMG").val();
+    let guideNIC = $("#gNICimg").val();
+    let guideingID = $("#gudingIDimg").val();
+    let experience = $("#gExperience").val();
+    let manValue = $("#mandayValue").val();
+    let remark = $("#gremark").val();
+
 
     // Create an object to store the data
     const data = {
         guideID:ID,
         guideName:name,
         guideAge:age,
-        guideAddress:addres
-
+        guideAddress:addres,
+        guideGender:gender,
+        guidePICIMGLocation:guideIMG,
+        guideNICIMGLocation:guideNIC,
+        guideIDIMGLocation:guideingID,
+        guideExperience:experience,
+        manDayValue:manValue,
+        remark:remark
 
     };
 
@@ -36,7 +56,7 @@ function OnSaveGuide() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
@@ -54,11 +74,11 @@ function OnSaveGuide() {
         success: function (response) {
             alert("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -71,23 +91,35 @@ function OnUpdateGuide() {
     let name = $("#ugName").val();
     let age = $("#uage").val();
     let addres = $("#ugAddress").val();
+    let gender = $("#ugender").val();
+    let guideIMG = $("#uguideIMG").val();
+    let guideNIC = $("#ugNICimg").val();
+    let guideingID = $("#ugudingIDimg").val();
+    let experience = $("#ugExperience").val();
+    let manValue = $("#umandayValue").val();
+    let remark = $("#ugremark").val();
 
     // Create an object to store the data
     const data = {
         guideID:ID,
         guideName:name,
         guideAge:age,
-        guideAddress:addres
-
+        guideAddress:addres,
+        guideGender:gender,
+        guidePICIMGLocation:guideIMG,
+        guideNICIMGLocation:guideNIC,
+        guideIDIMGLocation:guideingID,
+        guideExperience:experience,
+        manDayValue:manValue,
+        remark:remark
 
     };
-
     // Retrieve the JWT token from localStorage
     let token = localStorage.getItem("GToken");
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
@@ -103,14 +135,61 @@ function OnUpdateGuide() {
         },
 
         success: function (response) {
-            alert("res"+response)
+            swal("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Update successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
+        }
+    });
+}
+
+//get all
+function OnGetAll() {
+    $.ajax({
+        url: "http://localhost:8085/api/v1/guide/getAllGuide",
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+        },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const tableBody = $("#tbody");
+                tableBody.empty(); // Clear the existing table rows
+
+                res.data.forEach((guide) => {
+                    let row = "<tr>";
+                    row += "<td>" + guide.guideID + "</td>";
+                    row += "<td>" + guide.guideName + "</td>";
+                    row += "<td>" + guide.guideAddress + "</td>";
+                    row += "<td>" + guide.guideAge + "</td>";
+                    row += "<td>" + guide.guideGender + "</td>";
+                    row += "<td><img src='" + guide.guidePICIMGLocation + "' alt='Guide Image' height='100' width='100'></td>";
+                    row += "<td><img src='" + guide.guideNICIMGLocation + "' alt='NIC Image' height='100' width='100'></td>";
+                    row += "<td><img src='" + guide.guideIDIMGLocation + "' alt='Guiding ID Image' height='100' width='100'></td>";
+                    row += "<td>" + guide.guideExperience + "</td>";
+                    row += "<td>" + guide.manDayValue + "</td>";
+                    row += "<td>" + guide.remark + "</td>";
+                    row += "</tr>";
+
+                    tableBody.append(row);
+                });
+            }
+        },
+        error: (xhr, textStatus, errorThrown) => {
+            let errorMessage = "An unexpected error occurred.";
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+            }
+            swal("OOPS!", "Server error: " + errorMessage, "error");
         }
     });
 }

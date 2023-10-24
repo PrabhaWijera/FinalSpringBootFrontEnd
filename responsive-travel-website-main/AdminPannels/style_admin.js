@@ -98,7 +98,7 @@ function saveAdmin(message) {
             },
             success:(res)=>{
                 console.log(res.message);
-                if (res.data.isAuthenticated && data.role){
+                if (res.data.isAuthenticated && res.data.role === loginRole){
                     alert("Directing");
 
                     switch (selectedService){

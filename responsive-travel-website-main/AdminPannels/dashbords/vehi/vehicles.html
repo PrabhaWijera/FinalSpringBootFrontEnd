@@ -104,6 +104,10 @@
                                     <input class="form-control" id="category" placeholder="suzuki" type="text">
                                 </div>
                                 <div class="form-group">
+                                    <label class="form-label commonText" for="vname">Vehicle Name</label>
+                                    <input class="form-control" id="vname" placeholder="Galle" type="text">
+                                </div>
+                                <div class="form-group">
                                     <label class="form-label commonText" for="fueltype">FuelType</label>
                                     <input class="form-control" id="fueltype" placeholder="Galle" type="text">
                                 </div>
@@ -162,6 +166,10 @@
                                     <label class="form-label commonText" for="conNumber">Contact-Number</label>
                                     <input class="form-control" id="conNumber" placeholder="id.png" type="text">
                                 </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="packageid">PackageID</label>
+                                    <input class="form-control" id="packageid" placeholder="id.png" type="text" disabled>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,6 +215,10 @@
                                 <div class="form-group">
                                     <label class="form-label commonText" for="ucategory">Vehicle Category</label>
                                     <input class="form-control" id="ucategory" placeholder="suzuki" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="uname">Vehicle Name</label>
+                                    <input class="form-control" id="uname" placeholder="suzuki" type="text">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for="ufueltype">FuelType</label>
@@ -268,6 +280,7 @@
                                     <label class="form-label commonText" for="uconNumber">Contact-Number</label>
                                     <input class="form-control" id="uconNumber" placeholder="id.png" type="text">
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -372,23 +385,22 @@
             <th scope="col" class="p-3">Vehicle Brand</th>
             <th scope="col" class="p-3">Vehicle Category</th>
             <th scope="col" class="p-3">FuelType</th>
-            <th scope="col" class="p-3">Hybrid|Not</th>
+            <th scope="col" class="p-3">Hybrid</th>
             <th scope="col" class="p-3">FuelUsage</th>
-            <th scope="col" class="p-3">Vehicle image</th>
-            <th scope="col" class="p-3">VehicleInterior-Img</th>
-            <th scope="col" class="p-3">SeatCapacity</th>
-            <th scope="col" class="p-3">Transmission-Type</th>
-            <th scope="col" class="p-3">Driver-Name</th>
-            <th scope="col" class="p-3">Contact-Number</th>
-            <th scope="col" class="p-3">DriverLicenseIMG</th>
+            <th scope="col" class="p-3">Vehicle Image</th>
+            <th scope="col" class="p-3">Seat Capacity</th>
+            <th scope="col" class="p-3">Vehicle Name</th>
+            <th scope="col" class="p-3">Transmission Type</th>
+            <th scope="col" class="p-3">Driver Name</th>
+            <th scope="col" class="p-3">Contact Number</th>
+            <th scope="col" class="p-3">Driver License Img</th>
             <th scope="col" class="p-3">Remark</th>
         </tr>
         </thead>
         <tbody id="vehicBody">
-        <!-- Add your table data here -->
+        <!-- Data rows will be appended here -->
         </tbody>
     </table>
-
 
     <!--Table for Guide - End.-->
     <!--Guide Manager - End.-->
@@ -411,7 +423,7 @@
     <!--DB.👇-->
     <script src="../LocalStorageDB.js" type="module"></script>
     <!--Models.👇-->
-    <script src="Vehicle.js" type="module"></script>
+
 
     <!--ScreenController.👇-->
     <script src="../ScreenController.js" type="module"></script>
