@@ -1,6 +1,4 @@
-import { Customer } from "./Customer.js";
-import { AlertController } from "../AlertController.js";
-import { LocalStorageDB } from "../LocalStorageDB.js";
+/*
 
 // Event handling using jQuery
 $("#cusAddButton").on("click", function() {
@@ -293,4 +291,4 @@ $(document).ready(function (){
         $('#uuserNic_Photo').val(col10);
 
     });
-});
+});*/

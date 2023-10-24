@@ -1,5 +1,5 @@
 
-/*document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     // Store user data in localStorage when the page loads
     localStorage.setItem("GUIDE@gmail.com", "0000:GUIDE");
     localStorage.setItem("PAY@gmail.com", "1234:PAY");

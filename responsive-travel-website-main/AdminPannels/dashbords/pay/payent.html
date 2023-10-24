@@ -30,6 +30,7 @@
     <script crossorigin="anonymous"
             integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
             src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="Ppay.js" type="module"></script>
     <!--Email -JS.👇-->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -81,7 +82,7 @@
         <!-- Button trigger modal for adding a customer - End.-->
 
         <!-- Add Customer Modal - Start. -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addCustomerModal" tabindex="-1">
+        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addCustomerModal" tabindex="-1" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -94,7 +95,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label commonText" for="payID">Payment ID</label>
-                                    <input class="form-control" id="payID" placeholder="pl001" type="text">
+                                    <input class="form-control" id="payID" placeholder="pl001" type="text" >
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for ="DailyIncome">DailyIncome</label>
@@ -122,8 +123,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="payAddButton" type="button">Add</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="payAddButton" type="button" >Add</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +184,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="UpdateButton" type="button">Update</button>
+                        <button class="btn btn-primary" id="UpdateButton" type="button"  >Update</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
@@ -211,7 +214,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" id="deletehotel" type="button">Delete.</button>
+                        <button class="btn btn-danger" id="deletehotel" type="button" >Delete.</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
                     </div>
                 </div>
@@ -219,7 +222,7 @@
         </div>
         <!-- Delete Guide Modal - End. -->
         <!-- Button trigger modal for getting all Guide- Start. -->
-        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllpayButton" type="button">Get all Payment.
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllpayButton" type="button"  >Get all Payment.
         </button>
 
         <!-- Button trigger modal for getting all Guide- End. -->
@@ -229,7 +232,7 @@
                 <form class="d-flex" role="search">
                     <input aria-label="Search" class="form-control me-2" id="cidField" placeholder="Type something..."
                            type="search">
-                    <button class="btn btn-outline-success" id="csButton" type="submit">Search.</button>
+                    <button class="btn btn-outline-success" id="csButton" type="submit"  >Search.</button>
                 </form>
             </div>
         </nav>
@@ -274,7 +277,7 @@
     </div>
 
     <!--Table for Guide -Start..-->
-    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="payTable">
+    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" >
         <thead>
         <tr>
             <th scope="col" class="p-3" style="font-size: 12px;">PayID</th>
@@ -285,7 +288,7 @@
 
         </tr>
         </thead>
-        <tbody>
+        <tbody id="payTable">
         <!-- Add your table data here -->
         </tbody>
     </table>
@@ -311,12 +314,11 @@
     <!--DB.👇-->
     <script src="../LocalStorageDB.js" type="module"></script>
     <!--Models.👇-->
-    <script src="Pay.js" type="module"></script>
 
     <!--ScreenController.👇-->
     <script src="../ScreenController.js" type="module"></script>
     <!--Controllers.👇-->
-    <script src="PayController.js" type="module"></script>
+
 
 <!--    logout-->
     <script src="../../Adminlogout.js" type="module"></script>

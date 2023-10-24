@@ -1,3 +1,4 @@
+/*
 
 localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJHdWlkZUFkbWluIiwiaWF0IjoxNjk4MDY3OTUxLCJleHAiOjQ4NTE2Njc5NTF9.OhcmORuDtQdFOenje84avWQ7Y68SwnugWiREb9vAPGM"));
 // Function to handle image upload
@@ -103,7 +104,7 @@ function updateGuide() {
 }
 
 // Function to load all guides
-/*
+/!*
 function loadAllGuides() {
     $("#guideTable").empty();
 
@@ -125,7 +126,7 @@ function loadAllGuides() {
         }
     });
 }
-*/
+*!/
 
 // Function to delete a guide
 $("#deleteGuide").click(function () {
@@ -145,3 +146,4 @@ $("#deleteGuide").click(function () {
         }
     });
 });
+*/
