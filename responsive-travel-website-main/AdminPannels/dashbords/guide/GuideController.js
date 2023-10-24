@@ -1,149 +1,116 @@
-/*
+localStorage.setItem("GToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJHdWlkZUFkbWluIiwiaWF0IjoxNjk4MDY3OTUxLCJleHAiOjQ4NTE2Njc5NTF9.OhcmORuDtQdFOenje84avWQ7Y68SwnugWiREb9vAPGM"));
 
-localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJHdWlkZUFkbWluIiwiaWF0IjoxNjk4MDY3OTUxLCJleHAiOjQ4NTE2Njc5NTF9.OhcmORuDtQdFOenje84avWQ7Y68SwnugWiREb9vAPGM"));
-// Function to handle image upload
-var packageIDs=[];
-function uploadImage(file, successCallback, errorCallback) {
-    const data = new FormData();
-    data.append("myFile", file);
-
-    $.ajax({
-        url: "http://localhost:8080/upload", // Replace with the correct upload endpoint
-        method: "POST",
-        async: true,
-        contentType: false,
-        processData: false,
-        data: data,
-        success: successCallback,
-        error: errorCallback,
+// Check if the document is ready
+$(document).ready(function() {
+    // Attach the click event handler to the "payAddButton"
+    $("#guideAddButton").on("click", function() {
+        OnSaveGuide();
     });
-}
-
-// Function to handle guide data save
-function saveGuide() {
-    const guideIMG = $("#guideIMG")[0].files[0];
-    const NICimage = $("#gNICimg")[0].files[0];
-    const guidingIDIMG = $("#gudingIDimg")[0].files[0];
-
-    const guideData = {
-        GuideIMG: guideIMG.name,
-        NICimage: NICimage.name,
-        GuidingIDIMG: guidingIDIMG.name,
-        GId: $("#gId").val(),
-        GName: $("#gName").val(),
-        Age: $("#age").val(),
-        Address: $("#gAddress").val(),
-        Gender: $("#gender").val(),
-        Experience: $("#gExperience").val(),
-        ManValue: $("#mandayValue").val(),
-        Remark: $("#gremark").val(),
-    };
-
-    $.ajax({
-        url: "http://localhost:8080/save", // Replace with the correct save endpoint
-        method: "POST",
-        async: true,
-        data: JSON.stringify(guideData),
-        contentType: "application/json",
-        success: function (resp) {
-            console.log(resp);
-            alert(resp.message);
-            uploadImage(guideIMG, function () {
-                alert("Successfully Uploaded");
-            }, function (err) {
-                console.error(err);
-            });
-        },
-        error: function (error) {
-            let parsedError = JSON.parse(error.responseText);
-            alert(parsedError.message);
-        },
+    // update the click event handler to the "payAddButton"
+    $("#gUpdateButton").on("click", function() {
+        OnUpdateGuide();
     });
-}
 
-// Function to handle guide data update
-function updateGuide() {
-    const guideIMG = $("#uguideIMG")[0].files[0];
-    const NICimage = $("#ugNICimg")[0].files[0];
-    const guidingIDIMG = $("#ugudingIDimg")[0].files[0];
-
-    const guideData = {
-        GuideIMG: guideIMG.name,
-        NICimage: NICimage.name,
-        GuidingIDIMG: guidingIDIMG.name,
-        GId: $("#ugId").val(),
-        GName: $("#ugName").val(),
-        Age: $("#uage").val(),
-        Address: $("#ugAddress").val(),
-        Gender: $("#ugender").val(),
-        Experience: $("#ugExperience").val(),
-        ManValue: $("#umandayValue").val(),
-        Remark: $("#ugremark").val(),
-    };
-
-    $.ajax({
-        url: "http://localhost:8080/update", // Replace with the correct update endpoint
-        method: "PUT",
-        async: true,
-        data: JSON.stringify(guideData),
-        contentType: "application/json",
-        success: function (resp) {
-            console.log(resp);
-            alert(resp.message);
-            uploadImage(guideIMG, function () {
-                alert("Successfully Uploaded");
-            }, function (err) {
-                console.error(err);
-            });
-        },
-        error: function (error) {
-            let parsedError = JSON.parse(error.responseText);
-            alert(parsedError.message);
-        },
-    });
-}
-
-// Function to load all guides
-/!*
-function loadAllGuides() {
-    $("#guideTable").empty();
-
-    $.ajax({
-        url: "http://localhost:8080/",
-        method: "GET",
-        success: function (resp) {
-            for (const guide of resp.data) {
-                let row = `<tr style="text-align: center"><td>${guide.name}</td><td>${guide.nic}</td><td>${guide.address}</td><td>${guide.contactNumber}</td><td>${customer.email}</td><td>${customer.imageLocation}</td></tr>`;
-                $("#admin-customer-table").append(row);
-
-                $("#admin-customer-table>tr").off("click");
-                $("#admin-customer-table>tr").click(function () {
-                    customer_nic = $(this).children(":eq(1)").text();
-                    console.log(customer_nic)
-                    $("#admin-customer-viewBtn").prop('disabled', false);
-                });
-            }
-        }
-    });
-}
-*!/
-
-// Function to delete a guide
-$("#deleteGuide").click(function () {
-    const GuideID = $("#ugId").val();
-
-    $.ajax({
-        url: 'http://localhost:8080/delete', // Replace with the actual delete endpoint on your server
-        type: 'DELETE', // Use DELETE for a delete request
-        data: { GuideID: GuideID }, // Send the GuideID as data
-        success: function (response) {
-            // Handle success, e.g., show a success message
-            console.log('Data deleted successfully');
-        },
-        error: function (error) {
-            // Handle the error, e.g., show an error message
-            console.error('Error deleting data:', error);
-        }
-    });
 });
-*/
+
+function OnSaveGuide() {
+    // Retrieve form data
+
+    let ID = $("#gId").val();
+    let name = $("#gName").val();
+    let age = $("#age").val();
+    let addres = $("#gAddress").val();
+
+    // Create an object to store the data
+    const data = {
+        guideID:ID,
+        guideName:name,
+        guideAge:age,
+        guideAddress:addres
+
+
+    };
+
+    // Retrieve the JWT token from localStorage
+    let token = localStorage.getItem("GToken");
+    console.log(token)
+    // Check if the token is valid
+    if (!token) {
+        alert("Token not found. Please log in.");
+        return;
+    }
+
+    // Make the AJAX request to save the payment data
+    $.ajax({
+        url: "http://localhost:8085/api/v1/guide/Gsave",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+
+        },
+
+        success: function (response) {
+            alert("res"+response)
+            if (response.statusCode === 200 || response.statusCode === 201 )
+                alert("Save successful");
+            // You can handle the response from the server here if needed
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("Error: " + xhr.responseText);
+
+        }
+    });
+}
+//update
+function OnUpdateGuide() {
+    // Retrieve form data
+
+    let ID = $("#ugId").val();
+    let name = $("#ugName").val();
+    let age = $("#uage").val();
+    let addres = $("#ugAddress").val();
+
+    // Create an object to store the data
+    const data = {
+        guideID:ID,
+        guideName:name,
+        guideAge:age,
+        guideAddress:addres
+
+
+    };
+
+    // Retrieve the JWT token from localStorage
+    let token = localStorage.getItem("GToken");
+    console.log(token)
+    // Check if the token is valid
+    if (!token) {
+        alert("Token not found. Please log in.");
+        return;
+    }
+
+    // Make the AJAX request to save the payment data
+    $.ajax({
+        url: "http://localhost:8085/api/v1/guide/Gput",
+        method: "PUT",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+
+        },
+
+        success: function (response) {
+            alert("res"+response)
+            if (response.statusCode === 200 || response.statusCode === 201 )
+                alert("Save successful");
+            // You can handle the response from the server here if needed
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            alert("Error: " + xhr.responseText);
+
+        }
+    });
+}
