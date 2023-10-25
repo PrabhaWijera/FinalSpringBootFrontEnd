@@ -1,6 +1,6 @@
 localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
 
-OnGetAll();
+
 
 $(document).ready(function() {
     // Attach the click event handler to the "payAddButton"
@@ -29,6 +29,52 @@ $(document).ready(function() {
 
 });
 
+function OnGetAll() {
+    $.ajax({
+        url: "http://localhost:8082/api/v1/vehicles/getAllVehicle",
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+        },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const tableBody = $("#Hbody");
+                tableBody.empty(); // Clear the existing table rows
+
+                res.data.map((vehicle) => {
+                    // Create a new row for each vehicle
+                    let row = "<tr>" +
+                        "<td>" + vehicle.vehicleID+ "</td>" +
+                        "<td>" + vehicle.vehicleBrand + "</td>" +
+                        "<td>" + vehicle.vehicleCategory + "</td>" +
+                        "<td>" + vehicle.fuelType + "</td>" +
+                        "<td>" + vehicle.hybrid + "</td>" +
+                        "<td>" + vehicle.seatCapacity + "</td>" +
+                        "<td>" + vehicle.vehicleName + "</td>" +
+                        "<td>" + vehicle.transmissionType + "</td>" +
+                        "<td>" + vehicle.driverName + "</td>" +
+                        "<td>" + vehicle.conNumber + "</td>" +
+                        "<td>" + vehicle.remarks + "</td>" +
+                        "</tr>";
+
+                    tableBody.append(row);
+                });
+            }
+        },
+        error: (xhr, textStatus, errorThrown) => {
+            let errorMessage = "An unexpected error occurred.";
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+            }
+            swal("OOPS!", "Server error: " + errorMessage, "error");
+        }
+    });
+}
 
 function OnSaveVehicle() {
     // Retrieve form data
@@ -53,22 +99,22 @@ function OnSaveVehicle() {
 
     // Create an object to store the data
     const data = {
-        "vehicleID":ID,
-        "vehicleBrand":brand,
-        "vehicleCategory":category,
-        "vehicleName":vehiclename,
-        "fuelType":fultype,
-        "hybrid":HY,
-        "fuelUsage":fuluse,
-        "vehicleImg":vehiImg,
-        "vehicleInteriorImg":vehiInImg,
-        "seatCapacity":seats,
-        "transmissionType":transM,
-        "driverName":driverName,
-        "conNumber":contact,
-        "driverlicenseImg":driverLiImg,
-        "remarks":remark,
-        "package_id":pId
+        vehicleID:ID,
+        vehicleBrand:brand,
+        vehicleCategory:category,
+        vehicleName:vehiclename,
+        fuelType:fultype,
+        hybrid:HY,
+        fuelUsage:fuluse,
+        vehicleImg:vehiImg,
+        vehicleInteriorImg:vehiInImg,
+        seatCapacity:seats,
+        transmissionType:transM,
+        driverName:driverName,
+        conNumber:contact,
+        driverlicenseImg:driverLiImg,
+        remarks:remark,
+        package_id:pId
 
 
 
@@ -133,21 +179,21 @@ function OnUpdateVehicle() {
 
     // Create an object to store the data
     const data = {
-        "vehicleID":ID,
-        "vehicleBrand":brand,
-        "vehicleCategory":category,
-        "vehicleName":vehiclename,
-        "fuelType":fultype,
-        "hybrid":HY,
-        "fuelUsage":fuluse,
-        "vehicleImg":vehiImg,
-        "vehicleInteriorImg":vehiInImg,
-        "seatCapacity":seats,
-        "transmissionType":transM,
-        "driverName":driverName,
-        "conNumber":contact,
-        "driverlicenseImg":driverLiImg,
-        "remarks":remark,
+        vehicleID:ID,
+        vehicleBrand:brand,
+        vehicleCategory:category,
+        vehicleName:vehiclename,
+        fuelType:fultype,
+        hybrid:HY,
+        fuelUsage:fuluse,
+        vehicleImg:vehiImg,
+        vehicleInteriorImg:vehiInImg,
+        seatCapacity:seats,
+        transmissionType:transM,
+        driverName:driverName,
+        conNumber:contact,
+        driverlicenseImg:driverLiImg,
+        remarks:remark,
 
 
 
@@ -224,105 +270,60 @@ function OnDeleteVehicle() {
 }
 
 //get search
-function OnSearchVehicle(event) {
-    if (event.key === 'Enter') {
-        $.ajax({
-            url: "http://localhost:8082/api/v1/vehicles/getVehicleByBrand?vehicleBrand=" + $("#cidField").val(),
-            method: "GET",
-            contentType: "application/json",
-            headers: {
-                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
-            },
-            success: (res) => {
-                console.log(res.data);
-                if (res.statusCode === 200 || res.statusCode === 201) {
-                    // Populate input fields with retrieved data
-                    $("#vId").val(res.data.vehicleID);
-                    $("#packageId").val(res.data.package_id);
-                    $("#category").val(res.data.vehicleCategory);
-                    $("#fueltype").val(res.data.fuelType);
 
-                    // Select the option in the dropdown based on the response
-                    $("#hybrid option[value='" + res.data.hybrid + "']").prop('selected', true);
 
-                    $("#fuelusage").val(res.data.fuelUsage);
-                    $("#seatCapacity").val(res.data.seatCapacity);
-                    $("#vbrand").val(res.data.vehicleBrand);
-                    $("#transmissionType").val(res.data.transmissionType);
-                    $("#driverName").val(res.data.driverName);
-                    $("#conNumber").val(res.data.conNumber);
-                    $("#vremark").val(res.data.remarks);
-
-                    // Display a success message
-                    swal("Done!", res.message, "success");
-                } else {
-                    // Display an error message based on the server response
-                    swal("OOPS!", res.message, "error");
-                }
-            },
-            error: (xhr, textStatus, errorThrown) => {
-                // Handle errors, including server exceptions
-                swal("OOPS!", "Server threw an exception: " + xhr.responseJSON.message, "error");
-            }
-        });
+function OnSearchVehicle() {
+    const vehiclebrand = $("#cidField").val();
+    if (!vehiclebrand) {
+        swal("Error", "Vehicel brand is required", "error");
+        return;
     }
-}
 
-//get all
+    const authToken = JSON.parse(localStorage.getItem("VToken"));
 
-function OnGetAll() {
+    if (!authToken) {
+        swal("Error", "Authentication token is missing", "error");
+        return;
+    }
+
     $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/getvehi",
+        url: "http://localhost:8082/api/v1/vehicles/getVehicleByVehicleBrand?vehicleBrand=" + vehiclebrand,
         method: "GET",
-        async: true,
-        dataType: "json",
-        contentType: "application.json",
+        contentType: "application/json",
         headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+            "Authorization": "Bearer " + authToken
         },
         success: (res) => {
-            if (res.data) {
-                // Handle the case when no data is found
-                swal("OOPS!", "No data found!", "error"+res.data);
+            if (res.statusCode === 200 || res.statusCode === 201) {
+                // Populate input fields with retrieved data
+                $("#uvId").val(res.data.vehicleID);
+                $("#ucategory").val(res.data.vehicleCategory);
+                $("#uname").val(res.data.vehicleName);
+                $("#ufueltype").val(res.data.fuelType);
+                // Select the option in the dropdown based on the response (if applicable)
 
-                console.log("Response data:", res.data);
+                $("#ufuelusage").val(res.data.fuelUsage);
+                $("#uhybrid").val(res.data.hybrid);
+                $("#useatCapacity").val(res.data.seatCapacity);
+                $("#utransmissionType").val(res.data.transmissionType);
+                $("#udriverName").val(res.data.driverName);
+                $("#uconNumber").val(res.data.conNumber);
+                $("#uvremark").val(res.data.remarks);
 
-                const tableBody = $("#vehicBody");
-                tableBody.empty(); // Clear the existing table rows
 
-                res.map((vehicle) => {
-                    // Create a new row for each vehicle
-                    let row = "<tr>" +
-                        "<td>" + vehicle.res.vehicleID+ "</td>" +
-                        "<td>" + vehicle.res.data.vehicleBrand + "</td>" +
-                        "<td>" + vehicle.res.data.vehicleCategory + "</td>" +
-                        "<td>" + vehicle.res.data.fuelType + "</td>" +
-                        "<td>" + vehicle.res.data.hybrid + "</td>" +
-                        "<td>" + vehicle.res.data.fuelUsage + "</td>" +
-                        "<td><img src='" + vehicle.res.data.vehicleImg + "' alt='Vehicle Image' height='100' width='100'></td>" +
-                        "<td>" + vehicle.res.data.seatCapacity + "</td>" +
-                        "<td>" + vehicle.res.data.vehicleName + "</td>" +
-                        "<td>" + vehicle.res.data.transmissionType + "</td>" +
-                        "<td>" + vehicle.res.data.driverName + "</td>" +
-                        "<td>" + vehicle.res.data.conNumber + "</td>" +
-                        "<td><img src='" +vehicle.res.data.driverlicenseImg + "' alt='Driver License' height='100' width='100'></td>" +
-                        "<td>" + vehicle.res.data.remarks + "</td>" +
-                        "</tr>";
-
-                    $("#vehicBody").append(row);
-                    swal(row);
-                });
-            }     else {
-                swal("Error!", "An error occurred while fetching customers ! : " + res.message, "error")
+                swal("Success", res.message, "success");
+            } else {
+                swal("Error", res.message, "error");
             }
         },
         error: (xhr, textStatus, errorThrown) => {
-            let errorMessage = "An unexpected error occurred.";
             if (xhr.responseJSON && xhr.responseJSON.message) {
-                errorMessage = xhr.responseJSON.message;
+                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
+            } else {
+                swal("Error", "An error occurred while processing your request.", "error");
             }
-            swal("OOPS!", "Server error: " + errorMessage, "error");
-
         }
     });
 }
+
+

@@ -61,47 +61,61 @@ function OnDeleteHotel() {
         }
     });
 }
-function OnSearchHotel(event) {
-    if (event.key === 'Enter') {
-        $.ajax({
-            url: "http://localhost:8083/api/v1/hotel/getHotelByHotelName?hotelName=" + $("#cidField").val(),
-            method: "GET",
-            contentType: "application/json",
-            headers: {
-                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
-            },
-            success: (res) => {
-                console.log(res.data);
-                if (res.statusCode === 200 || res.statusCode === 201) {
-                    // Populate input fields with retrieved data
-                    $("#hId").val(res.data.hotelId);
-                    $("#hName").val(res.data.hotelName);
-                    $("#hCategory").val(res.data.hotelCategory);
-                    $("#hemail").val(res.data.hotelContactEmail);
 
-                    // Select the option in the dropdown based on the response
 
-                    $("#hotelContact1").val(res.data.hotelContact1);
-                    $("#FullBoarddoublehotelFee").val(res.data.fullBoardWithACLuxuryRoomDouble);
-                    $("#HalfBoardDoublehotelFee").val(res.data.halfBoardWithACLuxuryRoomDouble);
-                    $("#FullBoardTriplehotelFee").val(res.data.fullBoardWithACLuxuryRoomTriple);
-                    $("#HalfBoardTriplehotelFee").val(res.data.halfBoardWithACLuxuryRoomTriple);
-                    $("#remark").val(res.data.remarks);
-
-                    // Display a success message
-                    swal("Done!", res.message, "success");
-                } else {
-                    // Display an error message based on the server response
-                    swal("OOPS!", res.message, "error");
-                }
-            },
-            error: (xhr, textStatus, errorThrown) => {
-                // Handle errors, including server exceptions
-                swal("OOPS!", "Server threw an exception: " + xhr.responseJSON.message, "error");
-            }
-        });
+function OnSearchHotel() {
+    const hotelName = $("#cidField").val();
+    if (!hotelName) {
+        swal("Error", "Hotel name is required", "error");
+        return;
     }
+
+    const authToken = JSON.parse(localStorage.getItem("HToken"));
+
+    if (!authToken) {
+        swal("Error", "Authentication token is missing", "error");
+        return;
+    }
+
+    $.ajax({
+        url: "http://localhost:8083/api/v1/hotel/getHotelByHotelName?hotelName=" + hotelName,
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + authToken
+        },
+        success: (res) => {
+            if (res.statusCode === 200 || res.statusCode === 201) {
+                // Populate input fields with retrieved data
+                $("#hId").val(res.data.hotelId);
+                $("#hName").val(res.data.hotelName);
+                $("#hCategory").val(res.data.hotelCategory);
+                $("#hemail").val(res.data.hotelContactEmail);
+                // Select the option in the dropdown based on the response (if applicable)
+
+                $("#hotelContact1").val(res.data.hotelContact1);
+                $("#FullBoarddoublehotelFee").val(res.data.fullBoardWithACLuxuryRoomDouble);
+                $("#HalfBoardDoublehotelFee").val(res.data.halfBoardWithACLuxuryRoomDouble);
+                $("#FullBoardTriplehotelFee").val(res.data.fullBoardWithACLuxuryRoomTriple);
+                $("#HalfBoardTriplehotelFee").val(res.data.halfBoardWithACLuxuryRoomTriple);
+                $("#remark").val(res.data.remarks);
+
+                swal("Success", res.message, "success");
+            } else {
+                swal("Error", res.message, "error");
+            }
+        },
+        error: (xhr, textStatus, errorThrown) => {
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
+            } else {
+                swal("Error", "An error occurred while processing your request.", "error");
+            }
+        }
+    });
 }
+
+
 function OnSaveHotel() {
     // Retrieve form data
 
