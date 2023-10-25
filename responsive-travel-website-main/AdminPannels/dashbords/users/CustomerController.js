@@ -1,4 +1,4 @@
-localStorage.setItem("AD_USER",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFEX1VTRVIiLCJzdWIiOiJhZG1pblVzZXIyMDAxIiwiaWF0IjoxNjk4MTUyNDMwLCJleHAiOjQ4NTE3NTI0MzB9.xw17OLiV8dS54uviHl8jtR1KrTn6difopKvdM1hYndk"));
+localStorage.setItem("AD_USER",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFEX1VTRVIiLCJzdWIiOiJ1c2VyYWRtaW4yMDAxIiwiaWF0IjoxNjk4MjE4NDMyLCJleHAiOjQ4NTE4MTg0MzJ9.ojHdxgx9k3lJMdNwjYei4eNE2DPM7EWO9Ttjx2eJCog"));
 
 // Check if the document is ready
 $(document).ready(function() {

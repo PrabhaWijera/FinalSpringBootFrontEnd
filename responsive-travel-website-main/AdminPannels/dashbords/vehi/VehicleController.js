@@ -1,6 +1,7 @@
-localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGljbGVBZG1pbiIsImlhdCI6MTY5ODA2ODA5MywiZXhwIjo0ODUxNjY4MDkzfQ.nQTckOEDGVWtQq8ha3AWhsmNx8TIR10Xe73yQBqeABg"));
+localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
 
-// Check if the document is ready
+OnGetAll();
+
 $(document).ready(function() {
     // Attach the click event handler to the "payAddButton"
     $("#vehiAddButton").on("click", function() {
@@ -52,22 +53,22 @@ function OnSaveVehicle() {
 
     // Create an object to store the data
     const data = {
-        vehicleID:ID,
-        vehicleBrand:brand,
-        vehicleCategory:category,
-        vehicleName:vehiclename,
-        fuelType:fultype,
-        hybrid:HY,
-        fuelUsage:fuluse,
-        vehicleImg:vehiImg,
-        vehicleInteriorImg:vehiInImg,
-        seatCapacity:seats,
-        transmissionType:transM,
-        driverName:driverName,
-        conNumber:contact,
-        driverlicenseImg:driverLiImg,
-        remarks:remark,
-        package_id:pId
+        "vehicleID":ID,
+        "vehicleBrand":brand,
+        "vehicleCategory":category,
+        "vehicleName":vehiclename,
+        "fuelType":fultype,
+        "hybrid":HY,
+        "fuelUsage":fuluse,
+        "vehicleImg":vehiImg,
+        "vehicleInteriorImg":vehiInImg,
+        "seatCapacity":seats,
+        "transmissionType":transM,
+        "driverName":driverName,
+        "conNumber":contact,
+        "driverlicenseImg":driverLiImg,
+        "remarks":remark,
+        "package_id":pId
 
 
 
@@ -132,21 +133,21 @@ function OnUpdateVehicle() {
 
     // Create an object to store the data
     const data = {
-        vehicleID:ID,
-        vehicleBrand:brand,
-        vehicleCategory:category,
-        vehicleName:vehiclename,
-        fuelType:fultype,
-        hybrid:HY,
-        fuelUsage:fuluse,
-        vehicleImg:vehiImg,
-        vehicleInteriorImg:vehiInImg,
-        seatCapacity:seats,
-        transmissionType:transM,
-        driverName:driverName,
-        conNumber:contact,
-        driverlicenseImg:driverLiImg,
-        remarks:remark,
+        "vehicleID":ID,
+        "vehicleBrand":brand,
+        "vehicleCategory":category,
+        "vehicleName":vehiclename,
+        "fuelType":fultype,
+        "hybrid":HY,
+        "fuelUsage":fuluse,
+        "vehicleImg":vehiImg,
+        "vehicleInteriorImg":vehiInImg,
+        "seatCapacity":seats,
+        "transmissionType":transM,
+        "driverName":driverName,
+        "conNumber":contact,
+        "driverlicenseImg":driverLiImg,
+        "remarks":remark,
 
 
 
@@ -273,40 +274,46 @@ function OnGetAll() {
     $.ajax({
         url: "http://localhost:8082/api/v1/vehicles/getvehi",
         method: "GET",
+        async: true,
+        dataType: "json",
+        contentType: "application.json",
         headers: {
             "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
         },
         success: (res) => {
-            if (!res.data) {
+            if (res.data) {
                 // Handle the case when no data is found
-                swal("OOPS!", "No data found!", "error");
-            } else {
+                swal("OOPS!", "No data found!", "error"+res.data);
+
                 console.log("Response data:", res.data);
 
                 const tableBody = $("#vehicBody");
                 tableBody.empty(); // Clear the existing table rows
 
-                res.data.map((vehicle) => {
+                res.map((vehicle) => {
                     // Create a new row for each vehicle
                     let row = "<tr>" +
-                        "<td>" + vehicle.vehicleID + "</td>" +
-                        "<td>" + vehicle.vehicleBrand + "</td>" +
-                        "<td>" + vehicle.vehicleCategory + "</td>" +
-                        "<td>" + vehicle.fuelType + "</td>" +
-                        "<td>" + vehicle.hybrid + "</td>" +
-                        "<td>" + vehicle.fuelUsage + "</td>" +
-                        "<td><img src='" + vehicle.vehicleImg + "' alt='Vehicle Image' height='100' width='100'></td>" +
-                        "<td>" + vehicle.seatCapacity + "</td>" +
-                        "<td>" + vehicle.vehicleName + "</td>" +
-                        "<td>" + vehicle.transmissionType + "</td>" +
-                        "<td>" + vehicle.driverName + "</td>" +
-                        "<td>" + vehicle.conNumber + "</td>" +
-                        "<td><img src='" +vehicle.driverlicenseImg + "' alt='Driver License' height='100' width='100'></td>" +
-                        "<td>" + vehicle.remarks + "</td>" +
+                        "<td>" + vehicle.res.vehicleID+ "</td>" +
+                        "<td>" + vehicle.res.data.vehicleBrand + "</td>" +
+                        "<td>" + vehicle.res.data.vehicleCategory + "</td>" +
+                        "<td>" + vehicle.res.data.fuelType + "</td>" +
+                        "<td>" + vehicle.res.data.hybrid + "</td>" +
+                        "<td>" + vehicle.res.data.fuelUsage + "</td>" +
+                        "<td><img src='" + vehicle.res.data.vehicleImg + "' alt='Vehicle Image' height='100' width='100'></td>" +
+                        "<td>" + vehicle.res.data.seatCapacity + "</td>" +
+                        "<td>" + vehicle.res.data.vehicleName + "</td>" +
+                        "<td>" + vehicle.res.data.transmissionType + "</td>" +
+                        "<td>" + vehicle.res.data.driverName + "</td>" +
+                        "<td>" + vehicle.res.data.conNumber + "</td>" +
+                        "<td><img src='" +vehicle.res.data.driverlicenseImg + "' alt='Driver License' height='100' width='100'></td>" +
+                        "<td>" + vehicle.res.data.remarks + "</td>" +
                         "</tr>";
 
-                    tableBody.append(row);
+                    $("#vehicBody").append(row);
+                    swal(row);
                 });
+            }     else {
+                swal("Error!", "An error occurred while fetching customers ! : " + res.message, "error")
             }
         },
         error: (xhr, textStatus, errorThrown) => {
@@ -315,6 +322,7 @@ function OnGetAll() {
                 errorMessage = xhr.responseJSON.message;
             }
             swal("OOPS!", "Server error: " + errorMessage, "error");
+
         }
     });
 }
