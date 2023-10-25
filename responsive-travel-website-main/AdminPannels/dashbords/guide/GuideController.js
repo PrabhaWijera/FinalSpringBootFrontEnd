@@ -242,45 +242,55 @@ function OnDeleteGuide() {
 
 //get search
 function OnSearchGuide(event) {
-    if (event.key === 'Enter') {
-        $.ajax({
-            url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + $("#cidField").val(),
-            method: "GET",
-            contentType: "application/json",
-            headers: {
-                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
-            },
-            success: (res) => {
-                console.log(res.data);
-                if (res.statusCode === 200 || res.statusCode === 201) {
-                    // Populate input fields with retrieved data
-                    $("#gId").val(res.data.guideID);
-                    $("#gName").val(res.data.guideName);
-                    $("#age").val(res.data.guideAddress);
-                    $("#gAddress").val(res.data.guideAge);
+    let guideID = $('#cidField').val();
 
-                    // Select the option in the dropdown based on the response
-                    $("#hybrid option[value='" + res.data.hybrid + "']").prop('selected', true);
-
-                    $("#gender").val(res.data.guideGender);
-                    $("#guideIMG").val(res.data.guidePICIMGLocation);
-                    $("#gNICimg").val(res.data.guideNICIMGLocation);
-                    $("#gudingIDimg").val(res.data.guideIDIMGLocation);
-                    $("#gExperience").val(res.data.guideExperience);
-                    $("#mandayValue").val(res.data.manDayValue);
-                    $("#gremark").val(res.data.remark);
-
-                    // Display a success message
-                    swal("Done!", res.message, "success");
-                } else {
-                    // Display an error message based on the server response
-                    swal("OOPS!", res.message, "error");
-                }
-            },
-            error: (xhr, textStatus, errorThrown) => {
-                // Handle errors, including server exceptions
-                swal("OOPS!", "Server threw an exception: " + xhr.responseJSON.message, "error");
-            }
-        });
+    if (!guideID) {
+        return alert("Error");
     }
+
+    $.ajax({
+        url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + guideID,
+        method: "GET",
+        async: true,
+        dataType: "json",
+        contentType: "application/json", // Fixed content type
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+        },
+        success: function (res) {
+            if (res && (res.statusCode === 200 || res.statusCode === 201)) {
+                alert("awa");
+                // Populate input fields with retrieved data
+                $("#ugId").val(res.data.guideID);
+                $("#ugName").attr("disabled", true);
+                $("#ugAddress").val(res.data.guideAddress);
+                $("#uage").val(res.data.guideAge);
+
+                // Select the option in the dropdown based on the response
+                $("#hybrid").val(res.data.hybrid);
+
+                $("#ugender").val(res.data.guideGender);
+                $("#uguideIMG").val(res.data.guidePICIMGLocation);
+                $("#ugNICimg").val(res.data.guideNICIMGLocation);
+                $("#ugudingIDimg").val(res.data.guideIDIMGLocation);
+                $("#ugExperience").val(res.data.guideExperience);
+                $("#umandayValue").val(res.data.manDayValue);
+                $("#ugremark").val(res.data.remark);
+
+                // Display a success message
+                swal("Success", res.message, "success");
+            } else {
+                // Display an error message based on the server response
+                swal("Error", res.message, "error");
+            }
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            // Handle errors, including server exceptions
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
+            } else {
+                swal("Error", "An error occurred while processing your request.", "error");
+            }
+        }
+    });
 }
