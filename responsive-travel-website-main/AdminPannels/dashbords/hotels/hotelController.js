@@ -32,7 +32,7 @@ function OnDeleteHotel() {
         return swal("OOPS!", "Please enter a Hotel ID to delete!", "error");
     }
 
-    let token = localStorage.getItem("VToken");
+    let token = localStorage.getItem("HToken");
     console.log(token)
     // Check if the token is valid
     if (!token) {

@@ -219,7 +219,7 @@ function OnDeleteGuide() {
     }
     // Make the AJAX request to save the payment data
     $.ajax({
-        url: "http://localhost:8085/api/v1/guide/getAllGuide="+ $('#gDID').val(),
+        url: "http://localhost:8085/api/v1/guide/Gdelete?guideID="+ $('#gDID').val(),
         method: "DELETE",
         contentType: "application/json",
         headers: {
@@ -242,14 +242,14 @@ function OnDeleteGuide() {
 
 //get search
 function OnSearchGuide(event) {
-    let guideID = $('#cidField').val();
+    let guideName = $('#cidField').val();
 
-    if (!guideID) {
+    if (!guideName) {
         return alert("Error");
     }
 
     $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + guideID,
+        url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + guideName,
         method: "GET",
         async: true,
         dataType: "json",
