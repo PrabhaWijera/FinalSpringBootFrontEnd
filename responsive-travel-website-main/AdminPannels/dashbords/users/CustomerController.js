@@ -18,17 +18,33 @@ function OnSaveUser() {
 
     let ID = $("#userid").val();
     let name = $("#userName").val();
-    let nic = $("#usernic").val();
-    let pass = $("#userpassword").val();
+    let U_Name = $("#Name").val();
+    let UserNIC = $("#usernic").val();
+    let userPassword = $("#userpassword").val();
+    let Gender = $("#gender").val();
+    let Address = $("#address").val();
+    let UserAge = $("#age").val();
+    let Email = $("#email").val();
+    let contactNO = $("#contactNumber").val();
+    let UserNicIMG = $("#userNic_Photo").val();
+    let remark = $("#remark").val();
+
 
     // Create an object to store the data
     const data = {
         userId:ID,
         name:name,
-        userNIC:nic,
-        userPassword:pass
-
-
+        userName:U_Name,
+        userNIC:UserNIC,
+        userPassword:userPassword,
+        gender:Gender,
+        userAddress:Address,
+        userAge:UserAge,
+        userEmail:Email,
+        userPhone:contactNO,
+        userImageLocation:UserNicIMG,
+        remarks:remark,
+        isAuthenticated:false
     };
 
     // Retrieve the JWT token from localStorage
@@ -36,13 +52,13 @@ function OnSaveUser() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
     // Make the AJAX request to save the payment data
     $.ajax({
-        url: "http://localhost:8080/api/v1/userApi/saveUser",
+        url: "http://localhost:8080/api/v1/auth/getAuth",
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
@@ -54,11 +70,11 @@ function OnSaveUser() {
         success: function (response) {
             alert("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
