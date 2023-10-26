@@ -21,9 +21,34 @@ $(document).ready(function() {
     });
 
 
-
-
 });
+var hcl="";
+function saveImage() {
+    var formData = new FormData();
+    var file = $('#guideIMG')[0].files[0];
+console.log(file);
+    formData.append('imageFile', file);
+
+    $.ajax({
+        url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+        type: 'POST',
+        data: formData,
+
+        cache: false,
+        contentType:false,
+        processData: false,
+        success: function (data) {
+
+            hcl = data;
+            console.log("IMG : " + data)
+
+
+        }, error: (xhr, textStatus, errorThrown) => {
+            swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
+        }
+    });
+
+}
 
 
 function OnSaveGuide() {
@@ -35,13 +60,13 @@ function OnSaveGuide() {
     let addres = $("#gAddress").val();
     let gender = $("#gender").val();
     let guideIMG = $("#guideIMG").val();
-    let guideNIC = $("#gNICimg").val();
+    let guideNIC = '';
     let guideingID = $("#gudingIDimg").val();
     let experience = $("#gExperience").val();
     let manValue = $("#mandayValue").val();
     let remark = $("#gremark").val();
 
-
+    saveImage();
     // Create an object to store the data
     const data = {
         guideID:ID,
@@ -67,28 +92,34 @@ function OnSaveGuide() {
         return;
     }
 
+
     // Make the AJAX request to save the payment data
-    $.ajax({
-        url: "http://localhost:8085/api/v1/guide/Gsave",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+    setTimeout(()=>{
+        $.ajax({
+            url: "http://localhost:8085/api/v1/guide/Gsave",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            headers: {
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
 
-        },
+            },
 
-        success: function (response) {
-            alert("res"+response)
-            if (response.statusCode === 200 || response.statusCode === 201 )
-                swal("Save successful");
-            // You can handle the response from the server here if needed
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            swal("Error: " + xhr.responseText);
+            success: function (response) {
+                alert("res"+response)
+                if (response.statusCode === 200 || response.statusCode === 201 )
+                    swal("Save successful");
+                // You can handle the response from the server here if needed
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                swal("Error: " + xhr.responseText);
 
-        }
-    });
+            }
+        })
+    },2000);
+
+
+
 }
 //update
 function OnUpdateGuide() {

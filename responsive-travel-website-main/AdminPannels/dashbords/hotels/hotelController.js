@@ -26,6 +26,10 @@ $(document).ready(function() {
 
 });
 
+$(document).on("mouseleave","#hName",()=>{
+    getCoordinates();
+});
+
 function OnDeleteHotel() {
     // Retrieve form data
     if ($("#dHId").val() === "") {
@@ -328,3 +332,25 @@ function OnGetAll() {
     });
 }
 
+
+//cordinates
+
+function getCoordinates(){
+    axios.get("https://geocode.maps.co/search?q="+$("#hName").val())
+        .then((res)=>{
+            console.log(res.data[0].lat)
+            $("#hcordinate").val("Latitude : "+res.data[0].lat+',Longitude : '+res.data[0].lon)
+
+
+
+        })
+        .catch((err)=>{
+            console.log(err)
+            swal("OOPS! ","An error occurred while fetching coordinates!","error");
+
+
+        })
+
+
+
+}

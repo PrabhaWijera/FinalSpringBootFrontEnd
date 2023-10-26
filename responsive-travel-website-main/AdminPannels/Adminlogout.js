@@ -1,3 +1,3 @@
 $("#logout").click(function (){
-    window.location.href = 'index.html';
+    window.location.href = 'gsdfds.html';
 });

@@ -30,7 +30,9 @@ function loginUser() {
 }
 */
 
-
+$("#loginButton").click(function() { // Use "click" instead of "onclick"
+    loginUser();
+});
 
 const loginEmailInput = document.getElementById("email");
 const loginPasswordInput = document.getElementById("password");
@@ -38,7 +40,7 @@ const loginButton = document.getElementById("loginButton");
 
 
 // Add an event listener to the login button
-loginButton.addEventListener("click", loginUser);
+
 
 
 function loginUser() {
