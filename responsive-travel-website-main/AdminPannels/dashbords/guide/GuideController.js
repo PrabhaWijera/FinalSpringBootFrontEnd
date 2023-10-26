@@ -24,16 +24,6 @@ $(document).ready(function() {
 });
 
 
-
-
-
-
-
-
-
-
-
-
 var hcl = "";
 
 function saveImage(fileInputId, successCallback) {

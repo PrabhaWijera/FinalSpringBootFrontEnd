@@ -75,120 +75,140 @@ function OnGetAll() {
 }
 
 
-var hcl="";
 
-function saveImage() {
+
+
+var hcl = "";
+function saveImage(fileInputId, successCallback) {
     var formData = new FormData();
-    var file = $('#vehicleImg')[0].files[0];
-    console.log(file);
-    formData.append('imageFile', file);
+    var file = $(fileInputId)[0].files[0];
 
-    $.ajax({
-        url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
-        type: 'POST',
-        data: formData,
+    if (file) {
+        formData.append('imageFile', file);
 
-        cache: false,
-        contentType:false,
-        processData: false,
-        success: function (data) {
-
-            hcl = data;
-            console.log("IMG : " + data)
-
-
-        }, error: (xhr, textStatus, errorThrown) => {
-            swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
-        }
-    });
-
+        $.ajax({
+            url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                hcl = data;
+                console.log("IMG : " + data);
+                successCallback(data); // Call the success callback with the image data
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
+            }
+        });
+    } else {
+        successCallback(""); // Call the success callback with an empty string if no file selected
+    }
 }
-
-
-
-
 
 
 function OnSaveVehicle() {
     // Retrieve form data
 
-    let ID = $("#vId").val();
-    let brand = $("#vbrand").val();
-    let category = $("#category").val();
-    let vehiclename = $("#vname").val();
-    let fultype = $("#fueltype").val();
-    let fuluse = $("#fuelusage").val();
-    let  HY = $("#hybrid").val();
-    let  vehiImg= $("#vehicleImg").val();
-    let  vehiInImg = $("#vehicleInteriorImg").val();
-    let  seats = $("#seatCapacity").val();
-    let  transM= $("#transmissionType").val();
-    let  driverName = $("#driverName").val();
-    let  remark = $("#vremark").val();
-    let  driverLiImg = $("#driverlicenseImg").val();
-    let  contact = $("#conNumber").val();
-    let  pId = $("#packageid").val();
+    const imageArray = [];
 
-    saveImage();
-    // Create an object to store the data
-    const data = {
-        vehicleID:ID,
-        vehicleBrand:brand,
-        vehicleCategory:category,
-        vehicleName:vehiclename,
-        fuelType:fultype,
-        hybrid:HY,
-        fuelUsage:fuluse,
-        vehicleImg:vehiImg,
-        vehicleInteriorImg:vehiInImg,
-        seatCapacity:seats,
-        transmissionType:transM,
-        driverName:driverName,
-        conNumber:contact,
-        driverlicenseImg:driverLiImg,
-        remarks:remark,
-        package_id:pId
+    // Define the file input IDs
+    const fileInputIds = ["#vehicleImg", "#vehicleInteriorImg", "#driverlicenseImg"];
 
 
+    function handleImageSave(data){
+        imageArray.push(data);
 
+        if (imageArray.length === fileInputIds.length){
+            let ID = $("#vId").val();
+            let brand = $("#vbrand").val();
+            let category = $("#category").val();
+            let vehiclename = $("#vname").val();
+            let fultype = $("#fueltype").val();
+            let fuluse = $("#fuelusage").val();
+            let  HY = $("#hybrid").val();
+            let  vehiImg= imageArray[0];
+            let  vehiInImg = imageArray[1];
+            let  seats = $("#seatCapacity").val();
+            let  transM= $("#transmissionType").val();
+            let  driverName = $("#driverName").val();
+            let  remark = $("#vremark").val();
+            let  driverLiImg = imageArray[2];
+            let  contact = $("#conNumber").val();
+            let  pId = $("#packageid").val();
 
-    };
-
-    // Retrieve the JWT token from localStorage
-    let token = localStorage.getItem("VToken");
-    console.log(token)
-    // Check if the token is valid
-    if (!token) {
-        alert("Token not found. Please log in.");
-        return;
-    }
-
-    // Make the AJAX request to save the payment data
-    setTimeout(()=>{
-        $.ajax({
-            url: "http://localhost:8082/api/v1/vehicles/vSave",
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            headers: {
-                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
-
-            },
-
-            success: function (response) {
-                alert("res"+response)
-                if (response.statusCode === 200 || response.statusCode === 201 )
-                    alert("Save successful");
-                // You can handle the response from the server here if needed
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                alert("Error: " + xhr.responseText);
-
+            saveImage();
+            // Create an object to store the data
+            const data = {
+                vehicleID:ID,
+                vehicleBrand:brand,
+                vehicleCategory:category,
+                vehicleName:vehiclename,
+                fuelType:fultype,
+                hybrid:HY,
+                fuelUsage:fuluse,
+                vehicleImg:vehiImg,
+                vehicleInteriorImg:vehiInImg,
+                seatCapacity:seats,
+                transmissionType:transM,
+                driverName:driverName,
+                conNumber:contact,
+                driverlicenseImg:driverLiImg,
+                remarks:remark,
+                package_id:pId
+            };
+            // Retrieve the JWT token from localStorage
+            let token = localStorage.getItem("VToken");
+            console.log(token)
+            // Check if the token is valid
+            if (!token) {
+                alert("Token not found. Please log in.");
+                return;
             }
-        })
-    },2000);
+            // Make the AJAX request to save the payment data
+            setTimeout(()=>{
+                $.ajax({
+                    url: "http://localhost:8082/api/v1/vehicles/vSave",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    headers: {
+                        "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
 
+                    },
+
+                    success: function (response) {
+                        alert("res"+response)
+                        if (response.statusCode === 200 || response.statusCode === 201 )
+                            alert("Save successful");
+                        // You can handle the response from the server here if needed
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert("Error: " + xhr.responseText);
+
+                    }
+                })
+            },2000);
+
+        }
+    }
+    for (let i = 0; i < fileInputIds.length; i++) {
+        const delay = 2000 * i; // Delay increases for each image
+        setTimeout(() => {
+            saveImage(fileInputIds[i], handleImageSave);
+        }, delay);
+    }
 }
+
+
+
+
+
+
+
+
+
 
 //update
 function OnUpdateVehicle() {
