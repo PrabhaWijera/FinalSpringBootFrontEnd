@@ -74,6 +74,41 @@ function OnGetAll() {
     });
 }
 
+
+var hcl="";
+
+function saveImage() {
+    var formData = new FormData();
+    var file = $('#vehicleImg')[0].files[0];
+    console.log(file);
+    formData.append('imageFile', file);
+
+    $.ajax({
+        url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+        type: 'POST',
+        data: formData,
+
+        cache: false,
+        contentType:false,
+        processData: false,
+        success: function (data) {
+
+            hcl = data;
+            console.log("IMG : " + data)
+
+
+        }, error: (xhr, textStatus, errorThrown) => {
+            swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
+        }
+    });
+
+}
+
+
+
+
+
+
 function OnSaveVehicle() {
     // Retrieve form data
 
@@ -94,7 +129,7 @@ function OnSaveVehicle() {
     let  contact = $("#conNumber").val();
     let  pId = $("#packageid").val();
 
-
+    saveImage();
     // Create an object to store the data
     const data = {
         vehicleID:ID,
@@ -129,27 +164,30 @@ function OnSaveVehicle() {
     }
 
     // Make the AJAX request to save the payment data
-    $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/vSave",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+    setTimeout(()=>{
+        $.ajax({
+            url: "http://localhost:8082/api/v1/vehicles/vSave",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            headers: {
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
 
-        },
+            },
 
-        success: function (response) {
-            alert("res"+response)
-            if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
-            // You can handle the response from the server here if needed
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            success: function (response) {
+                alert("res"+response)
+                if (response.statusCode === 200 || response.statusCode === 201 )
+                    alert("Save successful");
+                // You can handle the response from the server here if needed
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert("Error: " + xhr.responseText);
 
-        }
-    });
+            }
+        })
+    },2000);
+
 }
 
 //update

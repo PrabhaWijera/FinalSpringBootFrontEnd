@@ -22,6 +22,8 @@ $(document).ready(function() {
 
 
 });
+
+//save images
 var hcl="";
 
 function saveImage() {
