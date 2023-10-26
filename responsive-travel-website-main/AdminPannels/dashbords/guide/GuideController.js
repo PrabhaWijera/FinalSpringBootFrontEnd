@@ -23,12 +23,138 @@ $(document).ready(function() {
 
 });
 
-//save images
-var hcl="";
 
+
+
+
+
+
+
+
+
+
+
+var hcl = "";
+
+function saveImage(fileInputId, successCallback) {
+    var formData = new FormData();
+    var file = $(fileInputId)[0].files[0];
+
+    if (file) {
+        formData.append('imageFile', file);
+
+        $.ajax({
+            url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                hcl = data;
+                console.log("IMG : " + data);
+                successCallback(data); // Call the success callback with the image data
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
+            }
+        });
+    } else {
+        successCallback(""); // Call the success callback with an empty string if no file selected
+    }
+}
+
+function OnSaveGuide() {
+    // Create an array to store the image data
+    const imageArray = [];
+
+    // Define the file input IDs
+    const fileInputIds = ["#guideIMG", "#gudingIDimg", "#gNICimg"];
+
+    // Define a function to handle the success of saving an image
+    function handleImageSave(data) {
+        imageArray.push(data);
+
+        // If all three images have been processed, proceed with saving the data
+        if (imageArray.length === fileInputIds.length) {
+            const ID = $("#gId").val();
+            const name = $("#gName").val();
+            const age = $("#age").val();
+            const addres = $("#gAddress").val();
+            const gender = $("#gender").val();
+            const guideID = imageArray[0]; // Assuming the first image is for guideID
+            const guideNIC = imageArray[1]; // Assuming the second image is for guideNIC
+            const guideingID = imageArray[2]; // Assuming the third image is for guideingID
+            const experience = $("#gExperience").val();
+            const manValue = $("#mandayValue").val();
+            const remark = $("#gremark").val();
+
+            // Create an object to store the data
+            const data = {
+                guideID: ID,
+                guideName: name,
+                guideAge: age,
+                guideAddress: addres,
+                guideGender: gender,
+                guidePICIMGLocation: guideID,
+                guideNICIMGLocation: guideNIC,
+                guideIDIMGLocation: guideingID,
+                guideExperience: experience,
+                manDayValue: manValue,
+                remark: remark
+            };
+
+            // Retrieve the JWT token from localStorage
+            let token = localStorage.getItem("GToken");
+
+            // Check if the token is valid
+            if (!token) {
+                swal("Token not found. Please log in.");
+                return;
+            }
+
+            // Make the AJAX request to save the data
+            setTimeout(() => {
+                $.ajax({
+                    url: "http://localhost:8085/api/v1/guide/Gsave",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    headers: {
+                        "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+                    },
+                    success: function (response) {
+                        alert("res" + response);
+                        if (response.statusCode === 200 || response.statusCode === 201) {
+                            swal("Save successful");
+                        }
+                        // You can handle the response from the server here if needed
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        swal("Error: " + xhr.responseText);
+                    }
+                });
+            }, 2000);
+        }
+    }
+
+    // Save each image with a delay
+    for (let i = 0; i < fileInputIds.length; i++) {
+        const delay = 2000 * i; // Delay increases for each image
+        setTimeout(() => {
+            saveImage(fileInputIds[i], handleImageSave);
+        }, delay);
+    }
+}
+
+
+
+/*
+
+var hcl="";
 function saveImage() {
     var formData = new FormData();
-    var file = $('#gNICimg')[0].files[0];
+    var file = $('#guideIMG')[0].files[0];
     console.log(file);
     formData.append('imageFile', file);
 
@@ -54,52 +180,6 @@ function saveImage() {
 }
 
 
-
-
-/*function uploadImage(file, fieldName) {
-    return new Promise(function(resolve, reject) {
-        var formData = new FormData();
-        formData.append(fieldName, file);
-
-        $.ajax({
-            url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                resolve(data);
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                reject(xhr.responseJSON.message);
-            }
-        });
-    });
-}
-
-function saveImage() {
-    var filePromises = [];
-    var file1 = $('#guideIMG')[0].files[0];
-    var file2 = $('#gNICimg')[0].files[0];
-    var file3 = $('#gudingIDimg')[0].files[0];
-
-    filePromises.push(uploadImage(file1, 'imageFile'));
-    filePromises.push(uploadImage(file2, 'imageFile2'));
-    filePromises.push(uploadImage(file3, 'imageFile3'));
-
-    Promise.all(filePromises)
-        .then(function (results) {
-            hcl = results;
-            console.log("Images uploaded successfully: " + results);
-
-            // After all images are uploaded, call OnSaveGuide
-            OnSaveGuide();
-        })
-        .catch(function (error) {
-            swal("OOPS!", "Error uploading images: " + error, "error");
-        });
-}*/
 function OnSaveGuide() {
     // Retrieve form data
 
@@ -109,7 +189,7 @@ function OnSaveGuide() {
     let addres = $("#gAddress").val();
     let gender = $("#gender").val();
     let guideIMG = $("#guideIMG").val();
-    let guideNIC =$("#gNICimg").val();
+    let guideNIC = $("#gNICimg").val();
     let guideingID = $("#gudingIDimg").val();
     let experience = $("#gExperience").val();
     let manValue = $("#mandayValue").val();
@@ -170,6 +250,7 @@ function OnSaveGuide() {
 
 
 }
+*/
 //update
 function OnUpdateGuide() {
     // Retrieve form data
@@ -317,59 +398,7 @@ function OnDeleteGuide() {
         }
     });
 }
-/*
 
-//get search
-function OnSearchGuide(event) {
-    let id = $('#cidField').val();
-    alert(id);
-
-    $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/Gget?guideID=" + id,
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
-        },
-        success: function (res) {
-            if (res && (res.statusCode === 200 || res.statusCode === 201)) {
-                alert("awa");
-                // Populate input fields with retrieved data
-              /!*  $("#ugId").val(res.data.guideID);
-                $("#ugName").attr("disabled", true);
-                $("#ugAddress").val(res.data.guideAddress);
-                $("#uage").val(res.data.guideAge);
-
-                // Select the option in the dropdown based on the response
-                $("#hybrid").val(res.data.hybrid);
-
-                $("#ugender").val(res.data.guideGender);
-                $("#uguideIMG").val(res.data.guidePICIMGLocation);
-                $("#ugNICimg").val(res.data.guideNICIMGLocation);
-                $("#ugudingIDimg").val(res.data.guideIDIMGLocation);
-                $("#ugExperience").val(res.data.guideExperience);
-                $("#umandayValue").val(res.data.manDayValue);
-                $("#ugremark").val(res.data.remark);*!/
-
-                // Display a success message
-                swal("Success", res.message, "success");
-            } else {
-                // Display an error message based on the server response
-                swal("Error", res.message, "error");
-            }
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            if (xhr.status === 404) {
-                swal("Error", "Guide not found.", "error");
-            } else if (xhr.status === 500) {
-                swal("Error", "Internal server error.", "error");
-            } else {
-                swal("Error", "An error occurred while processing your request.", "error");
-            }
-        }
-
-    });
-}
-*/
 
 
 $(document).ready(function (){
