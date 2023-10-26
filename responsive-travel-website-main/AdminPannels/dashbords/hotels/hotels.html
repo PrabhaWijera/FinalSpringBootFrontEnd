@@ -201,7 +201,7 @@
         <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal"
                 data-bs-toggle="modal"
                 id="updateCustomerButton" type="button" style="margin-right: 10px">
-            Update a Guide.
+            Update & Search 🔎a Hotel.
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
@@ -302,6 +302,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="hUpdateButton" type="button">Update</button>
+                        <button class="btn btn-primary" id="hSearchButton" type="button">Search</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
@@ -344,7 +345,7 @@
 
         <!-- Button trigger modal for getting all Guide- End. -->
         <!--Guide search bar - Start.-->
-        <nav class="navbar bg-body-tertiary" data-aos="zoom-in-up" id="customerSearchBar">
+  <!--      <nav class="navbar bg-body-tertiary" data-aos="zoom-in-up" id="customerSearchBar">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
                     <input aria-label="Search" class="form-control me-2" id="cidField" placeholder="Type something..."
@@ -352,7 +353,7 @@
                     <button class="btn btn-outline-success" id="csButton" type="submit">Search.</button>
                 </form>
             </div>
-        </nav>
+        </nav>-->
         <!--Guide search bar - End.-->
     </div>
     <div class="container mt-4">
@@ -418,7 +419,7 @@
             <th scope="col" class="p-3">Remark</th>
         </tr>
         </thead>
-        <tbody id="Hbody">
+        <tbody class="table table-hover table-info table-striped p-3" id="Hbody">
         <!-- Add your table data here -->
         </tbody>
     </table>

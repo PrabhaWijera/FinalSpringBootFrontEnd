@@ -242,18 +242,12 @@ function OnDeleteGuide() {
 
 //get search
 function OnSearchGuide(event) {
-    let guideName = $('#cidField').val();
-
-    if (!guideName) {
-        return alert("Error");
-    }
+    let id = $('#cidField').val();
+    alert(id);
 
     $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/getGuideByGuideName?guideName=" + guideName,
+        url: "http://localhost:8082/api/v1/vehicles/Gget?guideID=" + id,
         method: "GET",
-        async: true,
-        dataType: "json",
-        contentType: "application/json", // Fixed content type
         headers: {
             "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
         },
@@ -261,7 +255,7 @@ function OnSearchGuide(event) {
             if (res && (res.statusCode === 200 || res.statusCode === 201)) {
                 alert("awa");
                 // Populate input fields with retrieved data
-                $("#ugId").val(res.data.guideID);
+              /*  $("#ugId").val(res.data.guideID);
                 $("#ugName").attr("disabled", true);
                 $("#ugAddress").val(res.data.guideAddress);
                 $("#uage").val(res.data.guideAge);
@@ -275,7 +269,7 @@ function OnSearchGuide(event) {
                 $("#ugudingIDimg").val(res.data.guideIDIMGLocation);
                 $("#ugExperience").val(res.data.guideExperience);
                 $("#umandayValue").val(res.data.manDayValue);
-                $("#ugremark").val(res.data.remark);
+                $("#ugremark").val(res.data.remark);*/
 
                 // Display a success message
                 swal("Success", res.message, "success");
@@ -285,12 +279,14 @@ function OnSearchGuide(event) {
             }
         },
         error: function (xhr, textStatus, errorThrown) {
-            // Handle errors, including server exceptions
-            if (xhr.responseJSON && xhr.responseJSON.message) {
-                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
+            if (xhr.status === 404) {
+                swal("Error", "Guide not found.", "error");
+            } else if (xhr.status === 500) {
+                swal("Error", "Internal server error.", "error");
             } else {
                 swal("Error", "An error occurred while processing your request.", "error");
             }
         }
+
     });
 }

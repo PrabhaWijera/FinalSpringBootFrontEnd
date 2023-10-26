@@ -117,18 +117,22 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="guideIMG">Guide IMG</label>
-                                    <input class="form-control" id="guideIMG" placeholder="guide.png" type="text">
+                                    <label class="form-label commonText" for="guideIMG">Guide Image</label>
+                                    <input class="form-control" id="guideIMG" type="file" accept="image/*"  >
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="gNICimg">NIC image</label>
-                                    <input class="form-control" id="gNICimg" placeholder="nic.png" type="text">
+                                    <label class="form-label commonText" for="gNICimg">NIC Image</label>
+                                    <input class="form-control" id="gNICimg" type="file" accept="image/*"  >
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="gudingIDimg">GuidingID image</label>
-                                    <input class="form-control" id="gudingIDimg" placeholder="id.png" type="text">
+                                    <label class="form-label commonText" for="gudingIDimg">GuidingID Image</label>
+                                    <input class="form-control" id="gudingIDimg" type="file" accept="image/*"  >
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-label commonText" for="gExperience">Guide Experience</label>
                                     <input class="form-control" id="gExperience" placeholder="experience" type="text">
@@ -166,7 +170,7 @@
         <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal"
                 data-bs-toggle="modal"
                 id="updateCustomerButton" type="button" style="margin-right: 10px">
-            Update a Guide.
+            Update & Search 🔎 a Guide.
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
@@ -207,18 +211,26 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+
                                 <div class="form-group">
                                     <label class="form-label commonText" for="uguideIMG">Guide IMG</label>
-                                    <input class="form-control" id="uguideIMG" placeholder="guide.png" type="text">
+                                    <input class="form-control" id="uguideIMG" type="file" accept="image/*"  >
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="ugNICimg">NIC image</label>
-                                    <input class="form-control" id="ugNICimg" placeholder="nic.png" type="text">
+                                    <label class="form-label commonText" for="ugNICimg">NIC Image</label>
+                                    <input class="form-control" id="ugNICimg" type="file" accept="image/*"  >
                                 </div>
-                                <div class="form-group">
+                             <!--   <div class="form-group">
                                     <label class="form-label commonText" for="ugudingIDimg">GuidingID image</label>
                                     <input class="form-control" id="ugudingIDimg" placeholder="id.png" type="text">
+                                </div>-->
+
+                                <div class="form-group">
+                                    <label class="form-label commonText" for="ugudingIDimg">Guiding/ID Image</label>
+                                    <input class="form-control" id="ugudingIDimg" type="file" accept="image/*"  >
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-label commonText" for="ugExperience">Guide Experience</label>
                                     <input class="form-control" id="ugExperience" placeholder="experience" type="text">
@@ -243,6 +255,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" id="gUpdateButton" type="button">Update</button>
+                        <button class="btn btn-primary" id="gSearchButton" type="button">Search</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
@@ -283,8 +296,8 @@
         <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllButton" type="button">Get all Guide.
         </button>
 
-        <!-- Button trigger modal for getting all Guide- End. -->
-        <!--Guide search bar - Start.-->
+<!--        &lt;!&ndash; Button trigger modal for getting all Guide- End. &ndash;&gt;
+        &lt;!&ndash;Guide search bar - Start.&ndash;&gt;
         <nav class="navbar bg-body-tertiary" data-aos="zoom-in-up" id="customerSearchBar">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
@@ -293,7 +306,7 @@
                     <button class="btn btn-outline-success" id="csButton" type="submit">Search.</button>
                 </form>
             </div>
-        </nav>
+        </nav>-->
         <!--Guide search bar - End.-->
     </div>
     <div class="container mt-4">
@@ -350,7 +363,7 @@
             <th scope="col" class="p-3" style="font-size: 12px;">Remark</th>
         </tr>
         </thead>
-        <tbody id="tbody">
+        <tbody class="table table-hover table-info table-striped p-3" id="tbody">
         <!-- Add your table data here -->
         </tbody>
     </table>

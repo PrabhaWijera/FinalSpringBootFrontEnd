@@ -166,7 +166,7 @@
         <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal"
                 data-bs-toggle="modal"
                 id="updateCustomerButton" type="button" style="margin-right: 10px">
-            Update a Customer.
+            Update & Search 🔎 a Customer.
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
@@ -239,7 +239,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="cusUpdateButton" type="button" onclick="updateCustomer()">Update</button>
+                        <button class="btn btn-primary" id="cusUpdateButton" type="button" >Update</button>
+                        <button class="btn btn-primary" id="cusSearchButton" type="button" >Search</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
@@ -269,7 +270,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" id="Cusdelete" type="button" onclick="deleteCustomer()">Delete.</button>
+                        <button class="btn btn-danger" id="Cusdelete" type="button" >Delete.</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
                     </div>
                 </div>
@@ -277,20 +278,20 @@
         </div>
         <!-- Delete Guide Modal - End. -->
         <!-- Button trigger modal for getting all Guide- Start. -->
-        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllCustomersButton" type="button" onclick="getAllCustomers()">Get all Guide.
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllCustomersButton" type="button" >Get all Guide.
         </button>
 
         <!-- Button trigger modal for getting all Guide- End. -->
         <!--Guide search bar - Start.-->
-        <nav class="navbar bg-body-tertiary" data-aos="zoom-in-up" id="customerSearchBar">
+   <!--     <nav class="navbar bg-body-tertiary" data-aos="zoom-in-up" id="customerSearchBar">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
                     <input aria-label="Search" class="form-control me-2" id="cidField" placeholder="Type something..."
                            type="search">
-                    <button class="btn btn-outline-success" id="csButton" type="submit" onclick="searchCustomer()">Search.</button>
+                    <button class="btn btn-outline-success" id="csButton" type="submit" >Search.</button>
                 </form>
             </div>
-        </nav>
+        </nav>-->
 
     </div>
     <div class="container mt-4">
@@ -346,7 +347,7 @@
             <th scope="col" class="p-3" style="font-size: 12px;">Remark</th>
         </tr>
         </thead>
-        <tbody id="customerTableBody">
+        <tbody  class="table table-hover table-info table-striped p-3" id="customerTableBody">
         <!-- Add your table data here -->
         </tbody>
     </table>
