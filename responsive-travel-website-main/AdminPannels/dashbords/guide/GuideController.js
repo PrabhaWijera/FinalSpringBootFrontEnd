@@ -20,13 +20,11 @@ $(document).ready(function() {
         OnDeleteGuide();
     });
 
-    $("#csButton").on("click", function() {
-        OnSearchGuide();
-    });
 
 
 
 });
+
 
 function OnSaveGuide() {
     // Retrieve form data
@@ -239,6 +237,7 @@ function OnDeleteGuide() {
         }
     });
 }
+/*
 
 //get search
 function OnSearchGuide(event) {
@@ -255,7 +254,7 @@ function OnSearchGuide(event) {
             if (res && (res.statusCode === 200 || res.statusCode === 201)) {
                 alert("awa");
                 // Populate input fields with retrieved data
-              /*  $("#ugId").val(res.data.guideID);
+              /!*  $("#ugId").val(res.data.guideID);
                 $("#ugName").attr("disabled", true);
                 $("#ugAddress").val(res.data.guideAddress);
                 $("#uage").val(res.data.guideAge);
@@ -269,7 +268,7 @@ function OnSearchGuide(event) {
                 $("#ugudingIDimg").val(res.data.guideIDIMGLocation);
                 $("#ugExperience").val(res.data.guideExperience);
                 $("#umandayValue").val(res.data.manDayValue);
-                $("#ugremark").val(res.data.remark);*/
+                $("#ugremark").val(res.data.remark);*!/
 
                 // Display a success message
                 swal("Success", res.message, "success");
@@ -289,4 +288,55 @@ function OnSearchGuide(event) {
         }
 
     });
+}
+*/
+
+
+$(document).ready(function (){
+    $('#gSearchButton').on('click', function () {
+        const guideID = $('#ugId').val().trim();
+        if (guideID) {
+            fetchGuideByID(guideID);
+        } else {
+            alert("Please enter a vehicle ID to search ");
+        }
+    });
+});
+
+function fetchGuideByID(id) {
+    $.ajax({
+        url: 'http://localhost:8085/api/v1/guide/Gget?guideID=' + id,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+        },
+        success: function (res) {
+            populateFieldsWithRes(res);
+        },
+        error: function () {
+            alert("Oops!");
+        }
+    });
+}
+
+function populateFieldsWithRes(res) {
+    let guideData = res.data;
+    if (guideData) {
+        $("#ugName").val(guideData.guideName);
+        $("#ugAddress").val(guideData.guideAddress);
+        $("#uage").val(guideData.guideAge);
+
+        // Set the selected option in the dropdown
+
+
+        $("#ugender").val(guideData.guideGender);
+        $("#uguideIMG").val(guideData.guidePICIMGLocation);
+        $("#ugNICimg").val(guideData.guideNICIMGLocation);
+        $("#ugudingIDimg").val(guideData.guideIDIMGLocation);
+        $("#ugExperience").val(guideData.guideExperience);
+        $("#umandayValue").val(guideData.manDayValue);
+        $("#ugremark").val(guideData.remark);
+    } else {
+        alert("No data received");
+    }
 }
