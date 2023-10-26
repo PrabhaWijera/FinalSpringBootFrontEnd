@@ -19,9 +19,7 @@ $(document).ready(function() {
         OnDeleteHotel();
     });
 
-    $("#csButton").on("click", function() {
-        OnSearchHotel();
-    });
+
 
 
 });
@@ -66,7 +64,7 @@ function OnDeleteHotel() {
     });
 }
 
-
+/*
 function OnSearchHotel() {
     const hotelName = $("#cidField").val();
     if (!hotelName) {
@@ -117,7 +115,7 @@ function OnSearchHotel() {
             }
         }
     });
-}
+}*/
 
 
 function OnSaveHotel() {
@@ -353,4 +351,66 @@ function getCoordinates(){
 
 
 
+}
+
+
+
+
+
+
+//search
+$(document).ready(function (){
+    $('#hSearchButton').on('click', function () {
+        const hotelID = $('#huId').val().trim();
+        if (hotelID) {
+            fetchHotelByID(hotelID);
+        } else {
+            alert("Please enter a Hotel ID to search ");
+        }
+    });
+});
+
+function fetchHotelByID(id) {
+    $.ajax({
+        url: 'http://localhost:8083/api/v1/hotel/H_search?H_ID=' + id,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
+        },
+        success: function (res) {
+            populateFieldsWithRes(res);
+        },
+        error: function () {
+            alert("Oops!");
+        }
+    });
+}
+
+function populateFieldsWithRes(res) {
+    let hotelData = res.data;
+    if (hotelData) {
+        $("#huName").val(hotelData.hotelName);
+        $("#ustarRate").val(hotelData.stars);
+        $("#huCategory").val(hotelData.hotelCategory);
+
+        // Set the selected option in the dropdown
+
+        $("#huAddress").val(hotelData.hotelLocation);
+        $("#uhcordinate").val(hotelData.hotelLocationWithCoordinates);
+     /*   $("#uhcordinate").val(hotelData.hotelImageLocation);*/
+
+        $("#huemail").val(hotelData.hotelContactEmail);
+        $("#uhotelContact1").val(hotelData.hotelContact1);
+        $("#uhotelContact2").val(hotelData.hotelContact2);
+        $("#upet").val(hotelData.isPetsAllowed);
+        $("#uFullBoarddoublehotelFee").val(hotelData.fullBoardWithACLuxuryRoomDouble);
+        $("#uHalfBoardDoublehotelFee").val(hotelData.halfBoardWithACLuxuryRoomDouble);
+        $("#uFullBoardTriplehotelFee").val(hotelData.fullBoardWithACLuxuryRoomTriple);
+        $("#uHalfBoardTriplehotelFee").val(hotelData.halfBoardWithACLuxuryRoomTriple);
+        $("#uhotelsFees").val(hotelData.hotelFee);
+        $("#uCancellationCriteria").val(hotelData.cancellationCriteria);
+        $("#uremark").val(hotelData.remarks);
+    } else {
+        alert("No data received");
+    }
 }
