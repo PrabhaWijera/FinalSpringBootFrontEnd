@@ -64,59 +64,33 @@ function OnDeleteHotel() {
     });
 }
 
-/*
-function OnSearchHotel() {
-    const hotelName = $("#cidField").val();
-    if (!hotelName) {
-        swal("Error", "Hotel name is required", "error");
-        return;
-    }
-
-    const authToken = JSON.parse(localStorage.getItem("HToken"));
-
-    if (!authToken) {
-        swal("Error", "Authentication token is missing", "error");
-        return;
-    }
+var hcl="";
+function saveImage(){
+    var formData = new FormData();
+    var file=$('#hotelImg')[0].files[0];
+    console.log(file);
+    formData.append('imageFile',file);
 
     $.ajax({
-        url: "http://localhost:8083/api/v1/hotel/getHotelByHotelName?hotelName=" + hotelName,
-        method: "GET",
-        contentType: "application/json",
-        headers: {
-            "Authorization": "Bearer " + authToken
-        },
-        success: (res) => {
-            if (res.statusCode === 200 || res.statusCode === 201) {
-                // Populate input fields with retrieved data
-                $("#hId").val(res.data.hotelId);
-                $("#hName").val(res.data.hotelName);
-                $("#hCategory").val(res.data.hotelCategory);
-                $("#hemail").val(res.data.hotelContactEmail);
-                // Select the option in the dropdown based on the response (if applicable)
+        url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+        type: 'POST',
+        data:formData ,
 
-                $("#hotelContact1").val(res.data.hotelContact1);
-                $("#FullBoarddoublehotelFee").val(res.data.fullBoardWithACLuxuryRoomDouble);
-                $("#HalfBoardDoublehotelFee").val(res.data.halfBoardWithACLuxuryRoomDouble);
-                $("#FullBoardTriplehotelFee").val(res.data.fullBoardWithACLuxuryRoomTriple);
-                $("#HalfBoardTriplehotelFee").val(res.data.halfBoardWithACLuxuryRoomTriple);
-                $("#remark").val(res.data.remarks);
+        cache: false,
+        contentType:false,
+        processData: false,
+        success: function (data) {
 
-                swal("Success", res.message, "success");
-            } else {
-                swal("Error", res.message, "error");
-            }
-        },
-        error: (xhr, textStatus, errorThrown) => {
-            if (xhr.responseJSON && xhr.responseJSON.message) {
-                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
-            } else {
-                swal("Error", "An error occurred while processing your request.", "error");
-            }
+            hcl = data;
+            console.log("IMG : " + data)
+
+
+        }, error: (xhr, textStatus, errorThrown) => {
+            swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
         }
     });
-}*/
 
+}
 
 function OnSaveHotel() {
     // Retrieve form data
@@ -140,7 +114,7 @@ function OnSaveHotel() {
     let cncelling = $("#CancellationCriteria").val();
     let remak = $("#remark").val();
 
-
+    saveImage();
     // Create an object to store the data
     const data = {
         hotelId:HID,
@@ -175,27 +149,29 @@ function OnSaveHotel() {
     }
 
     // Make the AJAX request to save the payment data
-    $.ajax({
-        url: "http://localhost:8083/api/v1/hotel/h_save",
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
+    setTimeout(() => {
+        $.ajax({
+            url: "http://localhost:8083/api/v1/hotel/h_save",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            headers: {
+                "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
 
-        },
+            },
 
-        success: function (response) {
-            alert("res"+response)
-            if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
-            // You can handle the response from the server here if needed
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            success: function (response) {
+                alert("res"+response)
+                if (response.statusCode === 200 || response.statusCode === 201 )
+                    alert("Save successful");
+                // You can handle the response from the server here if needed
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert("Error: " + xhr.responseText);
 
-        }
-    });
+            }
+        });
+    },1000);
 }
 // update
 function OnUpdateHotel() {

@@ -23,10 +23,11 @@ $(document).ready(function() {
 
 });
 var hcl="";
+
 function saveImage() {
     var formData = new FormData();
-    var file = $('#guideIMG')[0].files[0];
-console.log(file);
+    var file = $('#gNICimg')[0].files[0];
+    console.log(file);
     formData.append('imageFile', file);
 
     $.ajax({
@@ -51,6 +52,52 @@ console.log(file);
 }
 
 
+
+
+/*function uploadImage(file, fieldName) {
+    return new Promise(function(resolve, reject) {
+        var formData = new FormData();
+        formData.append(fieldName, file);
+
+        $.ajax({
+            url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                reject(xhr.responseJSON.message);
+            }
+        });
+    });
+}
+
+function saveImage() {
+    var filePromises = [];
+    var file1 = $('#guideIMG')[0].files[0];
+    var file2 = $('#gNICimg')[0].files[0];
+    var file3 = $('#gudingIDimg')[0].files[0];
+
+    filePromises.push(uploadImage(file1, 'imageFile'));
+    filePromises.push(uploadImage(file2, 'imageFile2'));
+    filePromises.push(uploadImage(file3, 'imageFile3'));
+
+    Promise.all(filePromises)
+        .then(function (results) {
+            hcl = results;
+            console.log("Images uploaded successfully: " + results);
+
+            // After all images are uploaded, call OnSaveGuide
+            OnSaveGuide();
+        })
+        .catch(function (error) {
+            swal("OOPS!", "Error uploading images: " + error, "error");
+        });
+}*/
 function OnSaveGuide() {
     // Retrieve form data
 
@@ -60,7 +107,7 @@ function OnSaveGuide() {
     let addres = $("#gAddress").val();
     let gender = $("#gender").val();
     let guideIMG = $("#guideIMG").val();
-    let guideNIC = '';
+    let guideNIC =$("#gNICimg").val();
     let guideingID = $("#gudingIDimg").val();
     let experience = $("#gExperience").val();
     let manValue = $("#mandayValue").val();

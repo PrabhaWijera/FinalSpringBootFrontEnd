@@ -18,9 +18,7 @@ $(document).ready(function() {
         OnDeleteVehicle();
     });
 
-    $("#csButton").on("click", function() {
-        OnSearchVehicle();
-    });
+
 
 
     $('#getAllButton').on('click',function (){
@@ -158,8 +156,6 @@ function OnSaveVehicle() {
 function OnUpdateVehicle() {
     // Retrieve form data
 
-
-
     let ID = $("#uvId").val();
     let brand = $("#uvbrand").val();
     let category = $("#ucategory").val();
@@ -272,58 +268,61 @@ function OnDeleteVehicle() {
 //get search
 
 
-function OnSearchVehicle() {
-    const vehiclebrand = $("#cidField").val();
-    if (!vehiclebrand) {
-        swal("Error", "Vehicel brand is required", "error");
-        return;
-    }
+$(document).ready(function (){
+    $('#vSearchButton').on('click', function () {
+        const vehicleID = $('#uvId').val().trim();
+        if (vehicleID) {
+            fetchVehicleByID(vehicleID);
+        } else {
+            alert("Please enter a Vehicle ID to search ");
+        }
+    });
+});
 
-    const authToken = JSON.parse(localStorage.getItem("VToken"));
-
-    if (!authToken) {
-        swal("Error", "Authentication token is missing", "error");
-        return;
-    }
-
+function fetchVehicleByID(id) {
     $.ajax({
-        url: "http://localhost:8082/api/v1/vehicles/getVehicleByVehicleBrand?vehicleBrand=" + vehiclebrand,
+        url: 'http://localhost:8082/api/v1/vehicles/V_search?Vehicle_ID=' + id,
         method: "GET",
-        contentType: "application/json",
         headers: {
-            "Authorization": "Bearer " + authToken
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
         },
-        success: (res) => {
-            if (res.statusCode === 200 || res.statusCode === 201) {
-                // Populate input fields with retrieved data
-                $("#uvId").val(res.data.vehicleID);
-                $("#ucategory").val(res.data.vehicleCategory);
-                $("#uname").val(res.data.vehicleName);
-                $("#ufueltype").val(res.data.fuelType);
-                // Select the option in the dropdown based on the response (if applicable)
-
-                $("#ufuelusage").val(res.data.fuelUsage);
-                $("#uhybrid").val(res.data.hybrid);
-                $("#useatCapacity").val(res.data.seatCapacity);
-                $("#utransmissionType").val(res.data.transmissionType);
-                $("#udriverName").val(res.data.driverName);
-                $("#uconNumber").val(res.data.conNumber);
-                $("#uvremark").val(res.data.remarks);
-
-
-                swal("Success", res.message, "success");
-            } else {
-                swal("Error", res.message, "error");
-            }
+        success: function (res) {
+            populateFieldsWithRes(res);
         },
-        error: (xhr, textStatus, errorThrown) => {
-            if (xhr.responseJSON && xhr.responseJSON.message) {
-                swal("Error", "Server threw an exception: " + xhr.responseJSON.message, "error");
-            } else {
-                swal("Error", "An error occurred while processing your request.", "error");
-            }
+        error: function () {
+            alert("Oops!");
         }
     });
 }
+
+function populateFieldsWithRes(res) {
+    let vehicleData = res.data;
+    if (vehicleData) {
+        $("#uvbrand").val(vehicleData.vehicleBrand);
+        $("#ucategory").val(vehicleData.vehicleCategory);
+        $("#uname").val(vehicleData.vehicleName);
+
+        // Set the selected option in the dropdown
+
+        $("#ufueltype").val(vehicleData.fuelType);
+        $("#ufuelusage").val(vehicleData.fuelUsage);
+        /*   $("#uhcordinate").val(hotelData.hotelImageLocation);*/
+
+        $("#useatCapacity").val(vehicleData.seatCapacity);
+        $("#utransmissionType").val(vehicleData.transmissionType);
+        $("#udriverName").val(vehicleData.driverName);
+        $("#uvremark").val(vehicleData.remarks);
+        $("#uconNumber").val(vehicleData.conNumber);
+    } else {
+        alert("No data received");
+    }
+}
+
+/*let  vehiImg= $("#uvehicleImg").val();
+let  vehiInImg = $("#uvehicleInteriorImg").val();
+let  driverLiImg = $("#udriverlicenseImg").val();
+*/
+
+
 
 
