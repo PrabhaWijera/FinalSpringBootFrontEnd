@@ -17,6 +17,11 @@ $(document).ready(function() {
         OnGetAllUser();
     });
 
+    $("#Cusdelete").on("click", function() {
+
+        OnDeleteCustomer();
+    });
+
 });
 
 
@@ -141,8 +146,8 @@ function saveImageinUpload(fileInputId, successCallback) {
         formData.append('imageFile', file);
 
         $.ajax({
-            url: 'http://localhost:8090/api/v1/uploadingUploader/putMethod',
-            type: 'PUT',
+            url: 'http://localhost:8090/api/v1/uploadingUploader/upload',
+            type: 'POST',
             data: formData,
             cache: false,
             contentType: false,
@@ -184,7 +189,7 @@ function OnUpdateUser() {
             const Age = $("#uage").val();
             const Emails = $("#uemail").val();
             const ContactNumber = $("#ucontactNumber").val();
-            const Addresss = $("#address").val();
+            const Addresss = $("#uaddress").val();
             const userIMG = imageArray[0]; // Assuming the first image is for guideID
             const remark = $("#uremark").val();
 
@@ -353,15 +358,15 @@ function OnGetAllUser() {
 
 
 
-/*
+
 //delete
-function OnDeleteGuide() {
+function OnDeleteCustomer() {
     // Retrieve form data
-    if ($("#gDID").val() === "") {
-        return swal("OOPS!", "Please enter a Guide ID to delete!", "error");
+    if ($("#cusID").val() === "") {
+        return swal("OOPS!", "Please enter a Customer ID to delete!", "error");
     }
 
-    let token = localStorage.getItem("GToken");
+    let token = localStorage.getItem("AD_USER");
     console.log(token)
     // Check if the token is valid
     if (!token) {
@@ -370,11 +375,11 @@ function OnDeleteGuide() {
     }
     // Make the AJAX request to save the payment data
     $.ajax({
-        url: "http://localhost:8085/api/v1/guide/Gdelete?guideID="+ $('#gDID').val(),
+        url: "http://localhost:8080/api/v1/userApi/deleteUser?userId="+ $('#cusID').val(),
         method: "DELETE",
         contentType: "application/json",
         headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("AD_USER"))
 
         },
 
@@ -389,7 +394,7 @@ function OnDeleteGuide() {
 
         }
     });
-}*/
+}
 
 
 
