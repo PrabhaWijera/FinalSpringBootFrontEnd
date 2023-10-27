@@ -1,3 +1,4 @@
+swal("Welcome To Hotel Panel 🛎️");
 localStorage.setItem("HToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbDIwMDEiLCJpYXQiOjE2OTgyMTczMjMsImV4cCI6NDg1MTgxNzMyM30.wHic2oKFfSTxMqLKMbV96Z9bnYgdyE_EaacnOGG2Lz8"));
 
 // Check if the document is ready
@@ -38,7 +39,7 @@ function OnDeleteHotel() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
     // Make the AJAX request to save the payment data
@@ -52,13 +53,13 @@ function OnDeleteHotel() {
         },
 
         success: function (response) {
-            alert("res"+response)
+            swal("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -144,7 +145,7 @@ function OnSaveHotel() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
@@ -161,13 +162,13 @@ function OnSaveHotel() {
             },
 
             success: function (response) {
-                alert("res"+response)
+                swal("res"+response)
                 if (response.statusCode === 200 || response.statusCode === 201 )
-                    alert("Save successful");
+                    swal("Save successful");
                 // You can handle the response from the server here if needed
             },
             error: function (xhr, textStatus, errorThrown) {
-                alert("Error: " + xhr.responseText);
+                swal("Error: " + xhr.responseText);
 
             }
         });
@@ -227,7 +228,7 @@ function OnUpdateHotel() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
@@ -243,13 +244,13 @@ function OnUpdateHotel() {
         },
 
         success: function (response) {
-            alert("res"+response)
+            swal("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -329,11 +330,6 @@ function getCoordinates(){
 
 }
 
-
-
-
-
-
 //search
 $(document).ready(function (){
     $('#hSearchButton').on('click', function () {
@@ -341,7 +337,7 @@ $(document).ready(function (){
         if (hotelID) {
             fetchHotelByID(hotelID);
         } else {
-            alert("Please enter a Hotel ID to search ");
+            swal("Please enter a Hotel ID to search ");
         }
     });
 });
@@ -357,7 +353,7 @@ function fetchHotelByID(id) {
             populateFieldsWithRes(res);
         },
         error: function () {
-            alert("Oops!");
+            swal("Oops!");
         }
     });
 }
@@ -387,6 +383,6 @@ function populateFieldsWithRes(res) {
         $("#uCancellationCriteria").val(hotelData.cancellationCriteria);
         $("#uremark").val(hotelData.remarks);
     } else {
-        alert("No data received");
+        swal("No data received");
     }
 }

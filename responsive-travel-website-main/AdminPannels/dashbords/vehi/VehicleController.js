@@ -1,3 +1,4 @@
+swal("Welcome To Vehicle Panel 🚕");
 localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
 
 
@@ -163,7 +164,7 @@ function OnSaveVehicle() {
             console.log(token)
             // Check if the token is valid
             if (!token) {
-                alert("Token not found. Please log in.");
+                swal("Token not found. Please log in.");
                 return;
             }
             // Make the AJAX request to save the payment data
@@ -179,13 +180,13 @@ function OnSaveVehicle() {
                     },
 
                     success: function (response) {
-                        alert("res"+response)
+                        swal("res"+response)
                         if (response.statusCode === 200 || response.statusCode === 201 )
-                            alert("Save successful");
+                            swal("Save successful");
                         // You can handle the response from the server here if needed
                     },
                     error: function (xhr, textStatus, errorThrown) {
-                        alert("Error: " + xhr.responseText);
+                        swal("Error: " + xhr.responseText);
 
                     }
                 })
@@ -258,7 +259,7 @@ function OnUpdateVehicle() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
 
@@ -276,11 +277,11 @@ function OnUpdateVehicle() {
         success: function (response) {
             alert("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -297,7 +298,7 @@ function OnDeleteVehicle() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
     // Make the AJAX request to save the payment data
@@ -313,11 +314,11 @@ function OnDeleteVehicle() {
         success: function (response) {
             alert("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Save successful");
+                swal("Save successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -332,7 +333,7 @@ $(document).ready(function (){
         if (vehicleID) {
             fetchVehicleByID(vehicleID);
         } else {
-            alert("Please enter a Vehicle ID to search ");
+            swal("Please enter a Vehicle ID to search ");
         }
     });
 });
@@ -348,7 +349,7 @@ function fetchVehicleByID(id) {
             populateFieldsWithRes(res);
         },
         error: function () {
-            alert("Oops!");
+            swal("Oops!");
         }
     });
 }
@@ -372,7 +373,7 @@ function populateFieldsWithRes(res) {
         $("#uvremark").val(vehicleData.remarks);
         $("#uconNumber").val(vehicleData.conNumber);
     } else {
-        alert("No data received");
+        swal("No data received");
     }
 }
 

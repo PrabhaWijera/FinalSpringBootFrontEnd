@@ -1,3 +1,4 @@
+swal("Welcome To Guide Panel 👲");
 localStorage.setItem("GToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJhZG1pbmd1aWRlMjAwMSIsImlhdCI6MTY5ODIxNjUwOCwiZXhwIjo0ODUxODE2NTA4fQ.hQqMDON3iG7ANAOS45k064KfmpdgqOXpZ2T7bgIBFJ4"));
 
 // Check if the document is ready
@@ -114,7 +115,7 @@ function OnSaveGuide() {
                         "Authorization": "Bearer " + JSON.parse(localStorage.getItem("GToken"))
                     },
                     success: function (response) {
-                        alert("res" + response);
+                        swal("res" + response);
                         if (response.statusCode === 200 || response.statusCode === 201) {
                             swal("Save successful");
                         }
@@ -363,7 +364,7 @@ function OnDeleteGuide() {
     console.log(token)
     // Check if the token is valid
     if (!token) {
-        alert("Token not found. Please log in.");
+        swal("Token not found. Please log in.");
         return;
     }
     // Make the AJAX request to save the payment data
@@ -377,13 +378,13 @@ function OnDeleteGuide() {
         },
 
         success: function (response) {
-            alert("res"+response)
+            swal("res"+response)
             if (response.statusCode === 200 || response.statusCode === 201 )
-                alert("Delete successful");
+                swal("Delete successful");
             // You can handle the response from the server here if needed
         },
         error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
+            swal("Error: " + xhr.responseText);
 
         }
     });
@@ -397,7 +398,7 @@ $(document).ready(function (){
         if (guideID) {
             fetchGuideByID(guideID);
         } else {
-            alert("Please enter a vehicle ID to search ");
+            swal("Please enter a vehicle ID to search ");
         }
     });
 });
@@ -413,7 +414,7 @@ function fetchGuideByID(id) {
             populateFieldsWithRes(res);
         },
         error: function () {
-            alert("Oops!");
+            swal("Oops!");
         }
     });
 }
@@ -436,6 +437,6 @@ function populateFieldsWithRes(res) {
         $("#umandayValue").val(guideData.manDayValue);
         $("#ugremark").val(guideData.remark);
     } else {
-        alert("No data received");
+        swal("No data received");
     }
 }

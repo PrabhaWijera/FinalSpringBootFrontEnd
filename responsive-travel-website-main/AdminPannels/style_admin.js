@@ -1,7 +1,7 @@
 
 
 document.addEventListener("DOMContentLoaded",function (){
-    alert("  Dash Board!!!" );
+    swal("Welcome to  Login 🙏");
     localStorage.setItem("GUIDEToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJhZG1pbmd1aWRlMjAwMSIsImlhdCI6MTY5ODIxNjUwOCwiZXhwIjo0ODUxODE2NTA4fQ.hQqMDON3iG7ANAOS45k064KfmpdgqOXpZ2T7bgIBFJ4"));
     localStorage.setItem("VEHIToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
     localStorage.setItem("HOTELToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbDIwMDEiLCJpYXQiOjE2OTgyMTczMjMsImV4cCI6NDg1MTgxNzMyM30.wHic2oKFfSTxMqLKMbV96Z9bnYgdyE_EaacnOGG2Lz8"));
@@ -34,34 +34,33 @@ function saveAdmin(message) {
         const loginPassword = loginPasswordInput.value;
         const loginRole = loginRoleInput.value;
 
-        alert("Login ");
 
         const selectedService=loginRole;
     // Retrieve the JWT token from localStorage
 
     switch (selectedService) {
         case "A_GUIDE":
-            alert("Guide Service");
+            swal("Welcome to  Guide Service");
             tokenKey = "GUIDEToken";
             break;
         case "A_HOTEL":
-            alert("Hotel Service");
+            swal("Welcome to Hotel Service");
             tokenKey = "HOTELToken";
             break;
         case "A_PAYMENT":
-            alert("Payment Service");
+            swal("Welcome to Payment Service");
             tokenKey = "PAYToken";
             break;
         case "A_VEHICLE":
-            alert("Vehicle Service");
+            swal("Welcome to Vehicle Service");
             tokenKey = "VEHIToken";
             break;
         case "A_PACKAGE":
-            alert("Package Service");
+            swal("Welcome to Package Service");
             tokenKey = "PCKGToken";
             break;
         default:
-            return alert("Unknown role. Please check your credentials.");
+            return swal("Unknown role. Please check your credentials.");
     }
 
     console.log(tokenKey);
@@ -77,8 +76,8 @@ function saveAdmin(message) {
             success: (res) => {
                /* if (res.userName === username && res.role === loginRole && res.data.isAuthenticated){*/
                 if (res.statusCode === 200 || res.statusCode === 0 ){
-                    alert("sucess"+res.data.role);
-                    alert("sucess"+res.data.isAuthenticated);
+                    swal("Success"+res.data.role);
+                    swal("Success"+res.data.isAuthenticated);
                     switch (selectedService) {
                         case "A_GUIDE":
                             window.location.href = 'dashbords/guide/guide.html';
@@ -97,11 +96,11 @@ function saveAdmin(message) {
                             break;
                     }
                 } else {
-                    alert("Bad Credentials!!!!");
+                    swal("Bad Credentials!!!!");
                 }
             },
             error:(error)=>{
-                return alert("An error occured while authenticated with sever ");
+                return swal("An error occured while authenticated with sever ");
             }
 
         });
