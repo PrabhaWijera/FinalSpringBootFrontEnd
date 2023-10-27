@@ -2,98 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="prabhash">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../assets/Travel%20App%20or%20Website%20Logo.png" type="image/png">
-    <title>NEXT TRAVEL | ADMIN LOGIN </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXT TRAVEL | ADMIN LOGIN</title>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Icons (Font Awesome) -->
+
+
+    <!-- SweetAlert for notifications -->
+
+
+    <!-- jQuery for Bootstrap and your custom JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="style_admin.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/58e618022f.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!--=============== REMIXICONS ===============-->
+
+    <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
-
-    <!--=============== SWIPER CSS ===============-->
+    <!-- Swiper for slideshows -->
     <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
-    <!--======================fronts google======================-->
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Mono&display=swap" rel="stylesheet">
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="../assets/css/styles.css">
-    <!--	<link rel="stylesheet" href="../assets/scss/styles.scss">-->
-    <script src="https://kit.fontawesome.com/58e618022f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
-    <script src="style_admin.js"></script>
-    <!--some css-->
+
+    <!-- Your custom CSS -->
     <style>
-        #footy{
+        #footy {
             background: url("../assets/img/footer-1084348019.jpg");
             width: 100%;
-            margin-bottom: 0px; /* This pushes the footer to the bottom */
-
+            margin-bottom: 0;
+            padding: 20px;
+            color: #fff;
         }
-
     </style>
 </head>
-
 <body class="my-login-page">
-
 <section class="h-100">
     <div class="container h-100">
         <div class="row justify-content-md-center h-100">
-            <div class="card-wrapper">
-                <a href="../index.html"><div class="brand">
-                    <img src="../assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
-                </div>
+            <div class="col-md-6">
+                <a href="../index.html">
+                    <div class="brand text-center">
+                        <img src="../assets/Travel%20App%20or%20Website%20Logo.png" alt="Bootstrap 4 login page" style="width: 250px;">
+                    </div>
                 </a>
-                <div class="card fat">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">ADMIN-LOGIN</h4>
-                        <form method="POST" class="my-login-validation" novalidate="">
+                        <form method="POST" class="my-login-validation" novalidate>
                             <div class="form-group">
                                 <label for="Admin_email">User-Name</label>
-                                <input id="Admin_email" type="email" class="form-control" name="Admin_email" value="" required autofocus>
-                                <div class="invalid-feedback">
-                                    UserName is invalid
-                                </div>
+                                <input id="Admin_email" type="email" class="form-control" name="Admin_email" required autofocus>
+                                <div class="invalid-feedback">Username is invalid</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Admin_password">Password
-                                    <a href="forgot.html" class="float-right">
-                                        Forgot Password?
-                                    </a>
+                                    <a href="forgot.html" class="float-right">Forgot Password?</a>
                                 </label>
                                 <input id="Admin_password" type="password" class="form-control" name="Admin_password" required data-eye>
-                                <div class="invalid-feedback">
-                                    Password is required
-                                </div>
+                                <div class="invalid-feedback">Password is required</div>
                             </div>
                             <div class="form-group">
                                 <label for="Admin_Role">Role:</label>
-                                <select class="form-control"  id="Admin_Role">
+                                <select class="form-control" id="Admin_Role">
                                     <option value="A_GUIDE">Guide</option>
                                     <option value="A_PAYMENT">Payment</option>
                                     <option value="A_HOTEL">Hotel</option>
                                     <option value="A_VEHICLE">Vehicle</option>
                                     <option value="A_PACKAGE">Package</option>
                                     <option value="ADUSER">USER</option>
-
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <div class="custom-checkbox custom-control">
                                     <input type="checkbox" name="remember" id="remember" class="custom-control-input">
                                     <label for="remember" class="custom-control-label">Remember Me</label>
                                 </div>
                             </div>
-
-                            <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block" id="AdminButton" onclick="saveAdmin()">Login</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block" id="AdminButton">Login</button>
                             </div>
                             <div class="mt-4 text-center">
                                 Don't have an account? <a href="#">Create One</a>
@@ -101,78 +93,87 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
-<br>
-<footer class="footer section " id="footy">
-    <div class="footer__container container grid">
-        <div class="footer__content grid">
-            <div class="footer__data">
-                <h3 class="footer__title">Travel</h3>
-                <p class="footer__description">Travel you choose the destination, we offer you the experience.</p>
-                <div>
-                    <a href="https://www.facebook.com/" target="_blank" class="footer__social">
-                        <i class="ri-facebook-box-fill"></i>
-                    </a>
-                    <a href="https://twitter.com/" target="_blank" class="footer__social">
-                        <i class="ri-twitter-fill"></i>
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank" class="footer__social">
-                        <i class="ri-instagram-fill"></i>
-                    </a>
-                    <a href="https://www.youtube.com/" target="_blank" class="footer__social">
-                        <i class="ri-youtube-fill"></i>
-                    </a>
+
+<footer class="footer section" id="footy">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="footer__data">
+                    <h3 class="footer__title">Travel</h3>
+                    <p class="footer__description">Travel you choose the destination, we offer you the experience.</p>
+                    <div>
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                            <i class="ri-facebook-box-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                            <i class="ri-youtube-fill"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="footer__data">
-                <h3 class="footer__subtitle">About</h3>
-                <ul>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">About Us</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Features</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">New & Blog</a>
-                    </li>
-                </ul>
+            <div class="col-md-2">
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">About</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">About Us</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">Features</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">News & Blog</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer__data">
-                <h3 class="footer__subtitle">Company</h3>
-                <ul>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Team</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Plan y Pricing</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Become a member</a>
-                    </li>
-                </ul>
+            <div class="col-md-2">
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Company</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">Team</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">Plan & Pricing</a>
+                        </li>
+                        <li class= "footer__item">
+                        <a href="#" class="footer__link">Become a Member</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer__data">
-                <h3 class="footer__subtitle">Support</h3>
-                <ul>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">FAQs</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Support Center</a>
-                    </li>
-                    <li class="footer__item">
-                        <a href="" class="footer__link">Contact Us</a>
-                    </li>
-                </ul>
+            <div class="col-md-2">
+                <div class="footer__data">
+                    <h3 class="footer__subtitle">Support</h3>
+                    <ul>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">FAQs</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">Support Center</a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="container">
         <div class="footer__rights">
-            <p class="footer__copy">&#169;  2023. Prabhash Wijerathna All rights reserved.</p>
+            <p class="footer__copy">&copy; 2023. Prabhash Wijerathna All rights reserved.</p>
             <div class="footer__terms">
                 <a href="#" class="footer__terms-link">Terms & Agreements</a>
                 <a href="#" class="footer__terms-link">Privacy Policy</a>
@@ -180,7 +181,6 @@
         </div>
     </div>
 </footer>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

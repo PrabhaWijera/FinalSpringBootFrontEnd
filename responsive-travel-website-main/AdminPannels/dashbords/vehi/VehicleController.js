@@ -121,24 +121,24 @@ function OnSaveVehicle() {
         imageArray.push(data);
 
         if (imageArray.length === fileInputIds.length){
-            let ID = $("#vId").val();
-            let brand = $("#vbrand").val();
-            let category = $("#category").val();
-            let vehiclename = $("#vname").val();
-            let fultype = $("#fueltype").val();
-            let fuluse = $("#fuelusage").val();
-            let  HY = $("#hybrid").val();
-            let  vehiImg= imageArray[0];
-            let  vehiInImg = imageArray[1];
-            let  seats = $("#seatCapacity").val();
-            let  transM= $("#transmissionType").val();
-            let  driverName = $("#driverName").val();
-            let  remark = $("#vremark").val();
-            let  driverLiImg = imageArray[2];
-            let  contact = $("#conNumber").val();
-            let  pId = $("#packageid").val();
+            const ID = $("#vId").val();
+            const brand = $("#vbrand").val();
+            const category = $("#category").val();
+            const vehiclename = $("#vname").val();
+            const fultype = $("#fueltype").val();
+            const fuluse = $("#fuelusage").val();
+            const  HY = $("#hybrid").val();
+            const  vehiImg= imageArray[0];
+            const  vehiInImg = imageArray[1];
+            const  driverLiImg = imageArray[2];
+            const  seats = $("#seatCapacity").val();
+            const  transM= $("#transmissionType").val();
+            const  driverName = $("#driverName").val();
+            const  remark = $("#vremark").val();
+            const  contact = $("#conNumber").val();
+            const  pId = $("#packageid").val();
 
-            saveImage();
+
             // Create an object to store the data
             const data = {
                 vehicleID:ID,
