@@ -95,7 +95,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label commonText" for="userid">Customer ID</label>
-                                    <input class="form-control" id="userid" placeholder="C001" type="text" disabled>
+                                    <input class="form-control" id="userid" placeholder="C001" type="text" >
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for ="Name">Customer Name</label>
@@ -191,11 +191,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label commonText" for="uuserid">Customer ID</label>
-                                    <input class="form-control" id="uuserid" placeholder="C001" type="text" disabled>
+                                    <input class="form-control" id="uuserid" placeholder="C001" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="uuserName">Customer Name</label>
+                                    <label class="form-label commonText" for ="uuserName">Customer UserName</label>
                                     <input class="form-control" id="uuserName" placeholder="Saliya" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label commonText" for ="uName">Customer Name</label>
+                                    <input class="form-control" id="uName" placeholder="Saliya" type="text">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label commonText" for ="uusernic">NIC</label>
@@ -211,9 +215,9 @@
                                 <div class="form-group">
                                     <label class="form-label commonText" for="ugender">Gender</label>
                                     <select class="form-control" id="ugender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="MALE">Male</option>
+                                        <option value="FEMALE">Female</option>
+                                        <option value="OTHER">Other</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -355,7 +359,7 @@
             <th scope="col" class="p-3" style="font-size: 12px;">Remark</th>
         </tr>
         </thead>
-        <tbody  class="table table-hover table-info table-striped p-3" id="customerTableBody">
+        <tbody  class="table table-hover table-info table-striped p-3" id="tbody">
         <!-- Add your table data here -->
         </tbody>
     </table>
