@@ -15,12 +15,16 @@ $(document).ready(function() {
     $("#getAllCustomersButton").on("click", function() {
         event.preventDefault();
         OnGetAllUser();
+        Card1Data();
     });
 
     $("#Cusdelete").on("click", function() {
 
         OnDeleteCustomer();
     });
+
+
+
 
 });
 
@@ -396,5 +400,30 @@ function OnDeleteCustomer() {
     });
 }
 
+// card data adding
+ function Card1Data(){
+     $.ajax({
+         url: "http://localhost:8080/api/v1/userApi/getAllUsers",
+         method: "GET",
+         headers: {
+             "Authorization": "Bearer " + JSON.parse(localStorage.getItem("AD_USER"))
+         },
+         success: (res) => {
+             if (res.data) {
+                 // Handle the case when no data is found
+                 let UserData = res.data;
+                 $("#card1").text(UserData.userEmail);
 
+             } else {
 
+             }
+         },
+         error: (xhr, textStatus, errorThrown) => {
+             let errorMessage = "An unexpected error occurred.";
+             if (xhr.responseJSON && xhr.responseJSON.message) {
+                 errorMessage = xhr.responseJSON.message;
+             }
+             swal("OOPS!", "Server error: " + errorMessage, "error");
+         }
+     });
+ }
