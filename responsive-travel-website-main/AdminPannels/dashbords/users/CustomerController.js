@@ -66,7 +66,7 @@ function OnSaveUser() {
     const imageArray = [];
 
     // Define the file input IDs
-    const fileInputIds = ["#userNic_Photo"];
+    const fileInputIds = ["#userNic_Photo","#userpf_Photo"];
 
     // Define a function to handle the success of saving an image
     function handleImageSave(data) {
@@ -84,7 +84,8 @@ function OnSaveUser() {
             const Emails = $("#email").val();
             const ContactNumber = $("#contactNumber").val();
             const Addresss = $("#address").val();
-            const userIMG = imageArray[0]; // Assuming the first image is for guideID
+            const userNICIMG = imageArray[0]; // Assuming the first image is for guideID
+            const userPFIMG = imageArray[1]; // Assuming the first image is for guideID
             const remark = $("#remark").val();
 
             // Create an object to store the data
@@ -99,7 +100,8 @@ function OnSaveUser() {
                 userEmail: Emails,
                 userPhone: ContactNumber,
                 userAddress: Addresss,
-                userNICImageLocation: userIMG,
+                userNICImageLocation: userNICIMG,
+                userImageLocation: userPFIMG,
                 remarks: remark
             };
 
@@ -176,7 +178,7 @@ function OnUpdateUser() {
     const imageArray = [];
 
     // Define the file input IDs
-    const fileInputIds = ["#uuserNic_Photo"];
+    const fileInputIds = ["#uuserNic_Photo","#Uuserpf_Photo"];
 
     // Define a function to handle the success of saving an image
     function handleImageSave(data) {
@@ -195,6 +197,7 @@ function OnUpdateUser() {
             const ContactNumber = $("#ucontactNumber").val();
             const Addresss = $("#uaddress").val();
             const userIMG = imageArray[0]; // Assuming the first image is for guideID
+            const userPFIMG = imageArray[1]; // Assuming the first image is for guideID
             const remark = $("#uremark").val();
 
             // Create an object to store the data
@@ -210,6 +213,7 @@ function OnUpdateUser() {
                 userPhone: ContactNumber,
                 userAddress: Addresss,
                 userNICImageLocation: userIMG,
+                userImageLocation: userPFIMG,
                 remarks: remark
             };
 
