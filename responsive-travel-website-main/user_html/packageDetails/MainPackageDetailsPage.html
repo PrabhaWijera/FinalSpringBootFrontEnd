@@ -119,6 +119,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-4" >
+                                <div id="selectRoom" class="mb-3">
+                                    <label class="form-label">Room's Types:</label>
+                                    <select class="form-select" id="selectRoomType" name="selectRoom" required>
+                                        <option value=""></option>
+
+                                        <!-- Add guide names as options -->
+                                    </select>
+                                </div>
+                            </div>
                             <hr>
 
                             <div class="row">
@@ -225,6 +235,69 @@
                         </div>
                     </form>
                 </div>
+                <div class="container">
+                    <h1 class="text-center" style="font-size: 24px">Confirm Your Payment</h1>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="owner form-group">
+                                <h3 style="font-size: 14px">Owner</h3>
+                                <div class="input-field">
+                                    <input type="text" class="form-control" style="font-size: 14px">
+                                </div>
+                            </div>
+                            <div class="cvv form-group">
+                                <h3 style="font-size: 14px">CVV</h3>
+                                <div class="input-field">
+                                    <input type="password" class="form-control" style="font-size: 14px">
+                                </div>
+                            </div>
+                            <div class="card-number form-group">
+                                <h3 style="font-size: 14px">Card Number</h3>
+                                <div class="input-field">
+                                    <input type="text" class="form-control" style="font-size: 14px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3 style="font-size: 14px">Expiration Date</h3>
+                            <div class="form-group">
+                                <select name="months" id="months" class="form-control" style="font-size: 14px">
+                                    <option value="Jan">Jan</option>
+                                    <option value="Feb">Feb</option>
+                                    <option value="Mar">Mar</option>
+                                    <option value="Apr">Apr</option>
+                                    <option value="May">May</option>
+                                    <option value="Jun">Jun</option>
+                                    <option value="Jul">Jul</option>
+                                    <option value="Aug">Aug</option>
+                                    <option value="Sep">Sep</option>
+                                    <option value="Oct">Oct</option>
+                                    <option value="Nov">Nov</option>
+                                    <option value="Dec">Dec</option>
+                                </select>
+                                <select name="years" id="years" class="form-control" style="font-size: 14px">
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                </select>
+                            </div>
+                            <div class="cards">
+                                <img src="assets/mc.png" alt="" style="max-width: 30px;">
+                                <img src="assets/vi.png" alt="" style="max-width: 30px;">
+                                <img src="assets/pp.png" alt="" style="max-width: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <a href="" class="btn btn-primary" style="background-color: #007aff; font-size: 14px">Confirm</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

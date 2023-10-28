@@ -191,7 +191,7 @@ $(document).ready(function() {
         getVehicle();
         getHotel();
         getHotelDestinations();
-
+        getHotelRoomTypesWithValues();
     });
 });
 
@@ -203,7 +203,45 @@ $(document).ready(function() {
 
 
 
+//get rooms types with values
+function getHotelRoomTypesWithValues(){
 
+    $.ajax({
+        url: "http://localhost:8083/api/v1/hotel/getAllHotels",
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
+        },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const selectElement = $("#selectRoomType");
+                selectElement.empty(); // Clear the existing options
+
+                res.data.forEach((hotels) => {
+                    let option = $("<option>");
+                    option.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
+                    option.text(hotels.fullBoardWithACLuxuryRoomDouble);
+                    option.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
+                    option.text(hotels.halfBoardWithACLuxuryRoomDouble);
+                    option.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
+                    option.text(hotels.fullBoardWithACLuxuryRoomTriple);
+                    option.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
+                    option.text(hotels.halfBoardWithACLuxuryRoomTriple);
+
+                    selectElement.append(option);
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
+        }
+    });
+}
 
 
 //get  destination only
@@ -352,24 +390,62 @@ function getGuides(){
 }
 
 
-// Calculate the total package value
+/*// Calculate the total package value
 function calculatePackageTotal() {
+    const guideServicePrice = calculateGuideServicePrice();
+    const hotelCharges = calculateHotelCharges();
+    const vehicleCharges = calculateVehicleCharges();
 
-    let guideServicePrice = parseFloat($("#manday").val());
-
-
-    let hotelCharges = parseFloat($("#hotelPrice").val());
-    let vehicleCharges = parseFloat($("#vehiclePrice").val());
-
-    if (isNaN(guideServicePrice) || isNaN(hotelCharges) || isNaN(vehicleCharges)) {
+    if (guideServicePrice === null || hotelCharges === null || vehicleCharges === null) {
         console.log("Invalid input. Please enter valid numbers.");
         return;
     }
 
-    let totalPackageValue = guideServicePrice + hotelCharges + vehicleCharges;
+    const totalPackageValue = guideServicePrice + hotelCharges + vehicleCharges;
     console.log("Total Package Value: $" + totalPackageValue);
     return totalPackageValue;
 }
+
+function calculateGuideServicePrice() {
+    const startDay = parseInt($("#startDate").val()); // Assuming you have an input field for start day
+    const endDay = parseInt($("#endDate").val()); // Assuming you have an input field for end day
+
+    if (isNaN(startDay) || isNaN(endDay)) {
+        console.log("Invalid input for guide service days. Please enter valid numbers.");
+        return null;
+    }
+
+    const guideServicePrice = 1000 * (startDay + endDay);
+    return guideServicePrice;
+}
+
+function calculateHotelCharges() {
+    const perDayHotelFee = parseFloat($("#perDayHotelFee").val()); // Assuming you have an input field for per day hotel fee
+    const days = parseInt($("#hotelDays").val()); // Assuming you have an input field for the number of hotel days
+
+    if (isNaN(perDayHotelFee) || isNaN(days)) {
+        console.log("Invalid input for hotel charges. Please enter valid numbers.");
+        return null;
+    }
+
+
+    const hotelCharges = perDayHotelFee * days;
+    return hotelCharges;
+}
+
+function calculateVehicleCharges() {
+    const perDayVehicleFee = parseFloat($("#perDayVehicleFee").val()); // Assuming you have an input field for per day vehicle fee
+    const vehicleDays = parseInt($("#vehicleDays").val()); // Assuming you have an input field for the number of vehicle days
+
+    if (isNaN(perDayVehicleFee) || isNaN(vehicleDays)) {
+        console.log("Invalid input for vehicle charges. Please enter valid numbers.");
+        return null;
+    }
+
+    const vehicleCharges = perDayVehicleFee * vehicleDays;
+    return vehicleCharges;
+}*/
+
 
 // Count adults and children
 function countAdultsAndChildren() {

@@ -412,7 +412,7 @@ function OnUpdatePackageDetails() {
     let area = $("#areaList").val();
     let No_ofAdults = parseInt($("#numAdults").val());
     let No_ofChild = parseInt($("#numChildren").val());
-    let totalOfHeadCount =  countAdultsAndChildren();
+    let totalOfHeadCount =  parseInt(countAdultsAndChildren());
     let allowPets = $("#petstatus").val();
     let NeedGuide = $("#needGuide").val();
     let NameofGuide = $("#guidenames").val(); // Make sure this field is properly defined in your HTML
@@ -517,7 +517,7 @@ function populateFieldsWithRes(res) {
         $("#needGuide").val(packgData.isGuideNeeded);
         $("#guidenames").val(packgData.NameGuide);
 
-        $("#umandayValue").val(packgData.TotalPackageValue);
+        $("#totalPrice").val(packgData.TotalPackageValue);
         $("#umandayValue").val(packgData.remark);
 
     } else {
