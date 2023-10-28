@@ -70,17 +70,17 @@
 
 <main class="container mt-sm-4">
 
-    <br><br>
-    <!--Customer Manager - Start.-->
+   <!-- <br><br>
+    &lt;!&ndash;Customer Manager - Start.&ndash;&gt;
     <div class="buttonContainer">
-        <!-- Button trigger modal for adding a customer - Start.-->
+        &lt;!&ndash; Button trigger modal for adding a customer - Start.&ndash;&gt;
         <button class="btn btn-primary " data-aos="zoom-in-up" data-bs-target="#addCustomerModal" data-bs-toggle="modal"
                 id="addCustomerButton" type="button" style="margin-right: 10px">
             Add a Package.
         </button>
-        <!-- Button trigger modal for adding a customer - End.-->
+        &lt;!&ndash; Button trigger modal for adding a customer - End.&ndash;&gt;
 
-        <!-- Add Customer Modal - Start. -->
+        &lt;!&ndash; Add Customer Modal - Start. &ndash;&gt;
         <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="addCustomerModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-
+-->
         <!-- Add Guide Modal - End. -->
 
         <!-- Button trigger modal for updating a Guide - Start. -->
@@ -206,122 +206,149 @@
         </button>
         <!-- Button trigger modal for updating a customer - End. -->
         <!-- Update Customer Modal - Start. -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="updateCustomerModal" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter details of the Package!</h1>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
+    <div class="modal fade" id="updateCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 commonText text-center">Enter details of the Package!</h1>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="upackageID">PackageID</label>
-                                    <input class="form-control" id="upackageID" placeholder="P0122001" type="text">
+                                    <label class="form-label commonText" for="packageDetailsID">Package-ID</label>
+                                    <input class="form-control" id="packageDetailsID" placeholder="packageDetailsID" type="text">
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="upackageCategory">Package-Type</label>
-                                    <select class="form-control" id="upackageCategory">
-                                        <option value="Regular">Regular</option>
-                                        <option value="Mid">Mid-level</option>
-                                        <option value="lux">Luxury</option>
-                                        <option value="S_lux">Super-luxury</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="utravelDuration">TravelDuration</label>
-                                    <input class="form-control" id="utravelDuration" placeholder="5 star" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="utravelArea">TravelArea</label>
-                                    <select class="form-control" id="utravelArea">
-                                        <option value="KANDY">Kandy and Upcountry</option>
-                                        <option value="E_COAST">Eastern Coast</option>
-                                        <option value="COLOMBO">Capital Colombo</option>
-                                        <option value="W_COAST">Western Coast</option>
-                                        <option value="NorthP">North Peninsula</option>
-                                        <option value="DS">Down South</option>
-                                        <option value="SIGIRI">Sigiriya and Dambulla</option>
-                                        <option value="ANURADA">Anuradhapura and Polonnaruwa</option>
-                                        <option value="MATALE">Matale</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="unoOfAdults">No-Adults</label>
-                                    <input id="unoOfAdults" type="number" class="form-control" name="noOfAdults" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="unoOfChildren">No-Children</label>
-                                    <input id="unoOfChildren" type="number" class="form-control" name="noOfChildren" required>
-                                </div>
-
-                                <div id="utotalHeadCount">Total Headcount: 0</div>
-
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="uisPetsAllowed">PetsAllow</label>
-                                    <select class="form-control" id="uisPetsAllowed">
-                                        <option value="YES">Allow</option>
-                                        <option value="NO">No-Allow </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="uisGuideNeeded">With-Guide</label>
-                                    <select class="form-control" id="uisGuideNeeded">
-                                        <option value="YES">Yes-Guide</option>
-                                        <option value="NO">No-Guide </option>
-                                    </select>
-                                </div>
+                                <label for="startDate" class="form-label">Travel Start Date:</label>
+                                <input type="date" class="form-control" id="startDate" name="startDate" required>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="upackageValue">Package-Value</label>
-                                    <input class="form-control" id="upackageValue" placeholder="Rs./$.00" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="packagePaidValue">PackagePaid/Value</label>
-                                    <input class="form-control" id="upackagePaidValue" placeholder="Rs./$.00" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="hotelID">Hotel-ID</label>
-                                    <input class="form-control" id="uhotelID" placeholder="Yes/No" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="vehicleID">VehicleID</label>
-                                    <input class="form-control" id="uvehicleID" placeholder="Price" type="text">
-                                </div>
+                            <div class="form-group">
+                                <label for="endDate" class="form-label">Travel End Date:</label>
+                                <input type="date" class="form-control" id="endDate" name="endDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Book ID:</label>
+                                <input id="bookingID" type="text" class="form-control" name="bookingID" required disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">User ID:</label>
+                                <input id="userId" type="text" class="form-control" name="userId" required disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="packageCategory" class="form-label">Select Category:</label>
+                                <select class="form-select" id="packageCategory" name="packageCategory" required>
+                                    <option value="destination1"> </option>
+
+                                    <!-- Add more destination options as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hotelList" class="form-label">Select Hotels:</label>
+                                <select class="form-select" id="hotelList" name="hotelList" required>
+                                    <option value="hotel1"> </option>
+
+                                    <!-- Add more hotel options as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="areaList" class="form-label">Select Travel Areas:</label>
+                                <select class="form-select" id="areaList" name="areaList" required>
+                                    <option value="Kandy&Upcountry">Kandy and Upcountry</option>
+                                    <option value="Eastern_Coast">Eastern Coast</option>
+                                    <option value="Capital_Colombo">Capital Colombo</option>
+                                    <option value="Western_Coast">Western Coast</option>
+                                    <option value="North_Peninsula">North Peninsula</option>
+                                    <option value="Down_South">Down South</option>
+                                    <option value="Sigiriya">Sigiriya and Dambulla</option>
+                                    <option value="Polonnaruwa_Anuradhapura">Anuradhapura & Polonnaruwa </option>
+                                    <option value="Matale">Matale</option>
+
+                                    <!-- Add more hotel options as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleList" class="form-label">Select Vehicle:</label>
+                                <select class="form-select" id="vehicleList" name="vehicleList" required>
+                                    <option value="vehicle1"> </option>
+
+                                    <!-- Add more vehicle options as needed -->
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="uuserID">User-ID</label>
-                                    <input class="form-control" id="uuserID" placeholder="userID" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label commonText" for="uguideID">GuideID</label>
-                                    <input class="form-control" id="uguideID" placeholder="guideID" type="text">
-                                </div>
-
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="numAdults" class="form-label">Number of Adults:</label>
+                                <input type="number" class="form-control" id="numAdults" name="numAdults" min="1" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="numChildren" class="form-label">Number of Children:</label>
+                                <input type="number" class="form-control" id="numChildren" name="numChildren" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Total People:</label>
+                                <br>
+                                <span id="totalPeople"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="petstatus" class="form-label">Pet: Allow/Not Allow</label>
+                                <select class="form-select" id="petstatus" name="petstatus" required>
+                                    <option value="true">Allow</option>
+                                    <option value="false">Not Allow</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Guide Service Charge:</label>
+                                <input id="manday" type="text" class="form-control" value="5000.00" name="totalPrice" required disabled>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="uremark">Remark</label>
-                                    <input class="form-control" id="uremark" placeholder="Remark" type="text">
+                                    <label for="hotelPrice">Hotel Price:</label>
+                                    <input id="hotelPrice" type="text" class="form-control" name="totalPrice" required disabled>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="vehiclePrice">Vehicle Price:</label>
+                                    <input id="vehiclePrice" type="text" class="form-control" name="totalPrice" required disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="totalPrice">Total Price:</label>
+                                    <input id="totalPrice" type="text" class="form-control" name="totalPrice" required disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="needGuide" class="form-label">Need a guide:</label>
+                                <select class="form-select" id="needGuide" name="needGuide" required>
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Guider's Name:</label>
+                                <select class="form-select" id="guidenames" name="guidenames" required>
+                                    <option value="guide1"></option>
+
+                                    <!-- Add guide names as options -->
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" id="hUpdateButton" type="button">Update</button>
-                        <button class="btn btn-outline-success" id="csButton" type="submit">Search.</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="hUpdateButton" type="button">Update</button>
+                    <button class="btn btn-success" id="csButton" type="submit">Search</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                 </div>
             </div>
         </div>
-
+    </div>
         <!-- Button trigger modal for deleting a Guide - Start. -->
         <button class="btn btn-danger " data-aos="zoom-in-up" data-bs-target="#deletehotelModal"
                 data-bs-toggle="modal"
@@ -335,13 +362,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5 commonText">Enter HID of the Hotel!.</h1>
+                        <h1 class="modal-title fs-5 commonText">Enter PID of the Package!.</h1>
                         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label commonText" for="dHId" id="dc">Hotel ID.</label>
-                            <input class="form-control" id="dHId" placeholder="H001" type="text">
+                            <label class="form-label commonText" for="dPId" id="dc">Package ID.</label>
+                            <input class="form-control" id="dPId" placeholder="H001" type="text">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -353,7 +380,7 @@
         </div>
         <!-- Delete Guide Modal - End. -->
         <!-- Button trigger modal for getting all Guide- Start. -->
-        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllCustomersButton" type="button">Get all Guide.
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllButton" type="button">Get all Packages.
         </button>
 
         <!-- Button trigger modal for getting all Guide- End. -->
@@ -402,17 +429,18 @@
     <div style="display: flex; justify-content: space-between; padding: 10px;">
         <!-- Left Table -->
         <div style="flex: 1; padding: 10px;">
-            <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable1">
+            <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" >
                 <thead>
                 <tr>
                     <th scope="col" class="p-3">Package-ID</th>
                     <th scope="col" class="p-3">PackageCategory</th>
-                    <th scope="col" class="p-3">TravelDuration</th>
+                    <th scope="col" class="p-3">TravelStart</th>
+                    <th scope="col" class="p-3">TravelEnd</th>
                     <th scope="col" class="p-3">TravelArea</th>
                     <th scope="col" class="p-3">Remark</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="hotelTable1">
                 <!-- Add your data for the left table here -->
                 </tbody>
             </table>
@@ -421,24 +449,25 @@
         <!-- Right Tables -->
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
             <div style="padding: 10px;">
-                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable2">
+                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" >
                     <thead>
                     <tr>
                         <th scope="col" class="p-3">NoOfAdults</th>
                         <th scope="col" class="p-3">NoOfChildren</th>
                         <th scope="col" class="p-3">totalHeadCount</th>
                         <th scope="col" class="p-3">PetsAllowed</th>
-                        <th scope="col" class="p-3">GuideNeeded</th>
+                        <th scope="col" class="p-3">GuideName</th>
+                        <th scope="col" class="p-3">GuideCharges</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="hotelTable2">
                     <!-- Add your data for the first right table here -->
                     </tbody>
                 </table>
             </div>
 
             <div style="padding: 10px;">
-                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="hotelTable3">
+                <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" >
                     <thead>
                     <tr>
                         <th scope="col" class="p-3">PackageValue</th>
@@ -449,7 +478,7 @@
                         <th scope="col" class="p-3">GuideID</th>
                     </tr>
                     </thead>
-                    <tbody class="table table-hover table-info table-striped p-3" id="">
+                    <tbody class="table table-hover table-info table-striped p-3" id="hotelTable3">
                     <!-- Add your data for the second right table here -->
                     </tbody>
                 </table>

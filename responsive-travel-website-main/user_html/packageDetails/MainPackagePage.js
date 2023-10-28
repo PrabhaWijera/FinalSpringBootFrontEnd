@@ -167,10 +167,8 @@ function OnSavePackageDetails() {
     });
 }
 */
-$(document).ready(function() {
-    // Initialize SweetAlert
-    swal("Welcome To Package-Details Admin 🙏");
 
+$(document).ready(function() {
     // Attach the click event handler to the "bookingPackageBtn"
     $("#bookingPackageBtn").on("click", function() {
         OnSavePackageDetails();
@@ -193,8 +191,19 @@ $(document).ready(function() {
         getVehicle();
         getHotel();
         getHotelDestinations();
+
     });
 });
+
+
+
+
+
+
+
+
+
+
 
 
 //get  destination only
@@ -397,6 +406,7 @@ function OnSavePackageDetails() {
     let start_Date = $("#startDate").val();
     let end_Date = $("#endDate").val();
     let Package_category = $("#packageCategory").val();
+    let area = $("#areaList").val();
     let No_ofAdults = parseInt($("#numAdults").val());
     let No_ofChild = parseInt($("#numChildren").val());
     let totalOfHeadCount =  countAdultsAndChildren();
@@ -411,6 +421,7 @@ function OnSavePackageDetails() {
         startDuration: start_Date,
         endDuration: end_Date,
         packageCategory: Package_category,
+        travelArea: area,
         noOfAdults: No_ofAdults,
         noOfChildren: No_ofChild,
         totalHeadCount: totalOfHeadCount,
