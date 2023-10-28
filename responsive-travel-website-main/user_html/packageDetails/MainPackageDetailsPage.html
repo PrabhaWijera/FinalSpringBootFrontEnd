@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>MainPackagePage</title>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="shortcut icon" href="../../assets/Travel%20App%20or%20Website%20Logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/swiper-bundle.min.css">
@@ -64,59 +68,72 @@
                             <div class="mb-3 row">
                                 <div class="col-md-6">
                                     <label class="form-label">BookID :</label>
-                                    <span id="bookingID"></span>
+                                    <input id="bookingID" type="text" class="form-control" name="totalPrice" required disabled>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">UserID :</label>
-                                    <span id="userId"></span>
+                                    <input id="userId" type="text" class="form-control"  name="totalPrice" required disabled>
                                 </div>
                             </div>
 
 
 
 
-                            <div class="col-md-6">
-                                <label for="packageCategory" class="form-label">Select Destination:</label>
-                                <select class="form-select" id="packageCategory" name="packageCategory" required>
-                                    <option value="regular">Regular</option>
-                                    <option value="midLevel">MidLevel</option>
-                                    <option value="luxury">Luxury</option>
-                                    <option value="superLuxury">SuperLuxury</option>
-                                    <!-- Add more destination options as needed -->
-                                </select>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="packageCategory" class="form-label">Select Destination:</label>
+                                    <select class="form-select" id="packageCategory" name="packageCategory" required>
+                                        <option value="regular">Regular</option>
+                                        <option value="midLevel">MidLevel</option>
+                                        <option value="luxury">Luxury</option>
+                                        <option value="superLuxury">SuperLuxury</option>
+                                        <!-- Add more destination options as needed -->
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="hotelList" class="form-label">Select Hotels:</label>
+                                    <select class="form-select" id="hotelList" name="hotelList" required>
+                                        <option value="hotel1">Hotel 1</option>
+                                        <!-- Add more hotel options as needed -->
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="vehicleList" class ="form-label">Select Vehicle:</label>
+                                    <select class="form-select" id="vehicleList" name="vehicleList" required>
+                                        <option value="vehicle1">Vehicle 1</option>
+                                        <!-- Add more vehicle options as needed -->
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="hotelList" class="form-label">Select Hotels:</label>
-                                <select class="form-select" id="hotelList" name="hotelList" required>
-                                    <option value="hotel1">Hotel 1</option>
-                                    <!-- Add more hotel options as needed -->
-                                </select>
+                            <hr>
+
+                            <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="numAdults" class="form-label">Number of Adults:</label>
+                                    <input type="number" class="form-control" id="numAdults" name="numAdults" min="1" required>
+                                </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="numChildren" class="form-label">Number of Children:</label>
+                                    <input type="number" class="form-control" id="numChildren" name="numChildren" min="0" required>
+                                </div>
+                            </div>
 
-                            <div class="col-md-6">
-                                <label for="vehicleList" class="form-label">Select Vehicle:</label>
-                                <select class="form-select" id="vehicleList" name="hotelList" required>
-                                    <option value="hotel1">Vehicel </option>
-                                    <!-- Add more hotel options as needed -->
-                                </select>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Total People:</label>
+                                    <br>
+                                    <span id="totalPeople"></span>
+
+                                </div>
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="numAdults" class="form-label">Number of Adults:</label>
-                            <input type="number" class="form-control" id="numAdults" name="numAdults" min="1" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="numChildren" class="form-label">Number of Children:</label>
-                            <input type="number" class="form-control" id="numChildren" name="numChildren" min="0" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Total People:</label>
-                            <span id="totalPeople"></span>
-                        </div>
 
                         <div class="mb-3">
                             <label for="petstatus" class="form-label">Pet: Allow/Not Allow</label>
@@ -127,46 +144,58 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="needGuide" class="form-label">Need a guide:</label>
-                            <select class="form-select" id="needGuide" name="needGuide" required>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="guidenames" class="form-label">Guide Name:</label>
-                            <select class="form-select" id="guidenames" name="guidenames" required>
-                                <option value="DamainKumara"></option>
-                                <!-- Add guide names as options -->
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Guide Service Charge:</label>
-                            <span id="manday"></span>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-
-                                <label for="hotelPrice">Hotel Price:</label>
-                                <input id="hotelPrice" type="text" class="form-control" name="hotelPrice" required>
-                                <div class="invalid-feedback">
-                                    Enter a valid hotel price.
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="needGuide" class="form-label">Need a guide:</label>
+                                    <select class="form-select" id="needGuide" name="needGuide" required>
+                                        <option value="false">No</option>
+                                        <option value="true">Yes</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
                                 </div>
+                            </div>
 
-                                <label for="vehiclePrice">Vehicle Price:</label>
-                                <input id="vehiclePrice" type="text" class="form-control" name="vehiclePrice" required>
-                                <div class="invalid-feedback">
-                                    Enter a valid vehicle price.
+                            <div class="col-md-4" >
+                                <div id="nameofGuideDiv" class="mb-3">
+                                    <label class="form-label">Guider's Name:</label>
+                                    <select class="form-select" id="guidenames" name="guidenames" required>
+                                        <option value="DaminPerera">Damin Perera</option>
+                                        <option value="SayanthaHansaka">Sayantha Hansaka</option>
+                                        <!-- Add guide names as options -->
+                                    </select>
                                 </div>
+                            </div>
 
-                                <label for="vehiclePrice">Total Price:</label>
-                                <input id="totalPrice" type="text" class="form-control" name="totalPrice" required>
-                                <div class="invalid-feedback">
-                                    Enter a  price.
+                            <div class="col-md-4" id="namesGG">
+                                <div class="mb-3">
+                                    <label class="form-label">Guide Service Charge:</label>
+                                    <input id="manday" type="text" class="form-control" value="5000.00" name="totalPrice" required disabled>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="hotelPrice">Hotel Price:</label>
+                                    <input id="hotelPrice" type="text" class="form-control" name="totalPrice" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="vehiclePrice">Vehicle Price:</label>
+                                    <input id="vehiclePrice" type="text" class="form-control" name="totalPrice" required disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="totalPrice">Total Price:</label>
+                                    <input id="totalPrice" type="text" class="form-control" name="totalPrice" required disabled>
                                 </div>
                             </div>
                         </div>
@@ -180,6 +209,7 @@
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary" id="bookingPackageBtn">Book Travel</button>
+                        </div>
                         </div>
                     </form>
                 </div>
@@ -271,8 +301,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="../../assets/js/scrollreveal.min.js"></script>
-<script src="../../assets/js/swiper-bundle.min.js"></script>
-<script src="../../assets/js/main.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <script src="MainPackagePage.js"></script>
 </body>
 </html>
