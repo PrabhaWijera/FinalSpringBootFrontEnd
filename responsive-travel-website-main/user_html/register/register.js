@@ -42,12 +42,16 @@ $(document).ready(function() {
                 $.ajax({
                     url: "http://localhost:8080/api/v1/auth/getAuth",
                     method: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify(data),
+                    headers: {
+                        "contentType": "application/json"
+                    },
+                    data:JSON.stringify(data),
                     success: function(response) {
-                        swal("Response: " + JSON.stringify(response));
+                        console.log(response);
+
                         if (response.statusCode === 200 || response.statusCode === 201) {
                             swal("Save successful");
+                            localStorage.setItem("userAuthToken",JSON.stringify(response.data))
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {
