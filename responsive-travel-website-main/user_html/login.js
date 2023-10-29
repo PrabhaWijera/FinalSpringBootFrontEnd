@@ -117,7 +117,7 @@ function logingCustomer() {
         case "2":
         case "3":
         case "4":
-            tokenKey = "USERToken";
+            tokenKey = "userAuthToken";
             break;
         default:
             return swal("Unknown role. Please check your credentials.");
@@ -134,6 +134,7 @@ function logingCustomer() {
         },
         success: function (res) {
             if (res.data.authenticated && res.data.userRole === "user") {
+                alert("login awa");
                 localStorage.setItem("userDetails",JSON.stringify(res.data))
                 swal("Success" + res.data.role);
                 var destination = roleMap[selectedRole];
