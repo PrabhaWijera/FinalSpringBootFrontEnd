@@ -4,57 +4,48 @@ localStorage.setItem("PToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZ
 // Check if the document is ready
 $(document).ready(function() {
     // Attach the click event handler to the "payAddButton"
-    $("#payAddButton").on("click", function() {
-        OnSave();
+    $("#getAllpayButton").on("click", function() {
+        OnGetAllPayments();
     });
 });
 
-function OnSave() {
-    // Retrieve form data
-    var payId = $("#payID").val();
-    var dailyIncome = $("#DailyIncome").val();
-    var annualIncome = $("#AnnualIncome").val();
-    var monthlyIncome = $("#MonthlyIncome").val();
-    var weeklyIncome = $("#WeeklyIncome").val();
-
-    // Create an object to store the data
-    const data = {
-        payId: payId,
-        dailyIncome: dailyIncome,
-        annualIncome: annualIncome,
-        monthlyIncome: monthlyIncome,
-        weeklyIncome: weeklyIncome
-    };
-
-    // Retrieve the JWT token from localStorage
-    var token = localStorage.getItem("PToken");
-    console.log(token)
-    // Check if the token is valid
-    if (!token) {
-        alert("Token not found. Please log in.");
-        return;
-    }
-
-    // Make the AJAX request to save the payment data
+function OnGetAllPayments() {
     $.ajax({
-        url: "http://localhost:8086/api/v1/Payment/PSave"+ token,
-        method: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(data),
+        url: "http://localhost:8086/api/v1/Payment/getAllPayments",
+        method: "GET",
         headers: {
             "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PToken"))
-
         },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
 
-        success: function (response) {
-            alert("res"+response)
-            if (response.statusCode === 200 || response.statusCode === 201 )
-            alert("Save successful");
-            // You can handle the response from the server here if needed
+                const tableBody = $("#payTable");
+                tableBody.empty(); // Clear the existing table rows
+
+                res.data.forEach((pay) => {
+                    let row = "<tr>";
+                    row += "<td>" + pay.payID + "</td>";
+                    row += "<td>" + pay.userID + "</td>";
+                    row += "<td>" + pay.packageDetailsID + "</td>";
+                    row += "<td>" + pay.paymentDate + "</td>";
+                    row += "<td>" + pay.paymentAmount + "</td>";
+                    row += "<td><img src='" + pay.paymentImageLocation + "' alt='pay Image' height='100' width='100'></td>";
+                    row += "</tr>";
+
+                    tableBody.append(row);
+                });
+            }
         },
-        error: function (xhr, textStatus, errorThrown) {
-            alert("Error: " + xhr.responseText);
-
+        error: (xhr, textStatus, errorThrown) => {
+            let errorMessage = "An unexpected error occurred.";
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+            }
+            swal("OOPS!", "Server error: " + errorMessage, "error");
         }
     });
 }
