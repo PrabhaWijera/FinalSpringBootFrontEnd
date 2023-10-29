@@ -13,6 +13,7 @@ $(document).ready(function () {
             imageArray.push(data);
 
             if (imageArray.length === fileInputIds.length) {
+                const roly="user";
                 const ID = $("#userid").val();
                 const user_name = $("#name").val();
                 const phoneNumber = $("#contactNumber").val();
@@ -26,7 +27,7 @@ $(document).ready(function () {
                 const IMG_user = imageArray[0];
 
                 const data = {
-
+                    userRole:roly,
                     userId: ID,
                     name: n_name,
                     userName: user_name,
@@ -48,9 +49,10 @@ $(document).ready(function () {
                     success: function (response) {
                         console.log(response);
 
-                        if (response.statusCode === 200 || response.statusCode === 201) {
+                        if (response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 500) {
                             swal("Save successful");
                             localStorage.setItem("userAuthToken", JSON.stringify(response.data));
+
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {
