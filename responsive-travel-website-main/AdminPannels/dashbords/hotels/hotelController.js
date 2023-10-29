@@ -1,8 +1,12 @@
 swal("Welcome To Hotel Panel 🛎️");
 localStorage.setItem("HToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbDIwMDEiLCJpYXQiOjE2OTgyMTczMjMsImV4cCI6NDg1MTgxNzMyM30.wHic2oKFfSTxMqLKMbV96Z9bnYgdyE_EaacnOGG2Lz8"));
 
+localStorage.setItem("PKG_ADMIN_TKN",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IlBBQ0tBR0VfREVUQUlMUyIsInN1YiI6InBhY2thZ2VEZXRhaWxzYWRtaW4yMDAxIiwiaWF0IjoxNjk4NDY3MjQyLCJleHAiOjQ4NTIwNjcyNDJ9.iJmDyxXpcXihXCGqjv0S13WaFEku7zE_XQBr6LMKXXU"));
+
 // Check if the document is ready
 $(document).ready(function() {
+    getAllPackagesID();
+
     // Attach the click event handler to the "payAddButton"
     $("#hotelAddButton").on("click", function() {
         OnSaveHotel();
@@ -28,6 +32,53 @@ $(document).ready(function() {
 $(document).on("mouseleave","#hName",()=>{
     getCoordinates();
 });
+
+
+// get packageIDs
+
+function getAllPackagesID() {
+
+    $.ajax({
+        url: 'http://localhost:8084/api/v1/packageDetals/allIDs',
+        method: 'GET',
+        dataType: 'json',
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_ADMIN_TKN"))
+        },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const selectElement = $("#pId");
+                selectElement.empty(); // Clear the existing options
+
+                res.data.forEach((package) => {
+                    let option = $("<option>");
+                    option.attr("value", package.packageID);
+                    option.text(package.packageID);
+
+                    selectElement.append(option);
+                });
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching package IDs:", err);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
 
 function OnDeleteHotel() {
     // Retrieve form data
@@ -99,6 +150,7 @@ function OnSaveHotel() {
     let HID = $("#hId").val();
     let name = $("#hName").val();
     let str = $("#starRate").val();
+    let pId = $("#pId").val();
     let cate = $("#hCategory").val();
     let address = $("#hAddress").val();
     let cordinate = $("#hcordinate").val();
@@ -121,6 +173,7 @@ function OnSaveHotel() {
         hotelId:HID,
         hotelName:name,
         stars:str,
+        packageID:pId,
         hotelCategory:cate,
         hotelLocation:address,
         hotelLocationWithCoordinates:cordinate,
@@ -182,6 +235,7 @@ function OnUpdateHotel() {
     let HID = $("#huId").val();
     let name = $("#huName").val();
     let str = $("#ustarRate").val();
+    let pId = $("#upId").val();
     let cate = $("#huCategory").val();
     let address = $("#huAddress").val();
     let cordinate = $("#uhcordinate").val();
@@ -204,6 +258,7 @@ function OnUpdateHotel() {
         hotelId:HID,
         hotelName:name,
         stars:str,
+        packageID:pId,
         hotelCategory:cate,
         hotelLocation:address,
         hotelLocationWithCoordinates:cordinate,

@@ -167,9 +167,14 @@
                                     <label class="form-label commonText" for="conNumber">Contact-Number</label>
                                     <input class="form-control" id="conNumber" placeholder="+94 1231 2546" type="text">
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="packageid">PackageID</label>
-                                    <input class="form-control" id="packageid"   type="text" >
+                                    <label for="packageid" class="form-label">Package ID:</label>
+                                    <select class="form-select" id="packageid" name="pId" required>
+                                        <option value="packageid"> </option>
+
+                                        <!-- Add more vehicle options as needed -->
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -209,6 +214,7 @@
                                     <label class="form-label commonText" for="uvId">Vehicle ID</label>
                                     <input class="form-control" id="uvId" placeholder="🪪" type="text">
                                 </div>
+
                                 <div class="form-group">
                                     <label class="form-label commonText" for="uvbrand">Vehicle Brand</label>
                                     <input class="form-control" id="uvbrand" placeholder="e.g., Camry, F-150, Civic" type="text">
