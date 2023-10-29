@@ -7,6 +7,8 @@
 	<script crossorigin="anonymous"
 			integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
 			src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<link rel="shortcut icon" href="../assets/Travel%20App%20or%20Website%20Logo.png" type="image/png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<!--=============== REMIXICONS ===============-->
@@ -52,17 +54,18 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="name">ID</label>
-										<input id="userid" type="text" class="form-control" name="user_name" required autofocus>
+										<input id="userid" type="text" class="form-control" name="userid" required autofocus>
 										<div class="invalid-feedback" disabled="">
 											What's your ID?
 										</div>
 									</div>
 									<div class="form-group">
-										<label for="name">Name</label>
+										<label for="name">User-Name</label>
 										<input id="name" type="text" class="form-control" name="user_name" required autofocus>
 										<div class="invalid-feedback">
-											What's your name?
+											What's your User-name?
 										</div>
+
 									</div>
 								</div>
 
@@ -74,7 +77,14 @@
 											Enter your contact number
 										</div>
 									</div>
+
+									<label for="nname">Name</label>
+									<input id="nname" type="text" class="form-control" name="nuser_name" required autofocus>
+									<div class="invalid-feedback">
+										What's your Name?
+									</div>
 								</div>
+
 							</div>
 							<div class="row">
 								<!-- Second Row -->
@@ -103,9 +113,9 @@
 									<div class="form-group">
 										<label for="gender">Gender</label>
 										<select id="gender" class="form-control" name="gender" required>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
+											<option value="MALE">Male</option>
+											<option value="FEMALE">Female</option>
+											<option value="OTHER">Other</option>
 										</select>
 									</div>
 								</div>
@@ -122,6 +132,10 @@
 									<div class="form-group">
 										<label for="age">Age</label>
 										<input id="age" type="number" class="form-control" name="age" required>
+									</div>
+									<div class="form-group">
+										<label for="address">Address</label>
+										<input id="address" type="number" class="form-control" name="address" required>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -224,8 +238,11 @@
 		</div>
 	</div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+		src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script src="login.js"></script>

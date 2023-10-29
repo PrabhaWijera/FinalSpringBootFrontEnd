@@ -39,14 +39,22 @@ const loginPasswordInput = document.getElementById("password");
 const loginButton = document.getElementById("loginButton");
 
 
+
 // Add an event listener to the login button
 
 
 
 function loginUser() {
     // Retrieve login data from the input fields
-    const loginEmail = loginEmailInput.value;
-    const loginPassword = loginPasswordInput.value;
+/*    const loginEmail = loginEmailInput.value;
+    const loginPassword = loginPasswordInput.value;*/
+
+    const emailValue = loginEmailInput.value;
+    const passwordValue = loginPasswordInput.value;
+
+    // Store the values in localStorage
+    localStorage.setItem("email", emailValue);
+    localStorage.setItem("password", passwordValue);
 
     // Retrieve stored registration data from local storage
     const regEmail = localStorage.getItem("email");
@@ -69,7 +77,7 @@ function loginUser() {
 
     if (!regEmailString || !regPasswordString) {
         alert("No registration data found. Please sign up.");
-    } else if (loginEmail === regEmailString && loginPassword === regPasswordString) {
+    } else if (emailValue === regEmailString && passwordValue === regPasswordString) {
         alert("Successful login");
 
         console.log("Regular:", regularString);
