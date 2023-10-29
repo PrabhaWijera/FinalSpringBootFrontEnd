@@ -55,12 +55,15 @@ function getAllPackagesID() {
                 const selectElement = $("#pId");
                 selectElement.empty(); // Clear the existing options
 
+                const selectElement2 = $("#upId");
+                selectElement2.empty(); // Clear the existing options
                 res.data.forEach((package) => {
                     let option = $("<option>");
                     option.attr("value", package.packageID);
                     option.text(package.packageID);
 
                     selectElement.append(option);
+                    selectElement2.append(option);
                 });
             }
         },
