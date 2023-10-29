@@ -1,6 +1,6 @@
-$(document).ready(function() {
-    $("#submit").click(function(event) {
-        $.noConflict();
+$(document).ready(function () {
+    $("#submit").click(function (event) {
+        event.preventDefault();
         CustomerRegister();
     });
 
@@ -26,6 +26,7 @@ $(document).ready(function() {
                 const IMG_user = imageArray[0];
 
                 const data = {
+
                     userId: ID,
                     name: n_name,
                     userName: user_name,
@@ -42,16 +43,14 @@ $(document).ready(function() {
                 $.ajax({
                     url: "http://localhost:8080/api/v1/auth/getAuth",
                     method: "POST",
-                    headers: {
-                        "contentType": "application/json"
-                    },
-                    data:JSON.stringify(data),
-                    success: function(response) {
+                    contentType: "application/json", // Use contentType to set the content type
+                    data: JSON.stringify(data),
+                    success: function (response) {
                         console.log(response);
 
                         if (response.statusCode === 200 || response.statusCode === 201) {
                             swal("Save successful");
-                            localStorage.setItem("userAuthToken",JSON.stringify(response.data))
+                            localStorage.setItem("userAuthToken", JSON.stringify(response.data));
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {

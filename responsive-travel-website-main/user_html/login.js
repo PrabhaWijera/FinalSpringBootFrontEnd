@@ -1,3 +1,4 @@
+/*
 $("#loginButton").click(function() {
     loginUser();
 });
@@ -65,4 +66,86 @@ function redirectToPackagePage(regular, mid, lux, s_lux) {
         default:
             alert("Unknown package");
     }
+}
+*/
+
+
+const regular = localStorage.getItem("Regular");
+const mid = localStorage.getItem("MID");
+const lux = localStorage.getItem("LuxValue");
+const s_lux = localStorage.getItem("SuperLux");
+
+document.addEventListener("DOMContentLoaded",function (){
+
+    $(document).ready(function() {
+
+        $("#AdminButton").on("click", function() {
+            event.preventDefault();
+            logingCustomer();
+        });
+
+    });
+});
+
+//storage save
+
+
+$(document).ready(function () {
+    $("#loginForm").on("submit", function (event) {
+        event.preventDefault();
+        logingCustomer();
+    });
+});
+
+function logingCustomer() {
+    var loginUNameInput = $("#username").val();
+    var loginPasswordInput = $("#password").val();
+
+    var tokenKey;
+    var roleMap = {
+        "1": "regular_p.html",
+        "2": "Mid-level_package.html",
+        "3": "Luxury.html",
+        "4": "Super-Luxury-Package.html"
+    };
+
+    // Retrieve the selected role from local storage
+    var selectedRole = localStorage.getItem("SelectedPackage");
+
+    switch (selectedRole) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+            tokenKey = "USERToken";
+            break;
+        default:
+            return swal("Unknown role. Please check your credentials.");
+    }
+
+    var token = localStorage.getItem(tokenKey);
+
+    $.ajax({
+        url: "http://localhost:8080/api/v1/userApi/getUserByUserName?username=" + loginUNameInput + "&password=" + loginPasswordInput, // Adjust the URL to your login endpoint
+        method: "GET",
+
+        headers: {
+            "Authorization": "Bearer " + JSON.stringify(localStorage.getItem("userAuthToken"))
+        },
+        success: function (res) {
+            if (res.data.authenticated && res.data.userRole === "user") {
+                localStorage.setItem("userDetails",JSON.stringify(res.data))
+                swal("Success" + res.data.role);
+                var destination = roleMap[selectedRole];
+                if (destination) {
+                    window.location.href = destination;
+                }
+            } else {
+                swal("Bad Credentials!!!!");
+            }
+        },
+        error: function (error) {
+            return swal("An error occurred while authenticating with the server");
+        }
+    });
 }
