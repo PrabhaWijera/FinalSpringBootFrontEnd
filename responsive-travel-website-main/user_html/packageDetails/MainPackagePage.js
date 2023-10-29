@@ -169,6 +169,7 @@ function OnSavePackageDetails() {
 */
 
 $(document).ready(function() {
+
     // Attach the click event handler to the "bookingPackageBtn"
     $("#bookingPackageBtn").on("click", function() {
         OnSavePackageDetails();

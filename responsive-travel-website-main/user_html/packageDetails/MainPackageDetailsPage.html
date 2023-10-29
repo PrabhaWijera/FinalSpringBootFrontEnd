@@ -29,7 +29,7 @@
 <header class="header" id="header">
     <nav class="nav container">
 
-        <a href="../../index.html" class="nav__logo">Next Travel</a>
+        <a href="../../index.html" class="nav__logo"  style="color: #0dcaf0">Next Travel</a>
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
                 <li class="nav__item">
@@ -230,7 +230,7 @@
                         <!-- Profile Picture (for traveler identification) -->
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary" id="bookingPackageBtn">Book Travel</button>
+                            <button type="submit" class="btn btn-primary" id="bookingPackageBtn" style="font-weight: bold">Book Travel 🔖</button>
                         </div>
                         </div>
                     </form>
@@ -251,12 +251,27 @@
                                     <input type="password" class="form-control" style="font-size: 14px">
                                 </div>
                             </div>
-                            <div class="card-number form-group">
+                            <div class="card-number form-group" >
                                 <h3 style="font-size: 14px">Card Number</h3>
                                 <div class="input-field">
                                     <input type="text" class="form-control" style="font-size: 14px">
                                 </div>
+                            </div >
+                            <hr style="background-color: black; width: 700px">
+
+                            <div class="container">
+                                <div class="row">
+                                    <span style="font-weight: bolder; color: red; font-size: 25px" >OR</span>
+                                    <br>
+                                    <span>Back Payment-Receipt</span>
+                                    <div class="form-group col-sm-10 text-center">
+                                        <label class="form-label commonText" for="PayIMG"></label>
+                                        <input class="form-control" id="PayIMG" type="file" accept="image/*" style="width: 475px">
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
                         <div class="col-sm-6">
                             <h3 style="font-size: 14px">Expiration Date</h3>
@@ -275,6 +290,7 @@
                                     <option value="Nov">Nov</option>
                                     <option value="Dec">Dec</option>
                                 </select>
+                                <br>
                                 <select name="years" id="years" class="form-control" style="font-size: 14px">
                                     <option value="2020">2020</option>
                                     <option value="2019">2019</option>
@@ -292,9 +308,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 text-center">
-                            <a href="" class="btn btn-primary" style="background-color: #007aff; font-size: 14px">Confirm</a>
+                        <div class="col-sm-12 text-center" id="conformedPaymentBTN">
+                            <a href="" class="btn btn-primary" style="background-color: #007aff; font-size: 16px;font-weight: bold">Confirm 💲</a>
                         </div>
+
                     </div>
                 </div>
 
@@ -304,7 +321,8 @@
 </div>
 
 
-
+<br>
+<br>
 <footer class="footer section" id="footy">
     <div class="footer__container container grid">
         <div class="footer__content grid">
@@ -390,5 +408,7 @@
 
 
 <script src="MainPackagePage.js"></script>
+
+
 </body>
 </html>
