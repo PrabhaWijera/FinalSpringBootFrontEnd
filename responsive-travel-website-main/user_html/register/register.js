@@ -15,7 +15,7 @@ $(document).ready(function () {
 
             if (imageArray.length === fileInputIds.length) {
                 const roly="user";
-                const ID = $("#userid").val();
+
                 const user_name = $("#name").val();
                 const phoneNumber = $("#contactNumber").val();
                 const n_name = $("#nname").val();
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                 const data = {
                     userRole:roly,
-                    userId: ID,
+
                     name: n_name,
                     userName: user_name,
                     userPassword: pas_word,
