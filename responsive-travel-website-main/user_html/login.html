@@ -6,16 +6,15 @@
 	<title>NEXT TRAVEL | Login</title>
 
 	<!-- Link to jQuery and other external resources -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="../assets/css/swiper-bundle.min.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Mono&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="../assets/css/styles.css">
+
 	<script src="https://kit.fontawesome.com/58e618022f.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-
 	<!-- Custom CSS -->
 	<style>
 		#footy {
@@ -31,9 +30,9 @@
 	<div class="container h-100">
 		<div class="row justify-content-md-center h-100">
 			<div class="card-wrapper">
-				<a href="../index.html">
+				<a href="index.html">
 					<div class="brand">
-						<img src="../assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
+						<img src="assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
 					</div>
 				</a>
 				<div class="card fat">
@@ -67,11 +66,11 @@
 								</div>
 							</div>
 
-							<div class="form-group m-0">
-								<button type="submit" class="btn btn-primary btn-block" id="loginButton">Login</button>
-							</div>
+
+							<!--         <button id="sr" type="submit" class="btn btn-primary btn-block" >Login</button>-->
+
 							<div class="mt-4 text-center">
-								Don't have an account? <a href="register.html">Create One</a>
+								Don't have an account? <a href="user_html/register.html">Create One</a>
 							</div>
 						</form>
 					</div>
@@ -80,85 +79,61 @@
 		</div>
 	</div>
 </section>
+<button id="sr">SEND REQUEST.</button>
+<script>
 
-<footer class="footer section " id="footy">
-	<div class="footer__container container grid">
-		<div class="footer__content grid">
-			<div class="footer__data">
-				<h3 class="footer__title">Travel</h3>
-				<p class="footer__description">Travel you choose the destination, we offer you the experience.</p>
-				<div>
-					<a href="https://www.facebook.com/" target="_blank" class="footer__social">
-						<i class="ri-facebook-box-fill"></i>
-					</a>
-					<a href="https://twitter.com/" target="_blank" class="footer__social">
-						<i class="ri-twitter-fill"></i>
-					</a>
-					<a href="https://www.instagram.com/" target="_blank" class="footer__social">
-						<i class="ri-instagram-fill"></i>
-					</a>
-					<a href="https://www.youtube.com/" target="_blank" class="footer__social">
-						<i class="ri-youtube-fill"></i>
-					</a>
-				</div>
-			</div>
-			<div class="footer__data">
-				<h3 class="footer__subtitle">About</h3>
-				<ul>
-					<li class="footer__item">
-						<a href="" class="footer__link">About Us</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">Features</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">New & Blog</a>
-					</li>
-				</ul>
-			</div>
-			<div class="footer__data">
-				<h3 class="footer__subtitle">Company</h3>
-				<ul>
-					<li class="footer__item">
-						<a href="" class="footer__link">Team</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">Plan y Pricing</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">Become a member</a>
-					</li>
-				</ul>
-			</div>
-			<div class="footer__data">
-				<h3 class="footer__subtitle">Support</h3>
-				<ul>
-					<li class="footer__item">
-						<a href="" class="footer__link">FAQs</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">Support Center</a>
-					</li>
-					<li class="footer__item">
-						<a href="" class="footer__link">Contact Us</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer__rights">
-			<p class="footer__copy">&#169;  2023. Prabhash Wijerathna All rights reserved.</p>
-			<div class="footer__terms">
-				<a href="#" class="footer__terms-link">Terms & Agreements</a>
-				<a href="#" class="footer__terms-link">Privacy Policy</a>
-			</div>
-		</div>
-	</div>
-</footer>
 
-<!-- Load JavaScript at the end of the page -->
-<script src="login.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	$("#sr").on("click",()=>{
+
+
+
+		$.ajax({
+			url : "http://localhost:8080/api/v1/userApi/getUserByUserName?username="+$("#username").val()+"&password="+$("#password").val(),
+			method : "GET",
+			headers : {
+				Authorization: "Bearer " + JSON.parse(localStorage.getItem("userAuthToken"))
+			},
+			success : (res)=>{
+				console.log(res)
+				swal("Success"+res.data.role);
+				swal("Success"+res.data.isAuthenticated);
+
+				if (res.statusCode === 200 || res.statusCode === 0|| res.statusCode === 500 ){
+					let package = JSON.parse(localStorage.getItem("packageName"))
+
+					switch (package) {
+						case "regular":
+							window.location.href = 'regular_p.html';
+							break;
+						case "mid":
+							window.location.href = 'Mid-level_package.html';
+							break;
+						case "luxury":
+							window.location.href = 'Luxury.html';
+							break;
+						case "superLux":
+							window.location.href = 'Super-Luxury-Package.html';
+							break;
+
+					}
+				} else {
+					swal("Bad Credentials!!!!");
+				}
+			},
+			error : (er)=>{
+				console.log("An error occurred !"+er.responseJSON.message)
+				alert("success");
+
+			}
+
+
+
+		})
+
+	})
+
+
+</script>
+
 </body>
 </html>

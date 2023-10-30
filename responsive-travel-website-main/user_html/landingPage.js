@@ -3,7 +3,7 @@ $("#button1,#button2,#button3,#button4").on("click",(event)=>{
     if(!JSON.parse(localStorage.getItem("userAuthToken"))){
         event.preventDefault();
         console.log("sufbfbofbesf");
-        return window.location.href = "../LoginPage.html";
+        return window.location.href = 'loginPage.html';
 
     }
 
