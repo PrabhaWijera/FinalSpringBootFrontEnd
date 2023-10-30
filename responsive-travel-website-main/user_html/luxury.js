@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
     $("#button3").on("click", function () {
         const luxValue = $(this).data("lux");
@@ -10,3 +11,4 @@ alert(luxValue);
         }
     });
 });
+*/

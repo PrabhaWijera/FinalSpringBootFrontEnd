@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
     $("#button1").on("click", function () {
         const regularValue = $(this).data("reg");
@@ -13,3 +14,4 @@ $(document).ready(function () {
 
 
 
+*/

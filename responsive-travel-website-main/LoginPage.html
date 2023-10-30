@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://kit.fontawesome.com/58e618022f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <style>
+    #footy {
+      background: url("assets/img/footer-1084348019.jpg");
+      width: 100%;
+      margin-bottom: 0; /* This pushes the footer to the bottom */
+    }
+  </style>
+</head>
+<body class="my-login-page">
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-md-center h-100">
+      <div class="card-wrapper">
+        <a href="index.html">
+          <div class="brand">
+            <img src="assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
+          </div>
+        </a>
+        <div class="card fat">
+          <div class="card-body">
+            <h4 class="card-title">Login</h4>
+            <form method="POST" class="my-login-validation" novalidate>
+              <div class="form-group">
+                <label for="username">UserName</label>
+                <input id="username" type="email" class="form-control" name="username" required autofocus>
+                <div class="invalid-feedback">
+                  User Name is invalid
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password
+                  <a href="forgot.html" class="float-right">
+                    Forgot Password?
+                  </a>
+                </label>
+                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                <div class="invalid-feedback">
+                  Password is required
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="custom-checkbox custom-control">
+                  <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                  <label for="remember" class="custom-control-label">Remember Me</label>
+                </div>
+              </div>
+
+              <div class="form-group m-0">
+                <button type="submit" class="btn btn-primary btn-block" id="">Login</button>
+              </div>
+              <div class="mt-4 text-center">
+                Don't have an account? <a href="user_html/register.html">Create One</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<button id="sr">SEND REQUEST.</button>
+<script>
+
+
+    $("#sr").on("click",()=>{
+
+
+
+      $.ajax({
+      url : "http://localhost:8080/api/v1/userApi/getUserByUserName?username="+$("#username").val()+"&password="+$("#password").val(),
+      method : "GET",
+      headers : {
+        Authorization: "Bearer " + JSON.parse(localStorage.getItem("userAuthToken"))
+
+
+      },
+      success : (res)=>{
+        console.log(res)
+        swal("Success"+res.data.role);
+        swal("Success"+res.data.authenticated);
+
+        if (res.statusCode === 200 || res.statusCode === 0|| res.statusCode === 500 ){
+            let package = JSON.parse(localStorage.getItem("packageName"))
+
+          switch (package) {
+            case "regular":
+              window.location.href = 'user_html/regular_p.html';
+              break;
+            case "mid":
+              window.location.href = 'user_html/Mid-level_package.html';
+              break;
+            case "luxury":
+              window.location.href = 'user_html/Luxury.html';
+              break;
+            case "superLux":
+              window.location.href = 'user_html/Super-Luxury-Package.html';
+              break;
+
+          }
+        } else {
+          swal("Bad Credentials!!!!");
+        }
+      },
+      error : (er)=>{
+        console.log("An error occurred !"+er.responseJSON.message)
+        alert("success");
+
+      }
+
+
+
+    })
+
+  })
+
+
+</script>
+
+</body>
+</html>

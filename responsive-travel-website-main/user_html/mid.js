@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
     $("#button2").on("click", function () {
         const midValue = $(this).data("mid");
@@ -10,3 +11,4 @@ alert(midValue);
         }
     });
 });
+*/

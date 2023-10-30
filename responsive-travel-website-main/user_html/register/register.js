@@ -4,6 +4,7 @@ $(document).ready(function () {
         CustomerRegister();
     });
 
+
     function CustomerRegister() {
         alert("gya");
         const imageArray = [];
@@ -49,7 +50,7 @@ $(document).ready(function () {
                     success: function (response) {
                         console.log(response);
 
-                        if (response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 0) {
+                        if (response.statusCode === 200 || response.statusCode === 201 || response.statusCode === 500 || response.statusCode === 500) {
                             swal("Save successful");
                             localStorage.setItem("userAuthToken", JSON.stringify(response.data));
 
