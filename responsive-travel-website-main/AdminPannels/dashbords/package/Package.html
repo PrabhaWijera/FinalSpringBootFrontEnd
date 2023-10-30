@@ -94,20 +94,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="userid">Package ID</label>
-                                    <input class="form-control" id="userid" placeholder="e.g., 2001" type="text" >
+                                    <label class="form-label commonText" for="id">Package ID</label>
+                                    <input class="form-control" id="id" placeholder="e.g., P001" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="Name">Package Category</label>
-                                    <input class="form-control" id="Name" placeholder="e.g., Smith" type="text">
+                                    <label class="form-label commonText" for ="category">Package Category</label>
+                                    <input class="form-control" id="category" placeholder=" " type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="userName">Vehicle Category</label>
-                                    <input class="form-control" id="userName" placeholder="e.g., John" type="text">
+                                    <label class="form-label commonText" for ="VehicleCT">Vehicle Category</label>
+                                    <input class="form-control" id="VehicleCT" placeholder=" " type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="usernic">Hotel Category</label>
-                                    <input class="form-control" id="usernic" placeholder="2001235468v" type="text">
+                                    <label class="form-label commonText" for ="hotelCT">Hotel Category</label>
+                                    <input class="form-control" id="hotelCT" placeholder=" " type="text">
                                 </div>
 
 
@@ -116,7 +116,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="cusAddButton" type="button" >Add</button>
+                        <button class="btn btn-primary" id="AddButton" type="button" >Add</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
                     </div>
                 </div>
@@ -146,20 +146,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label commonText" for="uuserid">Package ID</label>
-                                    <input class="form-control" id="uuserid" placeholder="2001" type="text" >
+                                    <label class="form-label commonText" for="uuid">Package ID</label>
+                                    <input class="form-control" id="uuid" placeholder="2001" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="uuserName">Package Category</label>
-                                    <input class="form-control" id="uuserName" placeholder="e.g., John" type="text">
+                                    <label class="form-label commonText" for ="uusercate">Package Category</label>
+                                    <input class="form-control" id="uusercate" placeholder="e.g., John" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="uName">Vehicle Category</label>
-                                    <input class="form-control" id="uName" placeholder="e.g., Smith" type="text">
+                                    <label class="form-label commonText" for ="uvehi">Vehicle Category</label>
+                                    <input class="form-control" id="uvehi" placeholder="e.g., Smith" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label commonText" for ="uusernic">Hotel Category</label>
-                                    <input class="form-control" id="uusernic" placeholder="2001235468v" type="text">
+                                    <label class="form-label commonText" for ="uuhotel">Hotel Category</label>
+                                    <input class="form-control" id="uuhotel" placeholder="2001235468v" type="text">
                                 </div>
 
 
@@ -181,7 +181,7 @@
         <button class="btn btn-danger " data-aos="zoom-in-up" data-bs-target="#deletehotelModal"
                 data-bs-toggle="modal"
                 id="deleteCustomerButton" type="button" style="margin-right: 10px">
-            Delete a Customer.
+            Delete a Package.
         </button>
         <!-- Button trigger modal for deleting a Guide - End. -->
         <!-- Delete Guide Modal - Start. -->
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger" id="Cusdelete" type="button" >Delete.</button>
+                        <button class="btn btn-danger" id="Pdelete" type="button" >Delete.</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close.</button>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
         </div>
         <!-- Delete Guide Modal - End. -->
         <!-- Button trigger modal for getting all Guide- Start. -->
-        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllCustomersButton" type="button" >Get all Guide.
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllButton" type="button" >Get all Guide.
         </button>
 
         <!-- Button trigger modal for getting all Guide- End. -->
@@ -244,6 +244,6 @@
 
 </main>
 </body>
-
+<script src="package.js"></script>
 
 </html>
