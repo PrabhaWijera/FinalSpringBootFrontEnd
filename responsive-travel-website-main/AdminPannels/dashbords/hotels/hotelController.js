@@ -1,11 +1,13 @@
 swal("Welcome To Hotel Panel 🛎️");
 localStorage.setItem("HToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbDIwMDEiLCJpYXQiOjE2OTgyMTczMjMsImV4cCI6NDg1MTgxNzMyM30.wHic2oKFfSTxMqLKMbV96Z9bnYgdyE_EaacnOGG2Lz8"));
+localStorage.setItem("PKG_TK",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfUEFDS0FHRSIsInN1YiI6InBhY2thZ2UyMDAxIiwiaWF0IjoxNjk4MjE4MTgzLCJleHAiOjQ4NTE4MTgxODN9.M4bzixa7mGlo-mmyhasByViBgMooTU_t5T4YvAyzmh0"));
 
 localStorage.setItem("PKG_ADMIN_TKN",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IlBBQ0tBR0VfREVUQUlMUyIsInN1YiI6InBhY2thZ2VEZXRhaWxzYWRtaW4yMDAxIiwiaWF0IjoxNjk4NDY3MjQyLCJleHAiOjQ4NTIwNjcyNDJ9.iJmDyxXpcXihXCGqjv0S13WaFEku7zE_XQBr6LMKXXU"));
 
 // Check if the document is ready
 $(document).ready(function() {
-    getAllPackagesID();
+    getPackagesIDs();
+    getPackagesCategory();
 
     // Attach the click event handler to the "payAddButton"
     $("#hotelAddButton").on("click", function() {
@@ -29,6 +31,19 @@ $(document).ready(function() {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(document).on("mouseleave","#hName",()=>{
     getCoordinates();
 });
@@ -36,17 +51,15 @@ $(document).on("mouseleave","#hName",()=>{
 
 // get packageIDs
 
-function getAllPackagesID() {
-
+function getPackagesIDs() {
     $.ajax({
-        url: 'http://localhost:8084/api/v1/packageDetals/allIDs',
+        url: 'http://localhost:8081/api/v1/package_server/P_getAll',
         method: 'GET',
-        dataType: 'json',
         headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_ADMIN_TKN"))
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
         },
-        success: (res) => {
-            if (!res.data) {
+        success: function (res) {
+            if (!res || !res.data || res.data.length === 0) {
                 // Handle the case when no data is found
                 swal("OOPS!", "No data found!", "error");
             } else {
@@ -55,25 +68,60 @@ function getAllPackagesID() {
                 const selectElement = $("#pId");
                 selectElement.empty(); // Clear the existing options
 
-                const selectElement2 = $("#upId");
-                selectElement2.empty(); // Clear the existing options
-                res.data.forEach((package) => {
-                    let option = $("<option>");
-                    option.attr("value", package.packageID);
-                    option.text(package.packageID);
+                const selectElement1 = $("#upId");
+                selectElement1.empty(); // Clear the existing options
 
-                    selectElement.append(option);
-                    selectElement2.append(option);
+                res.data.forEach(function (pk) {
+                    let option = $("<option>");
+                    option.attr("value", pk.package_id);
+                    option.text(pk.package_id);
+
+                    selectElement.append(option.clone()); // Use .clone() to create a new option
+                    selectElement1.append(option.clone());
                 });
             }
         },
-        error: function (err) {
-            console.error("Error fetching package IDs:", err);
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
         }
     });
 }
 
+function getPackagesCategory() {
+    $.ajax({
+        url: 'http://localhost:8081/api/v1/package_server/P_getAll',
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
+        },
+        success: function (res) {
+            if (!res || !res.data || res.data.length === 0) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
 
+                const selectElement = $("#packgwCategory");
+                selectElement.empty(); // Clear the existing options
+
+                const selectElement1 = $("#upackgwCategory");
+                selectElement1.empty(); // Clear the existing options
+
+                res.data.forEach(function (pk) {
+                    let option = $("<option>");
+                    option.attr("value", pk.packageCategory);
+                    option.text(pk.packageCategory);
+
+                    selectElement.append(option.clone()); // Use .clone() to create a new option
+                    selectElement1.append(option.clone());
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
+        }
+    });
+}
 
 
 
@@ -141,7 +189,7 @@ function saveImage(){
 
 
         }, error: (xhr, textStatus, errorThrown) => {
-            swal("OOPS!", "Server threw an exception : " + xhr.responseJSON.message, "error");
+            swal("OOPS!", "Server threw an exception : ");
         }
     });
 
@@ -166,7 +214,7 @@ function OnSaveHotel() {
     let HallDfee = $("#HalfBoardDoublehotelFee").val();
     let FullTfee = $("#FullBoardTriplehotelFee").val();
     let HallTfee = $("#HalfBoardTriplehotelFee").val();
-    let hfee = $("#hotelsFees").val();
+/*    let hfee = $("#hotelsFees").val();*/
     let cncelling = $("#CancellationCriteria").val();
     let remak = $("#remark").val();
 
@@ -189,7 +237,7 @@ function OnSaveHotel() {
         halfBoardWithACLuxuryRoomDouble:HallDfee,
         fullBoardWithACLuxuryRoomTriple:FullTfee,
         halfBoardWithACLuxuryRoomTriple:HallTfee,
-        hotelFee:hfee,
+ /*       hotelFee:hfee,*/
         cancellationCriteria:cncelling,
         remarks:remak
 
@@ -251,7 +299,7 @@ function OnUpdateHotel() {
     let HallDfee = $("#uHalfBoardDoublehotelFee").val();
     let FullTfee = $("#uFullBoardTriplehotelFee").val();
     let HallTfee = $("#uHalfBoardTriplehotelFee").val();
-    let hfee = $("#uhotelsFees").val();
+/*    let hfee = $("#uhotelsFees").val();*/
     let cncelling = $("#uCancellationCriteria").val();
     let remak = $("#uremark").val();
 
@@ -274,7 +322,7 @@ function OnUpdateHotel() {
         halfBoardWithACLuxuryRoomDouble:HallDfee,
         fullBoardWithACLuxuryRoomTriple:FullTfee,
         halfBoardWithACLuxuryRoomTriple:HallTfee,
-        hotelFee:hfee,
+       /* hotelFee:hfee,*/
         cancellationCriteria:cncelling,
         remarks:remak
 
@@ -437,7 +485,7 @@ function populateFieldsWithRes(res) {
         $("#uHalfBoardDoublehotelFee").val(hotelData.halfBoardWithACLuxuryRoomDouble);
         $("#uFullBoardTriplehotelFee").val(hotelData.fullBoardWithACLuxuryRoomTriple);
         $("#uHalfBoardTriplehotelFee").val(hotelData.halfBoardWithACLuxuryRoomTriple);
-        $("#uhotelsFees").val(hotelData.hotelFee);
+     /*   $("#uhotelsFees").val(hotelData.hotelFee);*/
         $("#uCancellationCriteria").val(hotelData.cancellationCriteria);
         $("#uremark").val(hotelData.remarks);
     } else {
