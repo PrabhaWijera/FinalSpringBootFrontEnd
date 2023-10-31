@@ -1,12 +1,14 @@
 swal("Welcome To Vehicle Panel 🚕");
 localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
+localStorage.setItem("PKG_TK",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfUEFDS0FHRSIsInN1YiI6InBhY2thZ2UyMDAxIiwiaWF0IjoxNjk4MjE4MTgzLCJleHAiOjQ4NTE4MTgxODN9.M4bzixa7mGlo-mmyhasByViBgMooTU_t5T4YvAyzmh0"));
 
 localStorage.setItem("PKG_ADMIN_TKN",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IlBBQ0tBR0VfREVUQUlMUyIsInN1YiI6InBhY2thZ2VEZXRhaWxzYWRtaW4yMDAxIiwiaWF0IjoxNjk4NDY3MjQyLCJleHAiOjQ4NTIwNjcyNDJ9.iJmDyxXpcXihXCGqjv0S13WaFEku7zE_XQBr6LMKXXU"));
 
 
 
 $(document).ready(function() {
-    getAllPackagesID();
+    getPackagesIDs();
+    getPackagesCategory();
     // Attach the click event handler to the "payAddButton"
     $("#vehiAddButton").on("click", function() {
         OnSaveVehicle();
@@ -35,6 +37,8 @@ $(document).ready(function() {
 // only package ID
 
 
+
+/*
 function getAllPackagesID() {
 
     $.ajax({
@@ -72,6 +76,84 @@ function getAllPackagesID() {
         }
     });
 }
+*/
+
+
+
+function getPackagesIDs() {
+    $.ajax({
+        url: 'http://localhost:8081/api/v1/package_server/P_getAll',
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
+        },
+        success: function (res) {
+            if (!res || !res.data || res.data.length === 0) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const selectElement = $("#packageid");
+                selectElement.empty(); // Clear the existing options
+
+                const selectElement1 = $("#upackageid");
+                selectElement1.empty(); // Clear the existing options
+
+                res.data.forEach(function (pk) {
+                    let option = $("<option>");
+                    option.attr("value", pk.package_id);
+                    option.text(pk.package_id);
+
+                    selectElement.append(option.clone()); // Use .clone() to create a new option
+                    selectElement1.append(option.clone());
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
+        }
+    });
+}
+
+
+function getPackagesCategory() {
+    $.ajax({
+        url: 'http://localhost:8081/api/v1/package_server/P_getAll',
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
+        },
+        success: function (res) {
+            if (!res || !res.data || res.data.length === 0) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const selectElement = $("#packgwCategory");
+                selectElement.empty(); // Clear the existing options
+
+                const selectElement1 = $("#upackgwCategory");
+                selectElement1.empty(); // Clear the existing options
+
+                res.data.forEach(function (pk) {
+                    let option = $("<option>");
+                    option.attr("value", pk.packageCategory);
+                    option.text(pk.packageCategory);
+
+                    selectElement.append(option.clone()); // Use .clone() to create a new option
+                    selectElement1.append(option.clone());
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
+        }
+    });
+}
+
+
 
 
 
