@@ -8,13 +8,14 @@ $(document).ready(function () {
     function CustomerRegister() {
         alert("gya");
         const imageArray = [];
-        const fileInputIds = ["#userNic_Photo"];
+        const fileInputIds = ["#userNic_Photo","#NIC_Photo"];
 
         function handleImageSave(data) {
             imageArray.push(data);
 
             if (imageArray.length === fileInputIds.length) {
                 const roly="user";
+                const id="001";
 
                 const user_name = $("#name").val();
                 const phoneNumber = $("#contactNumber").val();
@@ -26,10 +27,11 @@ $(document).ready(function () {
                 const A_dress = $("#address").val();
                 const E_mail = $("#email").val();
                 const IMG_user = imageArray[0];
+                const NIC_user = imageArray[1];
 
                 const data = {
                     userRole:roly,
-
+                    userId:id,
                     name: n_name,
                     userName: user_name,
                     userPassword: pas_word,
@@ -40,6 +42,7 @@ $(document).ready(function () {
                     userPhone: phoneNumber,
                     userAddress: A_dress,
                     userImageLocation: IMG_user,
+                    userNICImageLocation: NIC_user,
                 };
 
                 $.ajax({

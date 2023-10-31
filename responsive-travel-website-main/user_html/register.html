@@ -47,42 +47,47 @@
 						<img src="../assets/Travel%20App%20or%20Website%20Logo.png" alt="bootstrap 4 login page" style="width: 250px; display: block; margin: 0 auto;">
 					</div>
 				</a>
-				<div class="card fat">
-					<div class="card-body">
-						<h4 class="card-title">Register</h4>
-
-							<div class="row">
-								<!-- First Row -->
-								<div class="col-md-6">
-
-									<div class="form-group">
-										<label for="name">User-Name</label>
-										<input id="name" type="text" class="form-control" name="user_name" required autofocus>
-										<div class="invalid-feedback">
-											What's your User-name?
-										</div>
-
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="contactNumber">Contact Number</label>
-										<input id="contactNumber" type="text" class="form-control" name="contactNumber" required>
-										<div class="invalid-feedback">
-											Enter your contact number
-										</div>
-									</div>
-
-									<label for="nname">Name</label>
-									<input id="nname" type="text" class="form-control" name="nuser_name" required autofocus>
-									<div class="invalid-feedback">
-										What's your Name?
-									</div>
-								</div>
-
+				<div class="row">
+					<!-- First Row -->
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="name">User-Name</label>
+							<input id="name" type="text" class="form-control" name="user_name" required autofocus>
+							<div class="invalid-feedback">
+								What's your User-name?
 							</div>
-							<div class="row">
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="contactNumber">Contact Number</label>
+							<input id="contactNumber" type="text" class="form-control" name="contactNumber" required>
+							<div class="invalid-feedback">
+								Enter your contact number
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<label for="nname">Name</label>
+						<input id="nname" type="text" class="form-control" name="nuser_name" required autofocus>
+						<div class="invalid-feedback">
+							What's your Name?
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="NIC_Photo">NIC Photo</label>
+							<input type="file" id="NIC_Photo" class="form-control" name="photo" accept="image/*" required>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
 								<!-- Second Row -->
 								<div class="col-md-6">
 									<div class="form-group">
@@ -92,6 +97,7 @@
 											Enter your NIC number
 										</div>
 									</div>
+
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -131,7 +137,10 @@
 									</div>
 									<div class="form-group">
 										<label for="address">Address</label>
-										<input id="address" type="number" class="form-control" name="address" required>
+										<input id="address" type="text" class="form-control" name="address" required autofocus>
+										<div class="invalid-feedback">
+											What's your User-name?
+										</div>
 									</div>
 								</div>
 								<div class="col-md-6">
