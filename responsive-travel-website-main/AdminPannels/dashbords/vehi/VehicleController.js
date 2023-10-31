@@ -287,7 +287,7 @@ function OnSaveVehicle() {
                 conNumber:contact,
                 driverlicenseImg:driverLiImg,
                 remarks:remark,
-                package_id:pId
+                packageId:pId
             };
             // Retrieve the JWT token from localStorage
             let token = localStorage.getItem("VToken");

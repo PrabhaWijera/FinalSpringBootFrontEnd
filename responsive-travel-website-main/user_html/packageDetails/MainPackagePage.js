@@ -319,6 +319,7 @@ function toggleGuideNameDiv() {
 
 function OnSavePackageDetails() {
     // Retrieve form data
+    let pkDetailsID = "p00214";
     let start_Date = $("#startDate").val();
     let end_Date = $("#endDate").val();
     let Package_category = $("#packageCategory").val();
@@ -334,6 +335,7 @@ function OnSavePackageDetails() {
 
     // Create an object to store the data
     const data = {
+        packageDetailsID:pkDetailsID,
         startDuration: start_Date,
         endDuration: end_Date,
         packageCategory: Package_category,
