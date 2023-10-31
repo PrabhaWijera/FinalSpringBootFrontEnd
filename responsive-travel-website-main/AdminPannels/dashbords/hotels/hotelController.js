@@ -202,6 +202,7 @@ function OnSaveHotel() {
     let name = $("#hName").val();
     let str = $("#starRate").val();
     let pId = $("#pId").val();
+    console.log(pId);
     let cate = $("#hCategory").val();
     let address = $("#hAddress").val();
     let cordinate = $("#hcordinate").val();
@@ -224,7 +225,7 @@ function OnSaveHotel() {
         hotelId:HID,
         hotelName:name,
         stars:str,
-        packageID:pId,
+        packageId:pId,
         hotelCategory:cate,
         hotelLocation:address,
         hotelLocationWithCoordinates:cordinate,

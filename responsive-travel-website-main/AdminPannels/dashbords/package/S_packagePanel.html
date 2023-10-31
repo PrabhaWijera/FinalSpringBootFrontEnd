@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Package Panel</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" crossorigin="anonymous" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- External Scripts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../../../favicon.ico" alt="Logo" style="width: 30px; height: 30px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active navBarText fs-5 text-white" href="#" id="homeButton">NEXT-TRAVEL.-User Manage Panel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navBarText fs-5 text-white" data-aos="zoom-in" href="../../index.html" id="logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<main class="container mt-sm-4">
+
+    <!-- Customer Manager - Start -->
+    <div class="buttonContainer">
+        <!-- Button trigger modal for adding a customer - Start -->
+        <button class="btn btn-primary" data-aos="zoom-in-up" data-bs-target="#addCustomerModal" data-bs-toggle="modal" id="addCustomerButton" type="button" style="margin-right: 10px">
+            Add a Package.
+        </button>
+        <!-- Button trigger modal for adding a customer - End -->
+
+        <!-- Add Customer Modal - Start -->
+        <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Package.</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- First Row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="id" class="form-label commonText">Package ID</label>
+                                    <input type="text" id="id" class="form-control" placeholder="e.g., P001">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category" class="form-label commonText">Package Category</label>
+                                    <input type="text" id="category" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="VehicleCT" class="form-label commonText">Vehicle Category</label>
+                                    <input type="text" id="VehicleCT" class="form-control" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hotelCT" class="form-label commonText">Hotel Category</label>
+                                    <input type="text" id="hotelCT" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="AddButton" class="btn btn-primary">Add</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Customer Modal - End -->
+
+        <!-- Button trigger modal for updating a customer - Start -->
+        <button class="btn btn-success" data-aos="zoom-in-up" data-bs-target="#updateCustomerModal" data-bs-toggle="modal" id="updateCustomerButton" type="button" style="margin-right: 10px">
+            Update & Search 🔎 a Package.
+        </button>
+        <!-- Button trigger modal for updating a customer - End -->
+
+        <!-- Update Customer Modal - Start -->
+        <div class="modal fade" id="updateCustomerModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 commonText">Enter details of the Package!</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- First Row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="uuid" class="form-label commonText">Package ID</label>
+                                    <input type="text" id="uuid" class="form-control" placeholder="2001">
+                                </div>
+                                <div class="form-group">
+                                    <label for="uusercate" class="form-label commonText">Package Category</label>
+                                    <input type="text" id="uusercate" class="form-control" placeholder="e.g., John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="uvehi" class="form-label commonText">Vehicle Category</label>
+                                    <input type="text" id="uvehi" class="form-control" placeholder="e.g., Smith">
+                                </div>
+                                <div class="form-group">
+                                    <label for="uuhotel" class="form-label commonText">Hotel Category</label>
+                                    <input type="text" id="uuhotel" class="form-control" placeholder="2001235468v">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="UpdateButton" class="btn btn-primary">Update</button>
+                        <button type="button" id="SearchButton" class="btn btn-primary">Search</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Update Customer Modal - End -->
+
+        <!-- Button trigger modal for deleting a customer - Start -->
+        <button class="btn btn-danger" data-aos="zoom-in-up" data-bs-target="#deletehotelModal" data-bs-toggle="modal" id="deleteCustomerButton" type="button" style="margin-right: 10px">
+            Delete a Package.
+        </button>
+        <!-- Button trigger modal for deleting a customer - End -->
+
+        <!-- Delete Customer Modal - Start -->
+        <div class="modal fade" id="deletehotelModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 commonText">Enter PackageID of the Package!.</h1>
+                        <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="cusID" class="form-label commonText" id="dc">Package ID.</label>
+                            <input type="text" id="cusID" class="form-control" placeholder="2001">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="Pdelete" class="btn btn-danger">Delete</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delete Customer Modal - End -->
+
+        <!-- Button to get all Guide - Start -->
+        <button class="btn btn-dark" data-aos="zoom-in-up" id="getAllButton" type="button">Get all Guide.</button>
+        <!-- Button to get all Guide - End -->
+
+    </div>
+    <br>
+
+    <!-- Table for Guide - Start -->
+    <table class="table table-hover table-dark table-striped p-3" data-aos="zoom-in" id="customerTable">
+        <thead>
+        <tr>
+            <th scope="col" class="p-3" style="font-size: 12px;">Package ID</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Package Category</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Vehicle Category</th>
+            <th scope="col" class="p-3" style="font-size: 12px;">Hotel Category</th>
+        </tr>
+        </thead>
+        <tbody class="table table-hover table-info table-striped p-3" id="tbody">
+        <!-- Add your table data here -->
+        </tbody>
+    </table>
+</main>
+
+
+
+
+
+</body>
+<script src="package.js"></script>
+</html>
