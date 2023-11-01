@@ -350,6 +350,26 @@ $(document).ready(function() {
                 $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomTriple + "'>" + "Half Board With AC Luxury Room Triple  : " + h.halfBoardWithACLuxuryRoomTriple + " LKR.</option>");
 
             }
+// vehicle price ekath hdnn combo box ,
+// hotel price ithuru tikath add krnn
+
+        })
+
+    });
+    $("#hotelList").change(function() {
+        var selectedValue = $(this).val(); // Get the selected value
+        console.log('selectedvalue : ',selectedValue)
+
+        let hd= JSON.parse(localStorage.getItem("hd"))
+        hd.forEach((h)=>{
+            if(h.hotelName === selectedValue){
+                $("#roomType").empty();
+                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomDouble + "'>" + "Full Board With AC Luxury Room Double  : " + h.fullBoardWithACLuxuryRoomDouble + " LKR.</option>");
+                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomDouble + "'>" + "Half Board With AC Luxury Room Double  : " + h.halfBoardWithACLuxuryRoomDouble + " LKR.</option>");
+                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomTriple + "'>" + "Full Board With AC Luxury Room Triple  : " + h.fullBoardWithACLuxuryRoomTriple + " LKR.</option>");
+                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomTriple + "'>" + "Half Board With AC Luxury Room Triple  : " + h.halfBoardWithACLuxuryRoomTriple + " LKR.</option>");
+
+            }
 
 // vehicle price ekath hdnn combo box ,
 // hotel price ithuru tikath add krnn
