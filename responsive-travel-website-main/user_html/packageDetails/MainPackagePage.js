@@ -345,9 +345,9 @@ $(document).ready(function() {
             if(h.hotelName === selectedValue){
                 $("#roomType").empty();
                 $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomDouble + "'>" + "Full Board With AC Luxury Room Double  : " + h.fullBoardWithACLuxuryRoomDouble + " LKR.</option>");
-
-
-
+                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomDouble + "'>" + "Half Board With AC Luxury Room Double  : " + h.halfBoardWithACLuxuryRoomDouble + " LKR.</option>");
+                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomTriple + "'>" + "Full Board With AC Luxury Room Triple  : " + h.fullBoardWithACLuxuryRoomTriple + " LKR.</option>");
+                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomTriple + "'>" + "Half Board With AC Luxury Room Triple  : " + h.halfBoardWithACLuxuryRoomTriple + " LKR.</option>");
 
             }
 
