@@ -197,7 +197,7 @@ function handleRequestError(error) {
 
 
 //get rooms types with values
-function getHotelRoomTypesWithValues(){
+/*function getHotelRoomTypesWithValues(){
 
     $.ajax({
         url: "http://localhost:8083/api/v1/hotel/getAllHotels",
@@ -218,7 +218,7 @@ function getHotelRoomTypesWithValues(){
 
                 res.data.forEach((hotels) => {
 
-                 /*   let option = $("<option>");
+                 /!*   let option = $("<option>");
                     option.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
                     option.text("fullBoardWithACLuxuryRoomDouble:"+hotels.fullBoardWithACLuxuryRoomDouble,hotels.fullBoardWithACLuxuryRoomDouble);
                     option.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
@@ -228,7 +228,7 @@ function getHotelRoomTypesWithValues(){
                     option.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
                     option.text("halfBoardWithACLuxuryRoomTriple:"+hotels.halfBoardWithACLuxuryRoomTriple,hotels.halfBoardWithACLuxuryRoomTriple);
 
-                    selectElement.append(option);*/
+                    selectElement.append(option);*!/
 
 
 
@@ -259,7 +259,7 @@ function getHotelRoomTypesWithValues(){
             console.error('Error fetching data from the server', error);
         }
     });
-}
+}*/
 
 
 //get  destination only
@@ -335,6 +335,34 @@ function getHotel(){
     });
 }
 
+$(document).ready(function (){
+    let start_Date = $("#startDate").val();
+    let end_Date = $("#endDate").val();
+
+// Convert the date strings to Date objects
+    let startDate = new Date(start_Date);
+    let endDate = new Date(end_Date);
+
+// Calculate the time difference in milliseconds
+    let timeDifference = endDate - startDate;
+
+// Convert the time difference to days
+    let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+// Now, totalDays contains the total number of days between the two dates
+    console.log("Total Days: " + totalDays);
+
+    $('#roomType').on("change", () => {
+        let hotelPrice = parseFloat($("#roomType").val()) * totalDays;
+        let servicePrice = hotelPrice * 5 / 100;
+
+        $("#hotelPrice").val(hotelPrice);
+        $("#searvicePrice").val(servicePrice);
+    });
+
+
+});
+
 $(document).ready(function() {
     $("#hotelList").change(function() {
         var selectedValue = $(this).val(); // Get the selected value
@@ -356,26 +384,17 @@ $(document).ready(function() {
         })
 
     });
-    $("#hotelList").change(function() {
-        var selectedValue = $(this).val(); // Get the selected value
-        console.log('selectedvalue : ',selectedValue)
+    $("#vehicleList").change(function() {
+        var selectedValue1 = $(this).val(); // Get the selected value
+        console.log('selectedvalue1 : ',selectedValue1)
 
-        let hd= JSON.parse(localStorage.getItem("hd"))
-        hd.forEach((h)=>{
-            if(h.hotelName === selectedValue){
-                $("#roomType").empty();
-                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomDouble + "'>" + "Full Board With AC Luxury Room Double  : " + h.fullBoardWithACLuxuryRoomDouble + " LKR.</option>");
-                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomDouble + "'>" + "Half Board With AC Luxury Room Double  : " + h.halfBoardWithACLuxuryRoomDouble + " LKR.</option>");
-                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomTriple + "'>" + "Full Board With AC Luxury Room Triple  : " + h.fullBoardWithACLuxuryRoomTriple + " LKR.</option>");
-                $("#roomType").append("<option value='" + h.halfBoardWithACLuxuryRoomTriple + "'>" + "Half Board With AC Luxury Room Triple  : " + h.halfBoardWithACLuxuryRoomTriple + " LKR.</option>");
+        let vh= JSON.parse(localStorage.getItem("vh"))
+        vh.forEach((v)=>{
+            if(v.vehicleName === selectedValue1){
+                $("#vehiType").empty();
+                $("#vehiType").append("<option value='" + v.fee_forDay+ "'>" + "Fee for Day Vehicel  : " + v.fee_forDay + " LKR.</option>");
 
             }
-
-// vehicle price ekath hdnn combo box ,
-// hotel price ithuru tikath add krnn
-
-
-
 
         })
 
@@ -401,7 +420,7 @@ function getVehicle(){
 
                 const selectElement = $("#vehicleList");
                 selectElement.empty(); // Clear the existing options
-
+                localStorage.setItem("vh",JSON.stringify(res.data))
                 res.data.forEach((vehicle) => {
                     let option = $("<option>");
                     option.attr("value", vehicle.vehicleName);

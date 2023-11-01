@@ -245,7 +245,12 @@
                                     <input id="vehiclePrice" type="text" class="form-control" name="totalPrice" required disabled>
                                 </div>
                             </div>
-
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="searvicePrice">Service Charge:</label>
+                                    <input id="searvicePrice" type="text" class="form-control" name="searvicePrice" required disabled>
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="totalPrice">Total Price:</label>
@@ -274,26 +279,26 @@
                             <div class="owner form-group">
                                 <h3 style="font-size: 14px">Owner</h3>
                                 <div class="input-field">
-                                    <input type="text" class="form-control" style="font-size: 14px">
+                                    <input id="OwnerFullName" type="text" class="form-control" style="font-size: 14px">
                                 </div>
                             </div>
                             <div class="cvv form-group">
-                                <h3 style="font-size: 14px">CVV</h3>
+                                <h3 style="font-size: 14px">Owner Email</h3>
                                 <div class="input-field">
-                                    <input type="password" class="form-control" style="font-size: 14px">
+                                    <input id="OwnerEmail"  type="text" class="form-control" style="font-size: 14px">
                                 </div>
                             </div>
                             <div class="card-number form-group" >
                                 <h3 style="font-size: 14px">Card Number</h3>
                                 <div class="input-field">
-                                    <input type="text" class="form-control" style="font-size: 14px">
+                                    <input id="OwnerCardNumber" type="text" class="form-control" style="font-size: 14px">
                                 </div>
                                 <br>
                                 <br>
                                 <div class="owner form-group">
                                     <h3 style="font-size: 14px">Amount</h3>
                                     <div class="input-field">
-                                        <input type="text" class="form-control" style="font-size: 14px">
+                                        <input id="amountofPackage" type="text" class="form-control" style="font-size: 14px">
                                     </div>
                                 </div>
                                 <br>
@@ -317,29 +322,12 @@
                         <div class="col-sm-6">
                             <h3 style="font-size: 14px">Expiration Date</h3>
                             <div class="form-group">
-                                <select name="months" id="months" class="form-control" style="font-size: 14px">
-                                    <option value="Jan">Jan</option>
-                                    <option value="Feb">Feb</option>
-                                    <option value="Mar">Mar</option>
-                                    <option value="Apr">Apr</option>
-                                    <option value="May">May</option>
-                                    <option value="Jun">Jun</option>
-                                    <option value="Jul">Jul</option>
-                                    <option value="Aug">Aug</option>
-                                    <option value="Sep">Sep</option>
-                                    <option value="Oct">Oct</option>
-                                    <option value="Nov">Nov</option>
-                                    <option value="Dec">Dec</option>
-                                </select>
-                                <br>
-                                <select name="years" id="years" class="form-control" style="font-size: 14px">
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                </select>
+                                <div class="owner form-group">
+                                    <h3 style="font-size: 14px">Payment Date : </h3>
+                                    <div class="input-field">
+                                        <input id="paymentDate" type="text" class="form-control" style="font-size: 14px">
+                                    </div>
+                                </div>
                             </div>
                             <div class="cards">
                                 <img src="assets/mc.png" alt="" style="max-width: 30px;">

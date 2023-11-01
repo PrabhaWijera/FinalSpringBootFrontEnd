@@ -255,6 +255,8 @@ function OnSaveVehicle() {
             const ID = $("#vId").val();
             const brand = $("#vbrand").val();
             const category = $("#category").val();
+            const fee_for_day =$("#feeforday").val();
+
             const vehiclename = $("#vname").val();
             const fultype = $("#fueltype").val();
             const fuluse = $("#fuelusage").val();
@@ -270,10 +272,14 @@ function OnSaveVehicle() {
             const  pId = $("#packageid").val();
             const  pCtegory = $("#packgwCategory").val();
 
+            localStorage.setItem("FeeFORDAY",JSON.stringify(fee_for_day));
+
+
 
             // Create an object to store the data
             const data = {
                 vehicleID:ID,
+                fee_forDay:fee_for_day,
                 vehicleBrand:brand,
                 packageCategory:pCtegory,
                 packageId:pId,
@@ -292,7 +298,9 @@ function OnSaveVehicle() {
                 remarks:remark,
 
 
+
             };
+
             // Retrieve the JWT token from localStorage
             let token = localStorage.getItem("VToken");
             console.log(token)
@@ -324,7 +332,7 @@ function OnSaveVehicle() {
 
                     }
                 })
-            },2000);
+            },1000);
 
         }
     }
