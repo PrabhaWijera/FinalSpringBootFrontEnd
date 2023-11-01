@@ -334,34 +334,124 @@ function getHotel(){
         }
     });
 }
+$(document).ready(function () {
+    // Define variables to hold the prices
+    var servicePrice = 0;
+    var vehiclePrice = 0;
+    var guidePrice = 0;
 
-$(document).ready(function (){
+    // Event handler for room type change
+    $('#roomType').on("change", () => {
+        let hotelPrice = parseFloat($("#roomType").val()) * totalDays;
+        servicePrice = hotelPrice * 5 / 100;
+
+        $("#hotelPrice").val(hotelPrice);
+        $("#servicePrice").val(servicePrice);
+
+        updateTotalPrice();
+    });
+
+    // Event handler for vehicle type change
+    $('#vehiType').on("change", () => {
+        vehiclePrice = parseFloat($("#vehiType").val()) * totalDays;
+
+        $("#vehiclePrice").val(vehiclePrice);
+
+        updateTotalPrice();
+    });
+
+    // Event handler for guide service price change
+    $('#manday').on("change", () => {
+        guidePrice = parseFloat($("#manday").val()) * totalDays;
+
+        $("#mandayPrice").val(guidePrice);
+
+        updateTotalPrice();
+    });
+
+    // Function to update the total price
+    function updateTotalPrice() {
+        var total = servicePrice + vehiclePrice + guidePrice;
+        $("#totalPrice").val(total);
+    }
+
+    // Retrieve start and end dates
     let start_Date = $("#startDate").val();
     let end_Date = $("#endDate").val();
 
-// Convert the date strings to Date objects
+    // Convert the date strings to Date objects
     let startDate = new Date(start_Date);
     let endDate = new Date(end_Date);
 
-// Calculate the time difference in milliseconds
+    // Calculate the time difference in milliseconds
     let timeDifference = endDate - startDate;
 
-// Convert the time difference to days
+    // Convert the time difference to days
     let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-// Now, totalDays contains the total number of days between the two dates
+    // Now, totalDays contains the total number of days between the two dates
     console.log("Total Days: " + totalDays);
 
+    // Initial calculations for prices based on default values
+    $('#roomType').change(); // Trigger the roomType change event
+    $('#vehiType').change(); // Trigger the vehiType change event
+    $('#manday').change();   // Trigger the manday change event
+});
+
+/*$(document).ready(function (){
+
+    var allTOTAL= servicePrice + vehiclePrice +guidePrice;
+
+    // Retrieve start and end dates
+    let start_Date = $("#startDate").val();
+    let end_Date = $("#endDate").val();
+
+    // Convert the date strings to Date objects
+    let startDate = new Date(start_Date);
+    let endDate = new Date(end_Date);
+
+    // Calculate the time difference in milliseconds
+    let timeDifference = endDate - startDate;
+
+    // Convert the time difference to days
+    let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    // Now, totalDays contains the total number of days between the two dates
+    console.log("Total Days: " + totalDays);
+
+    // Event handler for room type change
     $('#roomType').on("change", () => {
         let hotelPrice = parseFloat($("#roomType").val()) * totalDays;
-        let servicePrice = hotelPrice * 5 / 100;
+        var servicePrice = hotelPrice * 5 / 100;
 
         $("#hotelPrice").val(hotelPrice);
         $("#searvicePrice").val(servicePrice);
     });
 
+    // Event handler for vehicle type change
+    $('#vehiType').on("change", () => {
+        var vehiclePrice = parseFloat($("#vehiType").val()) * totalDays;
+        // Calculate service price (5% of vehicle price)
 
-});
+
+        $("#vehiclePrice").val(vehiclePrice);
+
+    });
+
+    // Event handler for guide service price change
+    $('#manday').on("change", () => {
+        var guidePrice = parseFloat($("#manday").val()) * totalDays;
+        // Calculate service price (5% of guide service price)
+
+
+        $("#mandayPrice").val(guidePrice);
+
+    });
+
+
+
+});*/
+
 
 $(document).ready(function() {
     $("#hotelList").change(function() {

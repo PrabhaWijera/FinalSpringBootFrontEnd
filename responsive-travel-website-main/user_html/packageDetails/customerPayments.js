@@ -238,6 +238,9 @@ function sendEmail() {
         $.ajax({
             url: 'http://localhost:8093/api/v1/emails/sendPackageDetails',
             type: 'POST',
+            headers : {
+                Authorization: "Bearer " + JSON.parse(localStorage.getItem("userAuthToken"))
+            },
             success: function (data) {
                 swal("SUCCESSFULLY!!! Conformed Payment");
             },
