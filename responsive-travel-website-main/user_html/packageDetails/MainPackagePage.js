@@ -19,7 +19,7 @@ $(document).ready(function() {
     $("#bookingPackageBtn").on("click", function() {
         OnSavePackageDetails();
     });
-    getGuides
+
     // Attach the change event handler to the "needGuide" select
     $("#needGuide").on("change", toggleGuideNameDiv);
     // Call the toggleGuideNameDiv function to handle initial visibility
@@ -37,11 +37,6 @@ $(document).ready(function() {
 
 
 
-    $("#hotelList").on("click", function() {
-        getHotelRoomTypesWithValues();
-
-
-    });
 
     $("#startDate").on("click", function() {
 
@@ -154,6 +149,8 @@ function packageLoader(pID) {
 
 }
 
+
+
 function handleRequestError(error) {
     console.error('Error fetching data from the server', error);
     // You can show an appropriate error message or take other actions here.
@@ -232,6 +229,9 @@ function getHotelRoomTypesWithValues(){
                     option.text("halfBoardWithACLuxuryRoomTriple:"+hotels.halfBoardWithACLuxuryRoomTriple,hotels.halfBoardWithACLuxuryRoomTriple);
 
                     selectElement.append(option);*/
+
+
+
 
                     // Create a new option element for each value
                     let option1 = $("<option>");
@@ -314,16 +314,18 @@ function getHotel(){
                 swal("OOPS!", "No data found!", "error");
             } else {
                 console.log("Response data:", res.data);
+                localStorage.setItem("hd",JSON.stringify(res.data))
 
                 const selectElement = $("#hotelList");
                 selectElement.empty(); // Clear the existing options
 
                 res.data.forEach((hotels) => {
-                    let option = $("<option>");
+                   /* let option = $("<option>");
                     option.attr("value", hotels.hotelName);
                     option.text(hotels.hotelName);
 
-                    selectElement.append(option);
+                    selectElement.append(option);*/
+                    $('#hotelList').append('<option value="' + hotels.hotelId + '" hotelId="' + hotels.hotelId + '">' + hotels.hotelName + ' +</option>');
                 });
             }
         },
@@ -333,6 +335,32 @@ function getHotel(){
     });
 }
 
+$(document).ready(function() {
+    $("#hotelList").change(function() {
+        var selectedValue = $(this).val(); // Get the selected value
+        console.log('selectedvalue : ',selectedValue)
+
+       let hd= JSON.parse(localStorage.getItem("hd"))
+        hd.forEach((h)=>{
+            if(h.hotelName === selectedValue){
+                $("#roomType").empty();
+                $("#roomType").append("<option value='" + h.fullBoardWithACLuxuryRoomDouble + "'>" + "Full Board With AC Luxury Room Double  : " + h.fullBoardWithACLuxuryRoomDouble + " LKR.</option>");
+
+
+
+
+            }
+
+// vehicle price ekath hdnn combo box ,
+// hotel price ithuru tikath add krnn
+
+
+
+
+        })
+
+    });
+});
 
 
 //get  vehicle  only
