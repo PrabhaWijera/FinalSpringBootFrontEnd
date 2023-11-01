@@ -26,7 +26,7 @@ $(document).ready(function() {
 
 $(document).ready(function (){
     $('#SearchButton').on('click', function () {
-        const P_ID = $('#cusID').val().trim();
+        const P_ID = $('#uuid').val().trim();
         if (P_ID) {
             fetchGuideByID(P_ID);
         } else {

@@ -1,44 +1,200 @@
-
 localStorage.setItem("PKG_ADMIN_TKN",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IlBBQ0tBR0VfREVUQUlMUyIsInN1YiI6InBhY2thZ2VEZXRhaWxzYWRtaW4yMDAxIiwiaWF0IjoxNjk4NDY3MjQyLCJleHAiOjQ4NTIwNjcyNDJ9.iJmDyxXpcXihXCGqjv0S13WaFEku7zE_XQBr6LMKXXU"));
 localStorage.setItem("GToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfR1VJREUiLCJzdWIiOiJhZG1pbmd1aWRlMjAwMSIsImlhdCI6MTY5ODIxNjUwOCwiZXhwIjo0ODUxODE2NTA4fQ.hQqMDON3iG7ANAOS45k064KfmpdgqOXpZ2T7bgIBFJ4"));
 localStorage.setItem("HToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfSE9URUwiLCJzdWIiOiJob3RlbDIwMDEiLCJpYXQiOjE2OTgyMTczMjMsImV4cCI6NDg1MTgxNzMyM30.wHic2oKFfSTxMqLKMbV96Z9bnYgdyE_EaacnOGG2Lz8"));
 localStorage.setItem("VToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfVkVISUNMRSIsInN1YiI6InZlaGkyMDAxIiwiaWF0IjoxNjk4MjE3ODY0LCJleHAiOjQ4NTE4MTc4NjR9.XdlpJELspG2kIHotbtx9WTmywt03QSV1qwoLigO6kKE"));
+localStorage.setItem("PKG_TK",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfUEFDS0FHRSIsInN1YiI6InBhY2thZ2UyMDAxIiwiaWF0IjoxNjk4MjE4MTgzLCJleHAiOjQ4NTE4MTgxODN9.M4bzixa7mGlo-mmyhasByViBgMooTU_t5T4YvAyzmh0"));
 
 
 
+var pID="";
+var pc="";
 
 $(document).ready(function() {
+
+    getHotel();
+    getHotelDestinations();
+    getVehicle();
 
     // Attach the click event handler to the "bookingPackageBtn"
     $("#bookingPackageBtn").on("click", function() {
         OnSavePackageDetails();
     });
-
+    getGuides
     // Attach the change event handler to the "needGuide" select
     $("#needGuide").on("change", toggleGuideNameDiv);
     // Call the toggleGuideNameDiv function to handle initial visibility
     toggleGuideNameDiv();
 
+
+    $("#needGuide").on("input", function() {
+        getGuides();
+    });
     $("#numAdults, #numChildren").on("input", function() {
         countAdultsAndChildren();
     });
 
-    $("#needGuide").on("click", function() {
-          getGuides();
+
+
+
+
+    $("#hotelList").on("click", function() {
+        getHotelRoomTypesWithValues();
+
+
     });
 
     $("#startDate").on("click", function() {
-        getVehicle();
-        getHotel();
-        getHotelDestinations();
-        getHotelRoomTypesWithValues();
+
     });
+    if (JSON.parse(localStorage.getItem("packageName")) === "regular"){
+        pID="P001";
+        pc="regular";
+        return packageLoader(pID);
+    }
+    if (JSON.parse(localStorage.getItem("packageName")) === "mid"){
+        pID="P002";
+        pc="mid";
+        return packageLoader(pID);
+    }
+    if (JSON.parse(localStorage.getItem("packageName")) === "luxury"){
+        pID="P003";
+        pc="luxury";
+        return packageLoader(pID);
+    }
+    if (JSON.parse(localStorage.getItem("packageName")) === "superLux"){
+        pID="P004";
+        pc="superLux";
+        return packageLoader(pID);
+    }
+
+
 });
 
 
 
+/*$(document).ready(function () {
+    $("#hotelCategory option[value='" + res.data.hotelCategory + "']").remove();
+    $("#hotelCategory").append("<option value='" + res.data.hotelCategory + "'>" + res.data.hotelCategory + "</option>");
+    $("#hotelCategory option[value='" + res.data.hotelCategory + "']").attr('selected', 'selected');
+});*/
 
 
+function packageLoader(pID) {
+    $.ajax({
+        url: "http://localhost:8083/api/v1/hotel/getHotelByPackageId?packageId=" + pID,
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
+        },
+        success: function (response) {
+            if (response.statusCode === 200 || response.statusCode === 201) {
+                // Clear the existing options
+                const selectElement = $("#hotelList");
+                selectElement.empty();
+
+                swal("get successful");
+                console.log(response+"response");
+                localStorage.setItem("hotelData", JSON.stringify(response.data.data));
+
+                response.data.forEach((hotel) => {
+                    let option = $("<option>");
+                    option.attr("value", hotel.hotelName);
+                    console.log(hotel.hotelName+"response");
+                    option.text(hotel.hotelName);
+
+
+                    selectElement.append(option);
+
+                });
+            } else {
+                // Handle the response from the server here if needed
+            }
+        },
+        error: function (error) {
+            handleRequestError(error);
+        }
+    });
+
+
+    $.ajax({
+        url: "http://localhost:8082/api/v1/vehicles/getVehiclesByPackageId?packageId=" + pID,
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("VToken"))
+        },
+        success: function (response) {
+            if (response.statusCode === 200 || response.statusCode === 201) {
+                // Clear the existing options
+                const selectElement = $("#vehicleList");
+                selectElement.empty();
+
+                swal("get successful");
+                console.log(response+"response");
+                localStorage.setItem("vehicleData", JSON.stringify(response.data.data));
+
+                response.data.forEach((vehi) => {
+                    let option = $("<option>");
+                    option.attr("value", vehi.vehicleName);
+                    console.log(vehi.vehicleName+"response");
+                    option.text(vehi.vehicleName);
+                    selectElement.append(option);
+                });
+            } else {
+                // Handle the response from the server here if needed
+            }
+        },
+        error: function (error) {
+            handleRequestError(error);
+        }
+    });
+
+
+
+}
+
+function handleRequestError(error) {
+    console.error('Error fetching data from the server', error);
+    // You can show an appropriate error message or take other actions here.
+}
+
+
+
+/*function getPackkagesTypes(){
+
+    $.ajax({
+        url: "http://localhost:8081/api/v1/package_server/P_getAll",
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
+        },
+        success: (res) => {
+            if (!res.data) {
+                // Handle the case when no data is found
+                swal("OOPS!", "No data found!", "error");
+            } else {
+                console.log("Response data:", res.data);
+
+                const selectElement = $("#packageCategory");
+                selectElement.empty(); // Clear the existing options
+
+                res.data.forEach((Packages) => {
+
+
+                    let option = $("<option>");
+                    option.attr("value", Packages.packageCategory);
+                    option.text(Packages.packageCategory);
+
+                    selectElement.append(option);
+                });
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data from the server', error);
+        }
+    });
+}*/
 
 
 
@@ -59,21 +215,43 @@ function getHotelRoomTypesWithValues(){
             } else {
                 console.log("Response data:", res.data);
 
-                const selectElement = $("#selectRoomType");
+                const selectElement = $("#roomType");
                 selectElement.empty(); // Clear the existing options
 
-                res.data.forEach((hotels) => {
-                    let option = $("<option>");
-                    option.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
-                    option.text(hotels.fullBoardWithACLuxuryRoomDouble);
-                    option.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
-                    option.text(hotels.halfBoardWithACLuxuryRoomDouble);
-                    option.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
-                    option.text(hotels.fullBoardWithACLuxuryRoomTriple);
-                    option.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
-                    option.text(hotels.halfBoardWithACLuxuryRoomTriple);
 
-                    selectElement.append(option);
+                res.data.forEach((hotels) => {
+
+                 /*   let option = $("<option>");
+                    option.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
+                    option.text("fullBoardWithACLuxuryRoomDouble:"+hotels.fullBoardWithACLuxuryRoomDouble,hotels.fullBoardWithACLuxuryRoomDouble);
+                    option.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
+                    option.text("halfBoardWithACLuxuryRoomDouble:"+hotels.halfBoardWithACLuxuryRoomDouble,hotels.halfBoardWithACLuxuryRoomDouble);
+                    option.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
+                    option.text("fullBoardWithACLuxuryRoomTriple: "+hotels.fullBoardWithACLuxuryRoomTriple,hotels.fullBoardWithACLuxuryRoomTriple);
+                    option.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
+                    option.text("halfBoardWithACLuxuryRoomTriple:"+hotels.halfBoardWithACLuxuryRoomTriple,hotels.halfBoardWithACLuxuryRoomTriple);
+
+                    selectElement.append(option);*/
+
+                    // Create a new option element for each value
+                    let option1 = $("<option>");
+                    option1.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
+                    option1.text("fullBoardWithACLuxuryRoomDouble: " + hotels.fullBoardWithACLuxuryRoomDouble);
+
+                    let option2 = $("<option>");
+                    option2.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
+                    option2.text("halfBoardWithACLuxuryRoomDouble: " + hotels.halfBoardWithACLuxuryRoomDouble);
+
+                    let option3 = $("<option>");
+                    option3.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
+                    option3.text("fullBoardWithACLuxuryRoomTriple: " + hotels.fullBoardWithACLuxuryRoomTriple);
+
+                    let option4 = $("<option>");
+                    option4.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
+                    option4.text("halfBoardWithACLuxuryRoomTriple: " + hotels.halfBoardWithACLuxuryRoomTriple);
+
+                    // Append all options to the select element
+                    selectElement.append(option1, option2, option3, option4);
                 });
             }
         },
@@ -101,7 +279,7 @@ function getHotelDestinations(){
             } else {
                 console.log("Response data:", res.data);
 
-                const selectElement = $("#packageCategory");
+                const selectElement = $("#hotelLocations");
                 selectElement.empty(); // Clear the existing options
 
                 res.data.forEach((hotels) => {

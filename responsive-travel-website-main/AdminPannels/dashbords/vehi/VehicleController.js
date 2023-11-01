@@ -268,12 +268,15 @@ function OnSaveVehicle() {
             const  remark = $("#vremark").val();
             const  contact = $("#conNumber").val();
             const  pId = $("#packageid").val();
+            const  pCtegory = $("#packgwCategory").val();
 
 
             // Create an object to store the data
             const data = {
                 vehicleID:ID,
                 vehicleBrand:brand,
+                packageCategory:pCtegory,
+                packageId:pId,
                 vehicleCategory:category,
                 vehicleName:vehiclename,
                 fuelType:fultype,
@@ -287,7 +290,8 @@ function OnSaveVehicle() {
                 conNumber:contact,
                 driverlicenseImg:driverLiImg,
                 remarks:remark,
-                package_id:pId
+
+
             };
             // Retrieve the JWT token from localStorage
             let token = localStorage.getItem("VToken");
