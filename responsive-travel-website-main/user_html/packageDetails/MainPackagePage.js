@@ -67,11 +67,72 @@ $(document).ready(function() {
 
 
 
-/*$(document).ready(function () {
-    $("#hotelCategory option[value='" + res.data.hotelCategory + "']").remove();
-    $("#hotelCategory").append("<option value='" + res.data.hotelCategory + "'>" + res.data.hotelCategory + "</option>");
-    $("#hotelCategory option[value='" + res.data.hotelCategory + "']").attr('selected', 'selected');
-});*/
+$(document).ready(function () {
+    // Define variables to hold the prices
+    var servicePrice = 0;
+    var vehiclePrice = 0;
+    var guidePrice = 0;
+
+    // Event handler for room type change
+    $('#roomType').on("change", () => {
+        let roomTypeValue = parseFloat($("#roomType").val());
+        if (!isNaN(roomTypeValue)) {
+            let hotelPrice = roomTypeValue * totalDays;
+            servicePrice = hotelPrice * 5 / 100;
+            $("#hotelPrice").val(hotelPrice);
+            $("#servicePrice").val(servicePrice);
+            updateTotalPrice();
+        }
+    });
+
+    // Event handler for vehicle type change
+    $('#vehiType').on("change", () => {
+        let vehiTypeValue = parseFloat($("#vehiType").val());
+        if (!isNaN(vehiTypeValue)) {
+            vehiclePrice = vehiTypeValue * totalDays;
+            $("#vehiclePrice").val(vehiclePrice);
+            updateTotalPrice();
+        }
+    });
+
+    // Event handler for guide service price change
+    $('#manday').on("change", () => {
+        let mandayValue = parseFloat($("#manday").val());
+        if (!isNaN(mandayValue)) {
+            guidePrice = mandayValue * totalDays;
+            $("#servicePrice").val(guidePrice);
+            updateTotalPrice();
+        }
+    });
+
+    // Function to update the total price
+    function updateTotalPrice() {
+        var total = servicePrice + vehiclePrice + guidePrice;
+        $("#totalPrice").val(total);
+    }
+
+    // Retrieve start and end dates
+    let start_Date = $("#startDate").val();
+    let end_Date = $("#endDate").val();
+
+    // Convert the date strings to Date objects
+    let startDate = new Date(start_Date);
+    let endDate = new Date(end_Date);
+
+    // Calculate the time difference in milliseconds
+    let timeDifference = endDate - startDate;
+
+    // Convert the time difference to days
+    let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    // Now, totalDays contains the total number of days between the two dates
+    console.log("Total Days: " + totalDays);
+
+    // Initial calculations for prices based on default values
+    $('#roomType').change(); // Trigger the roomType change event
+    $('#vehiType').change(); // Trigger the vehiType change event
+    $('#manday').change();   // Trigger the manday change event
+});
 
 
 function packageLoader(pID) {
@@ -334,71 +395,7 @@ function getHotel(){
         }
     });
 }
-$(document).ready(function () {
-    // Define variables to hold the prices
-    var servicePrice = 0;
-    var vehiclePrice = 0;
-    var guidePrice = 0;
 
-    // Event handler for room type change
-    $('#roomType').on("change", () => {
-        let hotelPrice = parseFloat($("#roomType").val()) * totalDays;
-        servicePrice = hotelPrice * 5 / 100;
-
-        $("#hotelPrice").val(hotelPrice);
-        $("#servicePrice").val(servicePrice);
-
-        updateTotalPrice();
-    });
-
-    // Event handler for vehicle type change
-    $('#vehiType').on("change", () => {
-        vehiclePrice = parseFloat($("#vehiType").val()) * totalDays;
-
-        $("#vehiclePrice").val(vehiclePrice);
-
-        updateTotalPrice();
-    });
-
-    // Event handler for guide service price change
-    $('#manday').on("change", () => {
-        guidePrice = parseFloat($("#manday").val()) * totalDays;
-
-
-
-        $("#mandayPrice").val(guidePrice);
-
-        updateTotalPrice();
-    });
-
-    // Function to update the total price
-    function updateTotalPrice() {
-        var total = servicePrice + vehiclePrice + guidePrice;
-        $("#totalPrice").val(total);
-    }
-
-    // Retrieve start and end dates
-    let start_Date = $("#startDate").val();
-    let end_Date = $("#endDate").val();
-
-    // Convert the date strings to Date objects
-    let startDate = new Date(start_Date);
-    let endDate = new Date(end_Date);
-
-    // Calculate the time difference in milliseconds
-    let timeDifference = endDate - startDate;
-
-    // Convert the time difference to days
-    let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-    // Now, totalDays contains the total number of days between the two dates
-    console.log("Total Days: " + totalDays);
-
-    // Initial calculations for prices based on default values
-    $('#roomType').change(); // Trigger the roomType change event
-    $('#vehiType').change(); // Trigger the vehiType change event
-    $('#manday').change();   // Trigger the manday change event
-});
 
 /*$(document).ready(function (){
 
@@ -578,9 +575,6 @@ function getGuides(){
                     option.attr("value", guide.guideName);
                     option.text(guide.guideName);
 
-
-
-
                     selectElement.append(option);
                 });
             }
@@ -592,61 +586,7 @@ function getGuides(){
 }
 
 
-// Calculate the total package value
-/*function calculatePackageTotal() {
-    const guideServicePrice = calculateGuideServicePrice();
-    const hotelCharges = calculateHotelCharges();
-    const vehicleCharges = calculateVehicleCharges();
 
-    if (guideServicePrice === null || hotelCharges === null || vehicleCharges === null) {
-        console.log("Invalid input. Please enter valid numbers.");
-        return;
-    }
-
-    const totalPackageValue = guideServicePrice + hotelCharges + vehicleCharges;
-    console.log("Total Package Value: $" + totalPackageValue);
-    return totalPackageValue;
-}
-
-function calculateGuideServicePrice() {
-    const startDay = parseInt($("#startDate").val()); // Assuming you have an input field for start day
-    const endDay = parseInt($("#endDate").val()); // Assuming you have an input field for end day
-
-    if (isNaN(startDay) || isNaN(endDay)) {
-        console.log("Invalid input for guide service days. Please enter valid numbers.");
-        return null;
-    }
-
-    const guideServicePrice = 1000 * (startDay + endDay);
-    return guideServicePrice;
-}
-
-function calculateHotelCharges() {
-    const perDayHotelFee = parseFloat($("#perDayHotelFee").val()); // Assuming you have an input field for per day hotel fee
-    const days = parseInt($("#hotelDays").val()); // Assuming you have an input field for the number of hotel days
-
-    if (isNaN(perDayHotelFee) || isNaN(days)) {
-        console.log("Invalid input for hotel charges. Please enter valid numbers.");
-        return null;
-    }
-
-
-    const hotelCharges = perDayHotelFee * days;
-    return hotelCharges;
-}
-
-function calculateVehicleCharges() {
-    const perDayVehicleFee = parseFloat($("#perDayVehicleFee").val()); // Assuming you have an input field for per day vehicle fee
-    const vehicleDays = parseInt($("#vehicleDays").val()); // Assuming you have an input field for the number of vehicle days
-
-    if (isNaN(perDayVehicleFee) || isNaN(vehicleDays)) {
-        console.log("Invalid input for vehicle charges. Please enter valid numbers.");
-        return null;
-    }
-
-    const vehicleCharges = perDayVehicleFee * vehicleDays;
-    return vehicleCharges;
-}*/
 
 
 // Count adults and children
