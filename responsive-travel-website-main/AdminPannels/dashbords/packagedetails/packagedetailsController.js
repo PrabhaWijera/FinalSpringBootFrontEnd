@@ -353,7 +353,7 @@ function getGuides(){
 
 
 // Calculate the total package value
-function calculatePackageTotal() {
+/*function calculatePackageTotal() {
 
     let guideServicePrice = parseFloat($("#manday").val());
 
@@ -369,7 +369,7 @@ function calculatePackageTotal() {
     let totalPackageValue = guideServicePrice + hotelCharges + vehicleCharges;
     console.log("Total Package Value: $" + totalPackageValue);
     return totalPackageValue;
-}
+}*/
 
 // Count adults and children
 function countAdultsAndChildren() {

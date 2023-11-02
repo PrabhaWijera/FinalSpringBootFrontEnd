@@ -78,9 +78,11 @@ $(document).ready(function () {
         let roomTypeValue = parseFloat($("#roomType").val());
         if (!isNaN(roomTypeValue)) {
             let hotelPrice = roomTypeValue * totalDays;
+            localStorage.setItem("hotelVL",JSON.stringify(hotelPrice));
             servicePrice = hotelPrice * 5 / 100;
             $("#hotelPrice").val(hotelPrice);
             $("#servicePrice").val(servicePrice);
+
             updateTotalPrice();
         }
     });
@@ -90,6 +92,7 @@ $(document).ready(function () {
         let vehiTypeValue = parseFloat($("#vehiType").val());
         if (!isNaN(vehiTypeValue)) {
             vehiclePrice = vehiTypeValue * totalDays;
+            localStorage.setItem("vehicleVL",JSON.stringify(vehiclePrice));
             $("#vehiclePrice").val(vehiclePrice);
             updateTotalPrice();
         }
@@ -100,6 +103,7 @@ $(document).ready(function () {
         let mandayValue = parseFloat($("#manday").val());
         if (!isNaN(mandayValue)) {
             guidePrice = mandayValue * totalDays;
+            localStorage.setItem("guideVL",JSON.stringify(guidePrice));
             $("#servicePrice").val(guidePrice);
             updateTotalPrice();
         }
@@ -108,12 +112,18 @@ $(document).ready(function () {
     // Function to update the total price
     function updateTotalPrice() {
         var total = servicePrice + vehiclePrice + guidePrice;
+        localStorage.setItem("ALL_TOT",JSON.stringify(total));
         $("#totalPrice").val(total);
+        alert(total+"total");
+        return total;
     }
 
     // Retrieve start and end dates
     let start_Date = $("#startDate").val();
+    alert("sDate"+start_Date);
+
     let end_Date = $("#endDate").val();
+    alert("sDate"+end_Date);
 
     // Convert the date strings to Date objects
     let startDate = new Date(start_Date);
@@ -219,108 +229,12 @@ function handleRequestError(error) {
 
 
 
-/*function getPackkagesTypes(){
-
-    $.ajax({
-        url: "http://localhost:8081/api/v1/package_server/P_getAll",
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("PKG_TK"))
-        },
-        success: (res) => {
-            if (!res.data) {
-                // Handle the case when no data is found
-                swal("OOPS!", "No data found!", "error");
-            } else {
-                console.log("Response data:", res.data);
-
-                const selectElement = $("#packageCategory");
-                selectElement.empty(); // Clear the existing options
-
-                res.data.forEach((Packages) => {
-
-
-                    let option = $("<option>");
-                    option.attr("value", Packages.packageCategory);
-                    option.text(Packages.packageCategory);
-
-                    selectElement.append(option);
-                });
-            }
-        },
-        error: function (error) {
-            console.error('Error fetching data from the server', error);
-        }
-    });
-}*/
 
 
 
 
-//get rooms types with values
-/*function getHotelRoomTypesWithValues(){
-
-    $.ajax({
-        url: "http://localhost:8083/api/v1/hotel/getAllHotels",
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer " + JSON.parse(localStorage.getItem("HToken"))
-        },
-        success: (res) => {
-            if (!res.data) {
-                // Handle the case when no data is found
-                swal("OOPS!", "No data found!", "error");
-            } else {
-                console.log("Response data:", res.data);
-
-                const selectElement = $("#roomType");
-                selectElement.empty(); // Clear the existing options
 
 
-                res.data.forEach((hotels) => {
-
-                 /!*   let option = $("<option>");
-                    option.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
-                    option.text("fullBoardWithACLuxuryRoomDouble:"+hotels.fullBoardWithACLuxuryRoomDouble,hotels.fullBoardWithACLuxuryRoomDouble);
-                    option.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
-                    option.text("halfBoardWithACLuxuryRoomDouble:"+hotels.halfBoardWithACLuxuryRoomDouble,hotels.halfBoardWithACLuxuryRoomDouble);
-                    option.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
-                    option.text("fullBoardWithACLuxuryRoomTriple: "+hotels.fullBoardWithACLuxuryRoomTriple,hotels.fullBoardWithACLuxuryRoomTriple);
-                    option.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
-                    option.text("halfBoardWithACLuxuryRoomTriple:"+hotels.halfBoardWithACLuxuryRoomTriple,hotels.halfBoardWithACLuxuryRoomTriple);
-
-                    selectElement.append(option);*!/
-
-
-
-
-                    // Create a new option element for each value
-                    let option1 = $("<option>");
-                    option1.attr("value", hotels.fullBoardWithACLuxuryRoomDouble);
-                    option1.text("fullBoardWithACLuxuryRoomDouble: " + hotels.fullBoardWithACLuxuryRoomDouble);
-
-                    let option2 = $("<option>");
-                    option2.attr("value", hotels.halfBoardWithACLuxuryRoomDouble);
-                    option2.text("halfBoardWithACLuxuryRoomDouble: " + hotels.halfBoardWithACLuxuryRoomDouble);
-
-                    let option3 = $("<option>");
-                    option3.attr("value", hotels.fullBoardWithACLuxuryRoomTriple);
-                    option3.text("fullBoardWithACLuxuryRoomTriple: " + hotels.fullBoardWithACLuxuryRoomTriple);
-
-                    let option4 = $("<option>");
-                    option4.attr("value", hotels.halfBoardWithACLuxuryRoomTriple);
-                    option4.text("halfBoardWithACLuxuryRoomTriple: " + hotels.halfBoardWithACLuxuryRoomTriple);
-
-                    // Append all options to the select element
-                    selectElement.append(option1, option2, option3, option4);
-                });
-            }
-        },
-        error: function (error) {
-            console.error('Error fetching data from the server', error);
-        }
-    });
-}*/
 
 
 //get  destination only
@@ -397,59 +311,7 @@ function getHotel(){
 }
 
 
-/*$(document).ready(function (){
 
-    var allTOTAL= servicePrice + vehiclePrice +guidePrice;
-
-    // Retrieve start and end dates
-    let start_Date = $("#startDate").val();
-    let end_Date = $("#endDate").val();
-
-    // Convert the date strings to Date objects
-    let startDate = new Date(start_Date);
-    let endDate = new Date(end_Date);
-
-    // Calculate the time difference in milliseconds
-    let timeDifference = endDate - startDate;
-
-    // Convert the time difference to days
-    let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
-    // Now, totalDays contains the total number of days between the two dates
-    console.log("Total Days: " + totalDays);
-
-    // Event handler for room type change
-    $('#roomType').on("change", () => {
-        let hotelPrice = parseFloat($("#roomType").val()) * totalDays;
-        var servicePrice = hotelPrice * 5 / 100;
-
-        $("#hotelPrice").val(hotelPrice);
-        $("#searvicePrice").val(servicePrice);
-    });
-
-    // Event handler for vehicle type change
-    $('#vehiType').on("change", () => {
-        var vehiclePrice = parseFloat($("#vehiType").val()) * totalDays;
-        // Calculate service price (5% of vehicle price)
-
-
-        $("#vehiclePrice").val(vehiclePrice);
-
-    });
-
-    // Event handler for guide service price change
-    $('#manday').on("change", () => {
-        var guidePrice = parseFloat($("#manday").val()) * totalDays;
-        // Calculate service price (5% of guide service price)
-
-
-        $("#mandayPrice").val(guidePrice);
-
-    });
-
-
-
-});*/
 
 
 $(document).ready(function() {
@@ -632,7 +494,7 @@ function OnSavePackageDetails() {
     let allowPets = $("#petstatus").val();
     let NeedGuide = $("#needGuide").val();
     let NameofGuide = $("#guidenames").val(); // Make sure this field is properly defined in your HTML
-    let TotalOfHotelVehicleGuide = calculatePackageTotal(); // Call the function to calculate the total package value
+    let TotalOfHotelVehicleGuide =localStorage.getItem("ALL_TOT");// Call the function to calculate the total package value
     let SpecialRequests = $("#specialremark").val();
 
     // Create an object to store the data
