@@ -1,3 +1,4 @@
+/*
 localStorage.setItem("PToken",JSON.stringify("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUm9sZSI6IkFfUEFZTUVOVCIsInN1YiI6InBheTIwMDEiLCJpYXQiOjE2OTgyMTc0NjcsImV4cCI6NDg1MTgxNzQ2N30.d91AdCqnITrzGbsMPvQNr0vYLDtmBocuvcBnep9hC-A"));
 
 
@@ -6,10 +7,10 @@ $("#conformedPaymentBTN").on("click", function() {
     OnSavePayment();
 });
 
-/*
+/!*
 
 
- /*
+ /!*
 
  function OnSaveGuide() {
     // Create an array to store the image data
@@ -95,7 +96,7 @@ $("#conformedPaymentBTN").on("click", function() {
 }
 
 
- */
+ *!/
 
 function OnSavePayment() {
     // Create an array to store the image data
@@ -156,10 +157,9 @@ function OnSavePayment() {
                     },
                     success: function (response) {
                         swal("res" + response);
-                        if (response.statusCode === 200 || response.statusCode === 201) {
                             swal("Save successful");
                             sendEmail();
-                        }
+
                         // You can handle the response from the server here if needed
                     },
                     error: function (xhr, textStatus, errorThrown) {
@@ -250,3 +250,4 @@ function sendEmail() {
         });
 
 }
+*/
