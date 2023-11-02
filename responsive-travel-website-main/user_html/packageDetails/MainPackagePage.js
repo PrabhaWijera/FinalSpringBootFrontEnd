@@ -134,7 +134,7 @@ $(document).ready(function () {
 
     // Convert the time difference to days
     let totalDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
+    localStorage.setItem("TTDAYS",JSON.stringify(totalDays));
     // Now, totalDays contains the total number of days between the two dates
     console.log("Total Days: " + totalDays);
 
@@ -457,7 +457,7 @@ function countAdultsAndChildren() {
     let childCount = parseInt($("#numChildren").val()) || 0; // Default to 0 if input is not a number
 
     let totalPeopleCount = adultCount + childCount;
-
+    localStorage.setItem("TOTPLP", JSON.stringify(totalPeopleCount));
     // Update the content of the "totalPeople" span with the calculated count
     $("#totalPeople").text(totalPeopleCount);
 
@@ -486,11 +486,12 @@ function OnSavePackageDetails() {
     let pkDetailsID = "p00214";
     let start_Date = $("#startDate").val();
     let end_Date = $("#endDate").val();
-    let Package_category = $("#packageCategory").val();
+    let noofDays =localStorage.getItem("TTDAYS");
+
     let area = $("#areaList").val();
     let No_ofAdults = parseInt($("#numAdults").val());
     let No_ofChild = parseInt($("#numChildren").val());
-    let totalOfHeadCount =  countAdultsAndChildren();
+    let totalOfHeadCount =  localStorage.getItem("TOTPLP");
     let allowPets = $("#petstatus").val();
     let NeedGuide = $("#needGuide").val();
     let NameofGuide = $("#guidenames").val(); // Make sure this field is properly defined in your HTML
@@ -502,15 +503,15 @@ function OnSavePackageDetails() {
         packageDetailsID:pkDetailsID,
         startDuration: start_Date,
         endDuration: end_Date,
-        packageCategory: Package_category,
         travelArea: area,
+        noOfDays:noofDays,
         noOfAdults: No_ofAdults,
         noOfChildren: No_ofChild,
         totalHeadCount: totalOfHeadCount,
         isPetsAllowed: allowPets,
         isGuideNeeded: NeedGuide,
-        NameGuide: NameofGuide,
-        TotalPackageValue: TotalOfHotelVehicleGuide,
+        nameGuide: NameofGuide,
+        totalPackageValue: TotalOfHotelVehicleGuide,
         remark: SpecialRequests
     };
 
