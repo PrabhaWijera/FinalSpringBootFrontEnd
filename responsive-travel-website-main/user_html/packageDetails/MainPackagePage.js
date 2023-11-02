@@ -364,6 +364,8 @@ $(document).ready(function () {
     $('#manday').on("change", () => {
         guidePrice = parseFloat($("#manday").val()) * totalDays;
 
+
+
         $("#mandayPrice").val(guidePrice);
 
         updateTotalPrice();
@@ -489,6 +491,27 @@ $(document).ready(function() {
         })
 
     });
+
+
+    $("#guidenames").change(function() {
+        var selectedValue2 = $(this).val(); // Get the selected value
+        console.log('selectedvalue2 : ',selectedValue2)
+
+
+        let gd= JSON.parse(localStorage.getItem("gd"))
+        gd.forEach((gg)=>{
+            console.log(gg.manDayValue+"gg man day value");
+            if(gg.guideName === selectedValue2){
+                $("#manday").empty();
+                $("#manday").append("<option value='" + gg.manDayValue + "'>" + "Guide Service Charge : " + gg.manDayValue + " .</option>");
+
+            }
+// vehicle price ekath hdnn combo box ,
+// hotel price ithuru tikath add krnn
+
+        })
+
+    });
 });
 
 
@@ -545,7 +568,8 @@ function getGuides(){
                 swal("OOPS!", "No data found!", "error");
             } else {
                 console.log("Response data:", res.data);
-
+                console.log("Response data:", res.data);
+                localStorage.setItem("gd",JSON.stringify(res.data))
                 const selectElement = $("#guidenames");
                 selectElement.empty(); // Clear the existing options
 
@@ -553,6 +577,9 @@ function getGuides(){
                     let option = $("<option>");
                     option.attr("value", guide.guideName);
                     option.text(guide.guideName);
+
+
+
 
                     selectElement.append(option);
                 });
