@@ -5,6 +5,8 @@ $("#button1,#button2,#button3,#button4").on("click",(event)=>{
         console.log("sufbfbofbesf");
         return window.location.href = 'login.html';
 
+
+
     }
 
 

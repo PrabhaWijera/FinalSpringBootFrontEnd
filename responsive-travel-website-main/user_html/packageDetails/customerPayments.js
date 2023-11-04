@@ -125,22 +125,30 @@ function saveImage(fileInputId, successCallback) {
     }
 }
 function sendEmail() {
+
     const OwnerFullName = $("#OwnerFullName").val();
     const OwnerEmail = $("#OwnerEmail").val();
     const OwnerCardNumber = $("#OwnerCardNumber").val();
     const amountofPackage = $("#amountofPackage").val();
     const date = $("#paymentDate").val();
 
+    console.log(OwnerFullName);
+    console.log(OwnerEmail);
+    console.log(OwnerCardNumber);
+    console.log(amountofPackage);
+    console.log(date);
+
     // Create an object to store the data
     const data = {
-        OwnerFullName: OwnerFullName,
-        OwnerEmail: OwnerEmail,
-        OwnerCardNumber: OwnerCardNumber,
+        ownerFullName: OwnerFullName,
+        ownerEmail: OwnerEmail,
+        ownerCardNumber: OwnerCardNumber,
         paymentAmount: amountofPackage,
         paymentDate: date,
     };
 
-    // Send a POST request with the data
+    console.log(data);
+
     $.ajax({
         url: 'http://localhost:8093/api/v1/emails/sendPackageDetails',
         type: 'POST',
@@ -149,20 +157,15 @@ function sendEmail() {
         headers: {
             Authorization: "Bearer " + JSON.parse(localStorage.getItem("userAuthToken"))
         },
-        success: function (data) {
-            swal("SUCCESSFULLY!!! Confirmed Payment");
+        success: function (response) {
+            swal("res" + response);
+            swal("Save successful");
+            sendEmail();
+
+            // You can handle the response from the server here if needed
         },
-        complete: function (xhr, textStatus) {
-            if (xhr.status !== 200) {
-                // Check if the response is in JSON format
-                if (xhr.getResponseHeader('content-type') && xhr.getResponseHeader('content-type').indexOf('application/json') !== -1) {
-                    // Handle the JSON response
-                    swal("OOPS!", "Server threw an exception: " + xhr.responseJSON.message, "error");
-                } else {
-                    // Handle non-JSON response
-                    swal("OOPS!", "Server threw an exception: " + xhr.responseText, "error");
-                }
-            }
+        error: function (xhr, textStatus, errorThrown) {
+            swal("Error: " + xhr.responseText);
         }
     });
 }
